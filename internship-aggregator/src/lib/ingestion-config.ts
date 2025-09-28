@@ -34,17 +34,17 @@ export const INGESTION_CONFIG: IngestionConfig = {
       name: 'Daily Full Ingestion',
       type: 'full',
       cron: '0 6 * * *', // 6 AM daily
-      enabled: true,
-      maxResults: 200,
+      enabled: false, // Disabled by default to save costs
+      maxResults: 50, // Reduced from 200 to save costs
       description: 'Complete ingestion of all sources and companies'
     },
     {
       name: 'Tier 1 Companies - Twice Daily',
       type: 'companies',
       cron: '0 6,18 * * *', // 6 AM and 6 PM daily
-      enabled: true,
+      enabled: false, // Disabled by default to save costs
       companies: ['Google', 'Microsoft', 'Meta', 'Apple', 'Amazon'],
-      maxResults: 100,
+      maxResults: 25, // Reduced from 100 to save costs
       description: 'High-priority companies ingestion'
     },
     {
@@ -187,12 +187,12 @@ export function getIngestionConfigForEnvironment(): Partial<IngestionConfig> {
       return {
         defaults: {
           ...INGESTION_CONFIG.defaults,
-          batchSize: 10, // Smaller batches for development
+          batchSize: 5, // Very small batches for development to save costs
           timeout: 60000 // 1 minute timeout
         },
         schedules: INGESTION_CONFIG.schedules.map(schedule => ({
           ...schedule,
-          maxResults: Math.min(schedule.maxResults, 20), // Limit results in dev
+          maxResults: Math.min(schedule.maxResults, 5), // Very limited results in dev to save costs
           enabled: false // Disable automatic scheduling in dev
         }))
       };

@@ -42,7 +42,7 @@ export default function IngestionDashboard() {
 
     try {
       const body: any = {
-        maxResults: 20, // Limit for manual testing
+        maxResults: 5, // Very small limit to save API costs
         includePrograms: true,
         dryRun: false,
         skipDuplicates: true
@@ -284,10 +284,10 @@ export default function IngestionDashboard() {
         <h3 className="font-medium mb-2">Instructions</h3>
         <ul className="text-sm text-gray-600 space-y-1">
           <li>• Use manual ingestion buttons to test the system or get fresh data</li>
-          <li>• Scheduled jobs run automatically based on the cron expressions</li>
+          <li>• Scheduled jobs are disabled by default to save API costs</li>
           <li>• Check system health before running ingestion</li>
-          <li>• Results are limited to 20 items for manual testing</li>
-          <li>• Production scheduled jobs will process larger batches</li>
+          <li>• Results are limited to 5 items for manual testing to save costs (~$0.02-0.05 per test)</li>
+          <li>• Each API call costs approximately $0.005-0.017 depending on content requested</li>
         </ul>
       </div>
     </div>

@@ -15,9 +15,9 @@ export interface ExaSearchOptions {
   endCrawlDate?: string;
   startPublishedDate?: string;
   endPublishedDate?: string;
-  includeText?: boolean;
-  includeHighlights?: boolean;
-  includeSummary?: boolean;
+  includeText?: string[] | boolean; // Can be array of fields or boolean for backwards compatibility
+  includeHighlights?: string[] | boolean;
+  includeSummary?: string[] | boolean;
   category?: string;
 }
 
@@ -114,24 +114,43 @@ export class ExaClient {
   async search(options: ExaSearchOptions): Promise<ExaSearchResponse> {
     return limit(async () => {
       try {
+        // Convert boolean options to proper format for Exa API
+        const requestBody: any = {
+          query: options.query,
+          type: options.type || 'neural',
+          useAutoprompt: options.useAutoprompt ?? true,
+          numResults: options.numResults || 10,
+          includeDomains: options.includeDomains,
+          excludeDomains: options.excludeDomains,
+          startCrawlDate: options.startCrawlDate,
+          endCrawlDate: options.endCrawlDate,
+          startPublishedDate: options.startPublishedDate,
+          endPublishedDate: options.endPublishedDate,
+          category: options.category,
+        };
+
+        // Handle includeText - convert boolean to array format if needed
+        if (options.includeText === true) {
+          requestBody.contents = { text: true };
+        } else if (Array.isArray(options.includeText)) {
+          requestBody.contents = { text: true };
+        } else if (options.includeText === false || options.includeText === undefined) {
+          // Don't include contents field
+        }
+
+        // Handle includeHighlights
+        if (options.includeHighlights === true) {
+          requestBody.contents = { ...requestBody.contents, highlights: true };
+        }
+
+        // Handle includeSummary  
+        if (options.includeSummary === true) {
+          requestBody.contents = { ...requestBody.contents, summary: true };
+        }
+
         const response = await this.makeRequest<ExaSearchResponse>('/search', {
           method: 'POST',
-          body: JSON.stringify({
-            query: options.query,
-            type: options.type || 'neural',
-            useAutoprompt: options.useAutoprompt ?? true,
-            numResults: options.numResults || 10,
-            includeDomains: options.includeDomains,
-            excludeDomains: options.excludeDomains,
-            startCrawlDate: options.startCrawlDate,
-            endCrawlDate: options.endCrawlDate,
-            startPublishedDate: options.startPublishedDate,
-            endPublishedDate: options.endPublishedDate,
-            includeText: options.includeText ?? false,
-            includeHighlights: options.includeHighlights ?? false,
-            includeSummary: options.includeSummary ?? false,
-            category: options.category,
-          }),
+          body: JSON.stringify(requestBody),
         });
 
         return response;
@@ -152,14 +171,24 @@ export class ExaClient {
   async getContents(options: ExaContentsOptions): Promise<ExaContentsResponse> {
     return limit(async () => {
       try {
+        // Build contents request body
+        const requestBody: any = {
+          ids: options.ids
+        };
+
+        // Add contents options if any are requested
+        const contents: any = {};
+        if (options.text) contents.text = true;
+        if (options.highlights) contents.highlights = true;
+        if (options.summary) contents.summary = true;
+        
+        if (Object.keys(contents).length > 0) {
+          requestBody.contents = contents;
+        }
+
         const response = await this.makeRequest<ExaContentsResponse>('/contents', {
           method: 'POST',
-          body: JSON.stringify({
-            ids: options.ids,
-            text: options.text ?? true,
-            highlights: options.highlights ?? false,
-            summary: options.summary ?? false,
-          }),
+          body: JSON.stringify(requestBody),
         });
 
         return response;
