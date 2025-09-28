@@ -6,13 +6,13 @@
   - Set up Supabase project and database connection
   - _Requirements: 7.3, 7.5_
 
-- [ ] 2. Create database schema and core data models
-  - [ ] 2.1 Implement Supabase database schema
+- [x] 2. Create database schema and core data models
+  - [x] 2.1 Implement Supabase database schema
     - Create internships, companies, and sources tables with proper indexes
     - Set up database migrations and seed data structure
     - _Requirements: 4.3, 5.4_
   
-  - [ ] 2.2 Create TypeScript interfaces and types
+  - [x] 2.2 Create TypeScript interfaces and types
     - Define core data types (Internship, Company, FilterState, etc.)
     - Implement Zod schemas for runtime validation
     - Create enum definitions for roles and majors
