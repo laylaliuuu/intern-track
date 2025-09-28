@@ -18,21 +18,21 @@
     - Create enum definitions for roles and majors
     - _Requirements: 5.1, 5.2, 7.4_
 
-- [ ] 3. Build ingestion and normalization system
-  - [ ] 3.1 Implement Exa.ai API integration
+- [x] 3. Build ingestion and normalization system
+  - [x] 3.1 Implement Exa.ai API integration
     - Create API client for Exa.ai with proper error handling
     - Implement p-limit concurrency control for rate limiting
     - Write unit tests for API integration
     - _Requirements: 4.1, 4.2, 4.5_
   
-  - [ ] 3.2 Create ontology-based normalization engine
+  - [x] 3.2 Create ontology-based normalization engine
     - Build role type extraction and normalization logic
     - Implement major mapping from job descriptions to bachelor's degrees
     - Create skill extraction and location normalization
     - Add canonical hashing for deduplication
     - _Requirements: 5.1, 5.2, 5.3, 5.5_
   
-  - [ ] 3.3 Implement ingestion worker with scheduling
+  - [x] 3.3 Implement ingestion worker with scheduling
     - Create serverless function for scheduled data ingestion
     - Integrate Exa.ai API calls with normalization pipeline
     - Add structured logging and error handling
