@@ -194,14 +194,12 @@ export interface Internship {
   skills: string[];
   eligibilityYear: EligibilityYear[];
   internshipCycle: string;
-  postedAt: Date;
-  applicationDeadline?: Date;
+  postedAt: string; // ISO string from API
+  applicationDeadline?: string; // ISO string from API
   applicationUrl: string;
   description: string;
   source: Source;
-  timeAgo: string; // computed field like "2 hours ago"
   isProgramSpecific: boolean;
-  deadlineCountdown?: string; // computed field like "5 days left"
   relevantMajors: BachelorMajor[];
 }
 

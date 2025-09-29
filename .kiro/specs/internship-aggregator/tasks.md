@@ -39,7 +39,7 @@
     - _Requirements: 4.1, 4.4, 6.1, 6.5_
 
 - [ ] 4. Create API layer and data access
-  - [ ] 4.1 Build Next.js API routes for internship data
+  - [x] 4.1 Build Next.js API routes for internship data
     - Implement GET /api/internships with filtering and pagination
     - Add search functionality with full-text search
     - Create GET /api/internships/[id] for detailed views
