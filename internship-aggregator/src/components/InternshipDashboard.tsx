@@ -110,26 +110,38 @@ export default function InternshipDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">InternTrack</h1>
-              <p className="text-sm text-gray-600">
-                {stats ? `${stats.total} internships • ${stats.remote} remote • ${stats.programSpecific} program-specific` : 'Loading...'}
-              </p>
+      {/* Modern Header */}
+      <header className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <div className="flex-shrink-0">
+                <h1 className="text-xl font-semibold text-gray-900">InternTrack</h1>
+              </div>
+              <div className="hidden md:block ml-6">
+                <div className="flex items-center space-x-4 text-sm text-gray-500">
+                  {stats && (
+                    <>
+                      <span>{stats.total.toLocaleString()} internships</span>
+                      <span>•</span>
+                      <span>{stats.remote} remote</span>
+                      <span>•</span>
+                      <span>{stats.programSpecific} programs</span>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3">
               <button
                 onClick={() => refetch()}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+                className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Refresh
               </button>
               <a
                 href="/admin/ingestion"
-                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Admin
               </a>
@@ -138,28 +150,37 @@ export default function InternshipDashboard() {
         </div>
       </header>
 
+      {/* Search Bar */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="max-w-lg">
+            <SearchBar
+              value={search}
+              onChange={handleSearchChange}
+              placeholder="Search internships by title, company, or description..."
+            />
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex flex-col lg:flex-row gap-6">
-          {/* Sidebar - Filters */}
-          <div className="lg:w-80 flex-shrink-0">
-            <div className="bg-white rounded-lg shadow-sm border p-6 sticky top-6">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
-                <button
-                  onClick={clearFilters}
-                  className="text-sm text-blue-600 hover:text-blue-800"
-                >
-                  Clear all
-                </button>
+          {/* Compact Sidebar - Filters */}
+          <div className="lg:w-72 flex-shrink-0">
+            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+              <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-sm font-medium text-gray-900">Filters</h2>
+                  <button
+                    onClick={clearFilters}
+                    className="text-xs text-blue-600 hover:text-blue-800 font-medium"
+                  >
+                    Clear all
+                  </button>
+                </div>
               </div>
               
-              <SearchBar
-                value={search}
-                onChange={handleSearchChange}
-                placeholder="Search internships..."
-              />
-              
-              <div className="mt-4">
+              <div className="p-4">
                 <FilterPanel
                   filters={filters}
                   onChange={handleFilterChange}
@@ -171,29 +192,27 @@ export default function InternshipDashboard() {
 
           {/* Main Content */}
           <div className="flex-1 min-w-0">
-            <div className="bg-white rounded-lg shadow-sm border">
-              {error ? (
-                <div className="p-6 text-center">
-                  <div className="text-red-600 mb-2">Failed to load internships</div>
-                  <button
-                    onClick={() => refetch()}
-                    className="text-sm text-blue-600 hover:text-blue-800"
-                  >
-                    Try again
-                  </button>
-                </div>
-              ) : (
-                <InternshipTable
-                  internships={internships}
-                  loading={isLoading}
-                  pagination={pagination}
-                  onPageChange={setPage}
-                  onSortChange={handleSortChange}
-                  sortBy={sortBy}
-                  sortOrder={sortOrder}
-                />
-              )}
-            </div>
+            {error ? (
+              <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
+                <div className="text-red-600 mb-2">Failed to load internships</div>
+                <button
+                  onClick={() => refetch()}
+                  className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+                >
+                  Try again
+                </button>
+              </div>
+            ) : (
+              <InternshipTable
+                internships={internships}
+                loading={isLoading}
+                pagination={pagination}
+                onPageChange={setPage}
+                onSortChange={handleSortChange}
+                sortBy={sortBy}
+                sortOrder={sortOrder}
+              />
+            )}
           </div>
         </div>
       </div>
