@@ -2,12 +2,15 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown, ChevronUp, Search, X, Filter } from 'lucide-react';
+import FilterButton from './FilterButton';
 
 interface FilterState {
-  status: string[];
-  responsiblePerson: string[];
-  employeesInvolved: string[];
-  moreFilters: string[];
+  companySize: string[];
+  companyType: string[];
+  location: string[];
+  roleType: string[];
+  yearLevel: string[];
+  majorRequired: string[];
 }
 
 interface ModernFilterBarProps {
@@ -17,41 +20,113 @@ interface ModernFilterBarProps {
   totalResults: number;
 }
 
-export default function ModernFilterBar({ filters, onChange, onReset, totalResults }: ModernFilterBarProps) {
+export default function ModernFilterBar({ filters = { companySize: [], companyType: [], location: [], roleType: [], yearLevel: [], majorRequired: [] }, onChange, onReset, totalResults }: ModernFilterBarProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchTerms, setSearchTerms] = useState<{[key: string]: string}>({});
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Mock data for filter options
   const filterOptions = {
-    status: [
-      { id: '1', label: 'Applied' },
-      { id: '2', label: 'In Review' },
-      { id: '3', label: 'Rejected' },
-      { id: '4', label: 'Accepted' },
-      { id: '5', label: 'Pending' }
+    companySize: [
+      { id: '1', label: 'Startup (1-50)' },
+      { id: '2', label: 'Small (51-200)' },
+      { id: '3', label: 'Medium (201-1000)' },
+      { id: '4', label: 'Large (1000+)' },
+      { id: '5', label: 'Fortune 500' }
     ],
-    responsiblePerson: [
-      { id: '1', label: 'John Smith' },
-      { id: '2', label: 'Sarah Johnson' },
-      { id: '3', label: 'Mike Davis' },
-      { id: '4', label: 'Lisa Wilson' },
-      { id: '5', label: 'Tom Brown' }
+    companyType: [
+      { id: '1', label: 'Technology' },
+      { id: '2', label: 'Finance' },
+      { id: '3', label: 'Healthcare' },
+      { id: '4', label: 'Consulting' },
+      { id: '5', label: 'Retail' },
+      { id: '6', label: 'Manufacturing' },
+      { id: '7', label: 'Education' },
+      { id: '8', label: 'Non-profit' },
+      { id: '9', label: 'Media & Entertainment' },
+      { id: '10', label: 'Real Estate' },
+      { id: '11', label: 'Transportation' },
+      { id: '12', label: 'Energy' },
+      { id: '13', label: 'Government' },
+      { id: '14', label: 'Legal' },
+      { id: '15', label: 'Sports & Recreation' }
     ],
-    employeesInvolved: [
-      { id: '1', label: 'Kristin Watson' },
-      { id: '2', label: 'Jerome Bell' },
-      { id: '3', label: 'Leslie Alexander' },
-      { id: '4', label: 'Dianne Russell' },
-      { id: '5', label: 'Courtney Henry' },
-      { id: '6', label: 'Maciej Kuropatwa' }
-    ],
-    moreFilters: [
+    location: [
       { id: '1', label: 'Remote' },
-      { id: '2', label: 'On-site' },
-      { id: '3', label: 'Hybrid' },
-      { id: '4', label: 'Full-time' },
-      { id: '5', label: 'Part-time' }
+      { id: '2', label: 'Hybrid' },
+      { id: '3', label: 'On-site' },
+      { id: '4', label: 'San Francisco, CA' },
+      { id: '5', label: 'New York, NY' },
+      { id: '6', label: 'Seattle, WA' },
+      { id: '7', label: 'Austin, TX' },
+      { id: '8', label: 'Boston, MA' },
+      { id: '9', label: 'Los Angeles, CA' },
+      { id: '10', label: 'Chicago, IL' },
+      { id: '11', label: 'Denver, CO' },
+      { id: '12', label: 'Miami, FL' },
+      { id: '13', label: 'Atlanta, GA' },
+      { id: '14', label: 'Portland, OR' },
+      { id: '15', label: 'Washington, DC' }
+    ],
+    roleType: [
+      { id: '1', label: 'Software Engineer' },
+      { id: '2', label: 'Data Analyst' },
+      { id: '3', label: 'Product Manager' },
+      { id: '4', label: 'UX Designer' },
+      { id: '5', label: 'Marketing' },
+      { id: '6', label: 'Sales' },
+      { id: '7', label: 'Finance' },
+      { id: '8', label: 'HR' },
+      { id: '9', label: 'Operations' },
+      { id: '10', label: 'Research' },
+      { id: '11', label: 'Business Development' },
+      { id: '12', label: 'Content Creator' },
+      { id: '13', label: 'Project Manager' },
+      { id: '14', label: 'Customer Success' },
+      { id: '15', label: 'Legal' },
+      { id: '16', label: 'Data Scientist' },
+      { id: '17', label: 'Machine Learning Engineer' },
+      { id: '18', label: 'Cybersecurity' },
+      { id: '19', label: 'DevOps Engineer' },
+      { id: '20', label: 'Frontend Developer' },
+      { id: '21', label: 'Backend Developer' },
+      { id: '22', label: 'Full Stack Developer' },
+      { id: '23', label: 'Mobile Developer' },
+      { id: '24', label: 'Game Developer' },
+      { id: '25', label: 'AI/ML Research' },
+      { id: '26', label: 'Investment Banking' },
+      { id: '27', label: 'Financial Analyst' },
+      { id: '28', label: 'Accounting' },
+      { id: '29', label: 'Consulting' },
+      { id: '30', label: 'Strategy' },
+      { id: '31', label: 'Risk Management' },
+      { id: '32', label: 'Trading' },
+      { id: '33', label: 'Audit' },
+      { id: '34', label: 'Tax' },
+      { id: '35', label: 'Corporate Finance' }
+    ],
+    yearLevel: [
+      { id: '1', label: 'Freshman' },
+      { id: '2', label: 'Sophomore' },
+      { id: '3', label: 'Junior' },
+      { id: '4', label: 'Senior' }
+    ],
+    majorRequired: [
+      { id: '1', label: 'Computer Science' },
+      { id: '2', label: 'Business' },
+      { id: '3', label: 'Engineering' },
+      { id: '4', label: 'Mathematics' },
+      { id: '5', label: 'Statistics' },
+      { id: '6', label: 'Economics' },
+      { id: '7', label: 'Marketing' },
+      { id: '8', label: 'Liberal Arts' },
+      { id: '9', label: 'Psychology' },
+      { id: '10', label: 'Communications' },
+      { id: '11', label: 'Biology' },
+      { id: '12', label: 'Chemistry' },
+      { id: '13', label: 'Physics' },
+      { id: '14', label: 'Political Science' },
+      { id: '15', label: 'Any Major' }
     ]
   };
 
@@ -97,14 +172,7 @@ export default function ModernFilterBar({ filters, onChange, onReset, totalResul
   };
 
   const getFilteredOptions = (filterType: string) => {
-    const searchTerm = searchTerms[filterType] || '';
-    const options = filterOptions[filterType as keyof typeof filterOptions] || [];
-    
-    if (!searchTerm) return options;
-    
-    return options.filter(option =>
-      option.label.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    return filterOptions[filterType as keyof typeof filterOptions] || [];
   };
 
   const renderDropdown = (filterType: string, label: string) => {
@@ -116,45 +184,62 @@ export default function ModernFilterBar({ filters, onChange, onReset, totalResul
     return (
       <div 
         ref={dropdownRef}
-        className="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-md shadow-lg z-50"
-        style={{ minWidth: '256px' }}
+        className="w-64 bg-white border border-gray-200 rounded-lg shadow-xl z-[9999]"
+        style={{ 
+          minWidth: '256px',
+          backgroundColor: '#ffffff',
+          opacity: 1
+        }}
       >
-        {/* Search Bar */}
-        <div className="p-3 border-b border-gray-100">
-          <div className="relative">
-            <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-3.5 w-3.5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search values"
-              value={searchTerms[filterType] || ''}
-              onChange={(e) => setSearchTerms(prev => ({ ...prev, [filterType]: e.target.value }))}
-              className="w-full pl-8 pr-3 py-1.5 border border-gray-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
-        </div>
 
         {/* Options List */}
-        <div className="max-h-40 overflow-y-auto">
+        <div 
+          className="overflow-y-auto" 
+          style={{ 
+            padding: '4px',
+            maxHeight: '200px',
+            minHeight: '200px'
+          }}
+        >
           {options.map((option) => {
             const isSelected = filters[filterType as keyof FilterState]?.includes(option.id) || false;
             return (
               <div
                 key={option.id}
-                className="flex items-center px-3 py-1.5 hover:bg-gray-50 cursor-pointer"
+                className={`flex items-center px-4 py-3 cursor-pointer transition-colors ${
+                  isSelected ? 'bg-blue-100' : ''
+                }`}
+                style={{
+                  backgroundColor: isSelected ? '#f3e8ff' : 'transparent',
+                  marginBottom: '4px',
+                  marginLeft: '8px',
+                  marginRight: '8px',
+                  marginTop: '2px',
+                  borderRadius: '3px'
+                }}
+                onMouseEnter={(e) => {
+                  if (!isSelected) {
+                    e.currentTarget.style.backgroundColor = '#dbeafe';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isSelected) {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }
+                }}
                 onClick={() => handleFilterToggle(filterType, option.id)}
               >
-                <div className={`w-3.5 h-3.5 border rounded mr-2 flex items-center justify-center ${
-                  isSelected 
-                    ? 'bg-purple-600 border-purple-600' 
-                    : 'border-gray-300 bg-white'
-                }`}>
-                  {isSelected && (
-                    <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  )}
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={isSelected}
+                    onChange={() => handleFilterToggle(filterType, option.id)}
+                    className="w-4 h-4 rounded border-2 border-gray-300 text-blue-600 focus:ring-blue-500 focus:ring-2"
+                  />
                 </div>
-                <span className={`text-xs ${isSelected ? 'text-gray-900' : 'text-gray-700'}`}>
+                <span className={`ml-3 text-sm font-medium ${
+                  isSelected ? 'text-blue-800' : 'text-gray-700'
+                }`}>
                   {option.label}
                 </span>
               </div>
@@ -163,22 +248,47 @@ export default function ModernFilterBar({ filters, onChange, onReset, totalResul
         </div>
 
         {/* Footer */}
-        <div className="p-3 border-t border-gray-100">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-gray-600">Selected: {selectedCount}</span>
+        <div className="p-4">
+          <div className="flex flex-col gap-3">
             <button
-              onClick={() => handleClearFilter(filterType)}
-              className="text-xs text-blue-600 hover:underline"
+              onClick={() => setActiveDropdown(null)}
+              className="bg-purple-600 text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors duration-200"
+              style={{
+                backgroundColor: '#7c3aed',
+                borderRadius: '5px',
+                fontWeight: '500',
+                color: '#ffffff',
+                marginLeft: '8px',
+                marginRight: '8px'
+              }}
             >
-              Clear selected
+              Apply
             </button>
+            <div 
+              className="flex items-center justify-end"
+              style={{
+                paddingRight: '16px',
+                paddingBottom: '2px',
+                paddingTop: '2px'
+              }}
+            >
+              <button
+                onClick={() => handleClearFilter(filterType)}
+                className="text-sm text-purple-600 underline hover:text-purple-700 transition-colors bg-transparent border-none outline-none p-0"
+                style={{
+                  color: '#7c3aed',
+                  textDecoration: 'underline',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  outline: 'none',
+                  padding: '0',
+                  boxShadow: 'none'
+                }}
+              >
+                Clear selected
+              </button>
+            </div>
           </div>
-          <button
-            onClick={() => setActiveDropdown(null)}
-            className="w-full bg-purple-600 text-white py-1.5 px-3 rounded text-xs font-medium hover:bg-purple-700 transition-colors duration-200"
-          >
-            Apply
-          </button>
         </div>
       </div>
     );
@@ -187,142 +297,223 @@ export default function ModernFilterBar({ filters, onChange, onReset, totalResul
   const renderActiveFilters = () => {
     const activeFilters: Array<{type: string, id: string, label: string}> = [];
     
-    Object.entries(filters).forEach(([filterType, selectedIds]) => {
-      if (selectedIds && Array.isArray(selectedIds)) {
-        selectedIds.forEach((id: string) => {
-          const option = filterOptions[filterType as keyof typeof filterOptions]?.find(opt => opt.id === id);
-          if (option) {
-            activeFilters.push({
-              type: filterType,
-              id,
-              label: option.label
-            });
-          }
-        });
-      }
-    });
+    if (filters) {
+      Object.entries(filters).forEach(([filterType, selectedIds]) => {
+        if (selectedIds && Array.isArray(selectedIds)) {
+          selectedIds.forEach((id: string) => {
+            const option = filterOptions[filterType as keyof typeof filterOptions]?.find(opt => opt.id === id);
+            if (option) {
+              activeFilters.push({
+                type: filterType,
+                id,
+                label: option.label
+              });
+            }
+          });
+        }
+      });
+    }
 
     if (activeFilters.length === 0) return null;
 
     return (
-      <div className="mt-2 px-3 pb-2">
-        <div className="text-xs text-gray-600 mb-1.5">Active filters:</div>
-        <div className="flex flex-wrap gap-1">
-          {activeFilters.map((filter, index) => (
+      <div 
+        className="px-3 pb-2"
+        style={{
+          marginTop: '16px',
+          paddingRight: '20px'
+        }}
+      >
+        <div 
+          className="flex items-center"
+          style={{
+            gap: '12px'
+          }}
+        >
+          <div className="text-xs text-gray-600">Active filters:    </div>
+          <div className="flex flex-wrap gap-1">
+            {activeFilters.map((filter, index) => (
             <div
               key={`${filter.type}-${filter.id}-${index}`}
-              className="bg-blue-600 text-white px-2 py-0.5 rounded-full text-xs flex items-center space-x-1"
+              className="flex items-center space-x-1"
+              style={{
+                backgroundColor: '#f0f4ff',
+                borderRadius: '5px',
+                padding: '2px',
+                border: '1px solid #e0e7ff'
+              }}
             >
-              <span>{filter.type}: {filter.label}</span>
+              <span style={{ color: '#3b82f6', fontSize: '14px', fontWeight: '500' }}>
+                {filter.label}
+              </span>
               <button
                 onClick={() => handleRemoveActiveFilter(filter.type, filter.id)}
-                className="hover:bg-blue-700 rounded-full p-0.5"
+                style={{
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  padding: '2px',
+                  borderRadius: '50%',
+                  color: '#7c3aed',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#f3f4f6';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }}
               >
-                <X className="h-2.5 w-2.5" />
+                <X className="h-3 w-3" />
               </button>
             </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     );
   };
 
   return (
-    <div className="bg-gray-50 border border-gray-200 rounded-lg">
-      {/* Filter Bar */}
-      <div className="flex items-center justify-between p-3">
-        {/* Left Side - Filter Buttons */}
-        <div className="flex items-center space-x-1">
-          {/* Status */}
+      <div className="bg-gray-50" style={{ marginBottom: '20px' }}>
+        {/* Filter Bar */}
+        <div className="flex items-center justify-between p-3 relative">
+          {/* Left Side - Filter Buttons */}
+          <div 
+            className="flex items-center"
+            style={{
+              gap: '12px'
+            }}
+          >
+
+          {/* Company Size */}
           <div className="relative">
-            <button
-              onClick={() => setActiveDropdown(activeDropdown === 'status' ? null : 'status')}
-              className={`flex items-center space-x-1 px-2.5 py-1.5 rounded border text-xs font-medium transition-all duration-200 ${
-                activeDropdown === 'status'
-                  ? 'bg-white border-gray-300 text-gray-900 shadow-sm'
-                  : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              <span>Status</span>
-              {activeDropdown === 'status' ? (
-                <ChevronUp className="h-3 w-3" />
-              ) : (
-                <ChevronDown className="h-3 w-3" />
-              )}
-            </button>
-            {renderDropdown('status', 'Status')}
+            <FilterButton
+              label="Company size"
+              isActive={activeDropdown === 'companySize'}
+              onClick={() => setActiveDropdown(activeDropdown === 'companySize' ? null : 'companySize')}
+            />
+            {activeDropdown === 'companySize' && (
+              <div className="absolute top-full left-0 mt-1 z-[9999]" style={{ backgroundColor: '#ffffff' }}>
+                {renderDropdown('companySize', 'Company size')}
+              </div>
+            )}
           </div>
 
-          {/* Responsible Person */}
+          {/* Company Type */}
           <div className="relative">
-            <button
-              onClick={() => setActiveDropdown(activeDropdown === 'responsiblePerson' ? null : 'responsiblePerson')}
-              className={`flex items-center space-x-1 px-2.5 py-1.5 rounded border text-xs font-medium transition-all duration-200 ${
-                activeDropdown === 'responsiblePerson'
-                  ? 'bg-white border-gray-300 text-gray-900 shadow-sm'
-                  : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              <span>Responsible person</span>
-              {activeDropdown === 'responsiblePerson' ? (
-                <ChevronUp className="h-3 w-3" />
-              ) : (
-                <ChevronDown className="h-3 w-3" />
-              )}
-            </button>
-            {renderDropdown('responsiblePerson', 'Responsible person')}
+            <FilterButton
+              label="Company type"
+              isActive={activeDropdown === 'companyType'}
+              onClick={() => setActiveDropdown(activeDropdown === 'companyType' ? null : 'companyType')}
+            />
+            {activeDropdown === 'companyType' && (
+              <div className="absolute top-full left-0 mt-1 z-[9999]" style={{ backgroundColor: '#ffffff' }}>
+                {renderDropdown('companyType', 'Company type')}
+              </div>
+            )}
           </div>
 
-          {/* Employees Involved */}
+          {/* Location */}
           <div className="relative">
-            <button
-              onClick={() => setActiveDropdown(activeDropdown === 'employeesInvolved' ? null : 'employeesInvolved')}
-              className={`flex items-center space-x-1 px-2.5 py-1.5 rounded border text-xs font-medium transition-all duration-200 ${
-                activeDropdown === 'employeesInvolved'
-                  ? 'bg-white border-gray-300 text-gray-900 shadow-sm'
-                  : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              <span>Employees involved</span>
-              {activeDropdown === 'employeesInvolved' ? (
-                <ChevronUp className="h-3 w-3" />
-              ) : (
-                <ChevronDown className="h-3 w-3" />
-              )}
-            </button>
-            {renderDropdown('employeesInvolved', 'Employees involved')}
+            <FilterButton
+              label="Location"
+              isActive={activeDropdown === 'location'}
+              onClick={() => setActiveDropdown(activeDropdown === 'location' ? null : 'location')}
+            />
+            {activeDropdown === 'location' && (
+              <div className="absolute top-full left-0 mt-1 z-[9999]" style={{ backgroundColor: '#ffffff' }}>
+                {renderDropdown('location', 'Location')}
+              </div>
+            )}
           </div>
 
-          {/* More Filters */}
+          {/* Role Type */}
           <div className="relative">
-            <button
-              onClick={() => setActiveDropdown(activeDropdown === 'moreFilters' ? null : 'moreFilters')}
-              className={`flex items-center space-x-1 px-2.5 py-1.5 rounded border text-xs font-medium transition-all duration-200 ${
-                activeDropdown === 'moreFilters'
-                  ? 'bg-white border-gray-300 text-gray-900 shadow-sm'
-                  : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              <Filter className="h-3 w-3" />
-              <span>More filters</span>
-              {activeDropdown === 'moreFilters' ? (
-                <ChevronUp className="h-3 w-3" />
-              ) : (
-                <ChevronDown className="h-3 w-3" />
-              )}
-            </button>
-            {renderDropdown('moreFilters', 'More filters')}
+            <FilterButton
+              label="Role type"
+              isActive={activeDropdown === 'roleType'}
+              onClick={() => setActiveDropdown(activeDropdown === 'roleType' ? null : 'roleType')}
+            />
+            {activeDropdown === 'roleType' && (
+              <div className="absolute top-full left-0 mt-1 z-[9999]" style={{ backgroundColor: '#ffffff' }}>
+                {renderDropdown('roleType', 'Role type')}
+              </div>
+            )}
           </div>
+
+          {/* Year Level */}
+          <div className="relative">
+            <FilterButton
+              label="Year level"
+              isActive={activeDropdown === 'yearLevel'}
+              onClick={() => setActiveDropdown(activeDropdown === 'yearLevel' ? null : 'yearLevel')}
+            />
+            {activeDropdown === 'yearLevel' && (
+              <div className="absolute top-full left-0 mt-1 z-[9999]" style={{ backgroundColor: '#ffffff' }}>
+                {renderDropdown('yearLevel', 'Year level')}
+              </div>
+            )}
+          </div>
+
+          {/* Major Required */}
+          <div className="relative">
+            <FilterButton
+              label="Major required"
+              isActive={activeDropdown === 'majorRequired'}
+              onClick={() => setActiveDropdown(activeDropdown === 'majorRequired' ? null : 'majorRequired')}
+            />
+            {activeDropdown === 'majorRequired' && (
+              <div className="absolute top-full left-0 mt-1 z-[9999]" style={{ backgroundColor: '#ffffff' }}>
+                {renderDropdown('majorRequired', 'Major required')}
+              </div>
+            )}
+          </div>
+
         </div>
 
         {/* Right Side - Search Bar */}
-        <div className="flex items-center">
-          <div className="relative">
-            <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3.5 w-3.5 text-gray-400" />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ position: 'relative' }}>
+            <Search 
+              style={{
+                position: 'absolute',
+                left: '12px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                height: '16px',
+                width: '16px',
+                color: '#9ca3af'
+              }}
+            />
             <input
               type="text"
               placeholder="Search in table"
-              className="w-48 pl-7 pr-3 py-1.5 border border-gray-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+              style={{
+                width: '224px',
+                paddingLeft: '40px',
+                paddingRight: '16px',
+                paddingTop: '12px',
+                paddingBottom: '12px',
+                backgroundColor: '#ffffff',
+                border: '1px solid #d1d5db',
+                borderRadius: '12px',
+                boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+                color: '#374151',
+                fontSize: '14px',
+                fontWeight: '400',
+                outline: 'none'
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = '#3b82f6';
+                e.target.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = '#d1d5db';
+                e.target.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)';
+              }}
             />
           </div>
         </div>
@@ -330,6 +521,11 @@ export default function ModernFilterBar({ filters, onChange, onReset, totalResul
 
       {/* Active Filters */}
       {renderActiveFilters()}
+      
+      {/* Spacer to push content down when dropdown is open */}
+      {activeDropdown && (
+        <div className="h-80"></div>
+      )}
     </div>
   );
 }

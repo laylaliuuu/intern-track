@@ -10,15 +10,50 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        border: "hsl(var(--border))",
+        // Design System Colors
+        // Primary Palette (Brand Identity)
+        primary: {
+          DEFAULT: "#2563EB", // Bright Cornell-like Blue
+          hover: "#1E40AF", // Primary Hover
+          foreground: "#FFFFFF", // White text on primary
+        },
+        accent: {
+          DEFAULT: "#14B8A6", // Teal
+          foreground: "#FFFFFF", // White text on accent
+        },
+        background: {
+          DEFAULT: "#F9FAFB", // Soft grayish white
+        },
+        surface: "#FFFFFF", // White cards, table cells, modal backgrounds
+        
+        // Secondary / Neutral Palette (Data Clarity)
+        text: {
+          primary: "#111827", // For titles and labels
+          secondary: "#6B7280", // For metadata (dates, tags)
+        },
+        border: {
+          DEFAULT: "#E5E7EB", // Thin dividers between rows
+        },
+        highlight: "#EEF2FF", // Subtle blue background for selected rows
+        
+        // Feedback / Status Colors
+        success: "#22C55E", // Green - Verified posting, live status
+        warning: "#F59E0B", // Amber - Internship deadline approaching
+        error: "#EF4444", // Red - Posting no longer available
+        info: "#3B82F6", // Blue - Freshly added internship
+        
+        // Data Visualization Colors (for future charts)
+        chart: {
+          blue: "#3B82F6",
+          teal: "#14B8A6",
+          violet: "#8B5CF6",
+          orange: "#F97316",
+        },
+        
+        // Legacy shadcn/ui colors (keeping for compatibility)
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -30,10 +65,6 @@ const config: Config = {
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
