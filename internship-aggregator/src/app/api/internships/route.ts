@@ -2,14 +2,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '../../../lib/supabase';
 import { InternshipRole, WorkType, EligibilityYear, BachelorMajor } from '../../../types';
+import { asyncHandler, DatabaseError, ValidationError } from '../../../lib/error-handling';
+import { logger, createRequestLogger } from '../../../lib/logger';
 
-export async function GET(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url);
+export const GET = asyncHandler(async (request: NextRequest) => {
+  const requestLogger = createRequestLogger();
+  const { requestId, logger: reqLogger, end } = requestLogger(request);
+  
+  reqLogger.info('Fetching internships', {
+    action: 'fetch_internships_start',
+  });
+
+  const { searchParams } = new URL(request.url);
     
     // Parse query parameters
     const page = parseInt(searchParams.get('page') || '1');
     const limit = Math.min(parseInt(searchParams.get('limit') || '25'), 100);
+    
+    // Validate pagination parameters
+    if (page < 1) {
+      throw new ValidationError('Page must be greater than 0', { page });
+    }
+    if (limit < 1 || limit > 100) {
+      throw new ValidationError('Limit must be between 1 and 100', { limit });
+    }
     const search = searchParams.get('search') || '';
     const roles = searchParams.get('roles')?.split(',').filter(Boolean) || [];
     const majors = searchParams.get('majors')?.split(',').filter(Boolean) || [];
@@ -19,7 +35,7 @@ export async function GET(request: NextRequest) {
     const cycles = searchParams.get('cycles')?.split(',').filter(Boolean) || [];
     const isRemote = searchParams.get('isRemote');
     const showProgramSpecific = searchParams.get('showProgramSpecific');
-    const postedWithin = searchParams.get('postedWithin') || 'month';
+    const postedWithin = searchParams.get('postedWithin') || '';
     const sortBy = searchParams.get('sortBy') || 'posted_at';
     const sortOrder = searchParams.get('sortOrder') || 'desc';
 
@@ -84,8 +100,8 @@ export async function GET(request: NextRequest) {
       query = query.eq('is_program_specific', false);
     }
 
-    // Date filtering
-    if (postedWithin) {
+    // Date filtering - make more inclusive for development
+    if (postedWithin && postedWithin !== 'month') {
       const now = new Date();
       let dateThreshold: Date;
       
@@ -96,15 +112,14 @@ export async function GET(request: NextRequest) {
         case 'week':
           dateThreshold = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
           break;
-        case 'month':
-          dateThreshold = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-          break;
         default:
-          dateThreshold = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+          // Skip filtering for month or unknown values to show all data
+          dateThreshold = new Date('2020-01-01'); // Very old date to include everything
       }
       
       query = query.gte('posted_at', dateThreshold.toISOString());
     }
+    // If postedWithin is 'month' or empty, don't apply date filtering to show all internships
 
     // Sorting
     const validSortFields = ['posted_at', 'title', 'application_deadline'];
@@ -126,11 +141,7 @@ export async function GET(request: NextRequest) {
     const { data, error, count } = await query;
 
     if (error) {
-      console.error('Database query error:', error);
-      return NextResponse.json({
-        success: false,
-        error: 'Failed to fetch internships'
-      }, { status: 500 });
+      throw new DatabaseError('fetch_internships', error);
     }
 
     // Transform data for frontend
@@ -166,6 +177,18 @@ export async function GET(request: NextRequest) {
 
     const totalPages = Math.ceil((count || 0) / limit);
 
+    reqLogger.info('Internships fetched successfully', {
+      action: 'fetch_internships_success',
+      metadata: {
+        count: internships.length,
+        total: count,
+        page,
+        limit,
+      },
+    });
+
+    end(200);
+
     return NextResponse.json({
       success: true,
       data: internships,
@@ -192,12 +215,4 @@ export async function GET(request: NextRequest) {
         sortOrder
       }
     });
-
-  } catch (error) {
-    console.error('API error:', error);
-    return NextResponse.json({
-      success: false,
-      error: 'Internal server error'
-    }, { status: 500 });
-  }
-}
+});

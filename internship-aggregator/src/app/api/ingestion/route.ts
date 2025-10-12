@@ -1,10 +1,14 @@
 // API endpoint for manual ingestion triggers
 import { NextRequest, NextResponse } from 'next/server';
 import { ingestionService } from '../../../services/ingestion-service';
+import { asyncHandler, ValidationError } from '../../../lib/error-handling';
+import { logger } from '../../../lib/logger';
 
-export async function POST(request: NextRequest) {
-  try {
-    const body = await request.json();
+export const POST = asyncHandler(async (request: NextRequest) => {
+  const requestId = `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  const reqLogger = logger.withContext({ requestId, component: 'api' });
+  
+  const body = await request.json();
     const {
       companies,
       maxResults = 50,
@@ -14,11 +18,22 @@ export async function POST(request: NextRequest) {
       batchSize = 25
     } = body;
 
-    console.log('Manual ingestion triggered:', {
-      companies: companies?.length || 'all',
-      maxResults,
-      includePrograms,
-      dryRun
+    // Validate parameters
+    if (maxResults < 1 || maxResults > 1000) {
+      throw new ValidationError('maxResults must be between 1 and 1000', { maxResults });
+    }
+    if (batchSize < 1 || batchSize > 100) {
+      throw new ValidationError('batchSize must be between 1 and 100', { batchSize });
+    }
+
+    reqLogger.info('Manual ingestion triggered', {
+      action: 'manual_ingestion_start',
+      metadata: {
+        companies: companies?.length || 'all',
+        maxResults,
+        includePrograms,
+        dryRun,
+      },
     });
 
     const result = await ingestionService.ingest({
@@ -29,6 +44,18 @@ export async function POST(request: NextRequest) {
       skipDuplicates,
       batchSize
     });
+
+    reqLogger.info('Manual ingestion completed', {
+      action: 'manual_ingestion_success',
+      metadata: {
+        fetched: result.fetchResults.reduce((sum, r) => sum + r.data.length, 0),
+        normalized: result.normalizationMetrics.successful,
+        inserted: result.databaseMetrics.inserted,
+        executionTime: result.executionTime,
+      },
+    });
+
+    reqLogger.info('Ingestion completed successfully', { action: 'ingestion_complete', statusCode: 200 });
 
     return NextResponse.json({
       success: result.success,
@@ -53,21 +80,13 @@ export async function POST(request: NextRequest) {
         errors: result.errors
       }
     });
+});
 
-  } catch (error) {
-    console.error('Ingestion API error:', error);
-    
-    return NextResponse.json({
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error',
-      details: error instanceof Error ? error.stack : undefined
-    }, { status: 500 });
-  }
-}
-
-export async function GET(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url);
+export const GET = asyncHandler(async (request: NextRequest) => {
+  const requestLogger = createRequestLogger();
+  const { requestId, logger: reqLogger } = requestLogger(request);
+  
+  const { searchParams } = new URL(request.url);
     const action = searchParams.get('action');
 
     switch (action) {
@@ -117,18 +136,6 @@ export async function GET(request: NextRequest) {
         });
 
       default:
-        return NextResponse.json({
-          success: false,
-          error: 'Invalid action. Use: health, companies, or diversity'
-        }, { status: 400 });
+        throw new ValidationError('Invalid action. Use: health, companies, or diversity', { action });
     }
-
-  } catch (error) {
-    console.error('Ingestion GET API error:', error);
-    
-    return NextResponse.json({
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error'
-    }, { status: 500 });
-  }
-}
+});

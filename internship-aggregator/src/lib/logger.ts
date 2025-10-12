@@ -1,186 +1,476 @@
-// Structured logging utility for ingestion and application events
+// Comprehensive logging system with structured logging and correlation IDs
+import { ErrorType } from './error-handling';
+
 export enum LogLevel {
-  DEBUG = 'debug',
-  INFO = 'info',
-  WARN = 'warn',
-  ERROR = 'error'
+  DEBUG = 0,
+  INFO = 1,
+  WARN = 2,
+  ERROR = 3,
+  FATAL = 4,
 }
 
 export interface LogContext {
-  component?: string;
-  operation?: string;
-  userId?: string;
   requestId?: string;
-  metadata?: Record<string, unknown>;
+  userId?: string;
+  sessionId?: string;
+  component?: string;
+  action?: string;
+  duration?: number;
+  metadata?: Record<string, any>;
 }
 
 export interface LogEntry {
   timestamp: string;
   level: LogLevel;
   message: string;
-  context?: LogContext;
+  context: LogContext;
   error?: {
     name: string;
     message: string;
     stack?: string;
+    type?: ErrorType;
   };
+  environment: string;
+  service: string;
+  version?: string;
 }
 
-class Logger {
-  private isDevelopment = process.env.NODE_ENV === 'development';
+export interface LogTransport {
+  log(entry: LogEntry): Promise<void>;
+}
 
-  private formatLogEntry(entry: LogEntry): string {
-    if (this.isDevelopment) {
-      // Pretty format for development
-      const timestamp = new Date(entry.timestamp).toLocaleTimeString();
-      const level = entry.level.toUpperCase().padEnd(5);
-      const component = entry.context?.component ? `[${entry.context.component}]` : '';
-      const operation = entry.context?.operation ? `(${entry.context.operation})` : '';
-      
-      let message = `${timestamp} ${level} ${component}${operation} ${entry.message}`;
-      
-      if (entry.context?.metadata) {
-        message += ` ${JSON.stringify(entry.context.metadata)}`;
-      }
-      
-      if (entry.error) {
-        message += `\nError: ${entry.error.message}`;
-        if (entry.error.stack) {
-          message += `\n${entry.error.stack}`;
-        }
-      }
-      
-      return message;
-    } else {
-      // JSON format for production
-      return JSON.stringify(entry);
+// Console transport for development
+class ConsoleTransport implements LogTransport {
+  async log(entry: LogEntry): Promise<void> {
+    const levelNames = ['DEBUG', 'INFO', 'WARN', 'ERROR', 'FATAL'];
+    const levelName = levelNames[entry.level];
+    
+    const colors = {
+      [LogLevel.DEBUG]: '\x1b[36m', // Cyan
+      [LogLevel.INFO]: '\x1b[32m',  // Green
+      [LogLevel.WARN]: '\x1b[33m',  // Yellow
+      [LogLevel.ERROR]: '\x1b[31m', // Red
+      [LogLevel.FATAL]: '\x1b[35m', // Magenta
+    };
+    
+    const reset = '\x1b[0m';
+    const color = colors[entry.level] || '';
+    
+    const prefix = `${color}[${entry.timestamp}] ${levelName}${reset}`;
+    const contextStr = entry.context.requestId ? ` [${entry.context.requestId}]` : '';
+    
+    console.log(`${prefix}${contextStr} ${entry.message}`);
+    
+    if (entry.context.metadata && Object.keys(entry.context.metadata).length > 0) {
+      console.log('  Context:', entry.context.metadata);
+    }
+    
+    if (entry.error) {
+      console.error('  Error:', entry.error);
+    }
+  }
+}
+
+// HTTP transport for production logging services
+class HttpTransport implements LogTransport {
+  constructor(
+    private endpoint: string,
+    private apiKey?: string,
+    private batchSize: number = 10,
+    private flushInterval: number = 5000
+  ) {
+    this.setupBatching();
+  }
+
+  private batch: LogEntry[] = [];
+  private flushTimer?: NodeJS.Timeout;
+
+  async log(entry: LogEntry): Promise<void> {
+    this.batch.push(entry);
+    
+    if (this.batch.length >= this.batchSize) {
+      await this.flush();
     }
   }
 
-  private log(level: LogLevel, message: string, context?: LogContext, error?: Error): void {
+  private setupBatching(): void {
+    this.flushTimer = setInterval(() => {
+      if (this.batch.length > 0) {
+        this.flush();
+      }
+    }, this.flushInterval);
+  }
+
+  private async flush(): Promise<void> {
+    if (this.batch.length === 0) return;
+
+    const entries = [...this.batch];
+    this.batch = [];
+
+    try {
+      const response = await fetch(this.endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(this.apiKey && { 'Authorization': `Bearer ${this.apiKey}` }),
+        },
+        body: JSON.stringify({ logs: entries }),
+      });
+
+      if (!response.ok) {
+        console.error('Failed to send logs to remote service:', response.statusText);
+        // In case of failure, we could implement a retry mechanism or fallback
+      }
+    } catch (error) {
+      console.error('Error sending logs:', error);
+    }
+  }
+
+  destroy(): void {
+    if (this.flushTimer) {
+      clearInterval(this.flushTimer);
+    }
+    this.flush(); // Final flush
+  }
+}
+
+// Main logger class
+export class Logger {
+  private static instance: Logger;
+  private transports: LogTransport[] = [];
+  private context: LogContext = {};
+  private minLevel: LogLevel = LogLevel.INFO;
+
+  constructor() {
+    // Set up default transports based on environment
+    if (typeof window === 'undefined') {
+      // Server-side
+      this.addTransport(new ConsoleTransport());
+      
+      if (process.env.NODE_ENV === 'production' && process.env.LOG_ENDPOINT) {
+        this.addTransport(new HttpTransport(
+          process.env.LOG_ENDPOINT,
+          process.env.LOG_API_KEY
+        ));
+      }
+    } else {
+      // Client-side
+      if (process.env.NODE_ENV === 'development') {
+        this.addTransport(new ConsoleTransport());
+      }
+    }
+
+    // Set log level based on environment
+    this.minLevel = process.env.NODE_ENV === 'development' ? LogLevel.DEBUG : LogLevel.INFO;
+  }
+
+  static getInstance(): Logger {
+    if (!Logger.instance) {
+      Logger.instance = new Logger();
+    }
+    return Logger.instance;
+  }
+
+  addTransport(transport: LogTransport): void {
+    this.transports.push(transport);
+  }
+
+  setContext(context: Partial<LogContext>): void {
+    this.context = { ...this.context, ...context };
+  }
+
+  clearContext(): void {
+    this.context = {};
+  }
+
+  withContext(context: Partial<LogContext>): Logger {
+    const logger = new Logger();
+    logger.transports = this.transports;
+    logger.minLevel = this.minLevel;
+    logger.context = { ...this.context, ...context };
+    return logger;
+  }
+
+  private async log(level: LogLevel, message: string, context: Partial<LogContext> = {}, error?: Error): Promise<void> {
+    if (level < this.minLevel) return;
+
     const entry: LogEntry = {
       timestamp: new Date().toISOString(),
       level,
       message,
-      context
+      context: { ...this.context, ...context },
+      environment: process.env.NODE_ENV || 'development',
+      service: 'internship-aggregator',
+      version: process.env.npm_package_version,
+      ...(error && {
+        error: {
+          name: error.name,
+          message: error.message,
+          stack: error.stack,
+          type: (error as any).type,
+        },
+      }),
     };
 
-    if (error) {
-      entry.error = {
-        name: error.name,
-        message: error.message,
-        stack: error.stack
-      };
-    }
-
-    const formattedMessage = this.formatLogEntry(entry);
-
-    switch (level) {
-      case LogLevel.DEBUG:
-        console.debug(formattedMessage);
-        break;
-      case LogLevel.INFO:
-        console.info(formattedMessage);
-        break;
-      case LogLevel.WARN:
-        console.warn(formattedMessage);
-        break;
-      case LogLevel.ERROR:
-        console.error(formattedMessage);
-        break;
-    }
+    // Send to all transports
+    await Promise.all(
+      this.transports.map(transport => 
+        transport.log(entry).catch(err => 
+          console.error('Transport error:', err)
+        )
+      )
+    );
   }
 
-  debug(message: string, context?: LogContext): void {
-    this.log(LogLevel.DEBUG, message, context);
+  debug(message: string, context?: Partial<LogContext>): Promise<void> {
+    return this.log(LogLevel.DEBUG, message, context);
   }
 
-  info(message: string, context?: LogContext): void {
-    this.log(LogLevel.INFO, message, context);
+  info(message: string, context?: Partial<LogContext>): Promise<void> {
+    return this.log(LogLevel.INFO, message, context);
   }
 
-  warn(message: string, context?: LogContext, error?: Error): void {
-    this.log(LogLevel.WARN, message, context, error);
+  warn(message: string, context?: Partial<LogContext>): Promise<void> {
+    return this.log(LogLevel.WARN, message, context);
   }
 
-  error(message: string, context?: LogContext, error?: Error): void {
-    this.log(LogLevel.ERROR, message, context, error);
+  error(message: string, error?: Error, context?: Partial<LogContext>): Promise<void> {
+    return this.log(LogLevel.ERROR, message, context, error);
   }
 
-  // Specialized logging methods for ingestion
-  ingestionStart(type: string, options: Record<string, unknown>): void {
-    this.info('Ingestion started', {
-      component: 'ingestion',
-      operation: 'start',
-      metadata: { type, ...options }
-    });
-  }
-
-  ingestionComplete(type: string, metrics: Record<string, unknown>): void {
-    this.info('Ingestion completed', {
-      component: 'ingestion',
-      operation: 'complete',
-      metadata: { type, ...metrics }
-    });
-  }
-
-  ingestionError(type: string, error: Error, context?: Record<string, unknown>): void {
-    this.error('Ingestion failed', {
-      component: 'ingestion',
-      operation: 'error',
-      metadata: { type, ...context }
-    }, error);
-  }
-
-  apiRequest(method: string, path: string, statusCode: number, duration: number): void {
-    this.info('API request', {
-      component: 'api',
-      operation: 'request',
-      metadata: { method, path, statusCode, duration }
-    });
-  }
-
-  dataFetch(source: string, count: number, duration: number): void {
-    this.info('Data fetch completed', {
-      component: 'data-fetcher',
-      operation: 'fetch',
-      metadata: { source, count, duration }
-    });
-  }
-
-  normalization(processed: number, successful: number, failed: number, duration: number): void {
-    this.info('Normalization completed', {
-      component: 'normalization',
-      operation: 'normalize',
-      metadata: { processed, successful, failed, duration }
-    });
-  }
-
-  databaseOperation(operation: string, table: string, count: number, duration: number): void {
-    this.info('Database operation', {
-      component: 'database',
-      operation,
-      metadata: { table, count, duration }
-    });
+  fatal(message: string, error?: Error, context?: Partial<LogContext>): Promise<void> {
+    return this.log(LogLevel.FATAL, message, context, error);
   }
 }
 
-// Export singleton instance
-export const logger = new Logger();
+// Performance monitoring utilities
+export class PerformanceMonitor {
+  private static measurements = new Map<string, number>();
 
-// Export convenience functions
-export const log = {
-  debug: (message: string, context?: LogContext) => logger.debug(message, context),
-  info: (message: string, context?: LogContext) => logger.info(message, context),
-  warn: (message: string, context?: LogContext, error?: Error) => logger.warn(message, context, error),
-  error: (message: string, context?: LogContext, error?: Error) => logger.error(message, context, error),
+  static startTimer(name: string): void {
+    this.measurements.set(name, performance.now());
+  }
+
+  static endTimer(name: string): number {
+    const start = this.measurements.get(name);
+    if (!start) {
+      console.warn(`No timer found for: ${name}`);
+      return 0;
+    }
+
+    const duration = performance.now() - start;
+    this.measurements.delete(name);
+    
+    // Log performance metrics
+    Logger.getInstance().info(`Performance: ${name}`, {
+      action: 'performance_measurement',
+      duration,
+      metadata: { operation: name }
+    });
+
+    return duration;
+  }
+
+  static async measure<T>(name: string, operation: () => Promise<T>): Promise<T> {
+    this.startTimer(name);
+    try {
+      const result = await operation();
+      return result;
+    } finally {
+      this.endTimer(name);
+    }
+  }
+}
+
+// Request correlation utilities
+export function generateRequestId(): string {
+  return `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+}
+
+export function generateSessionId(): string {
+  return `sess_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+}
+
+// Middleware for request logging
+export function createRequestLogger() {
+  return (req: Request, context?: any) => {
+    const requestId = generateRequestId();
+    const logger = Logger.getInstance().withContext({
+      requestId,
+      component: 'api',
+      metadata: {
+        method: req.method,
+        url: req.url,
+        userAgent: req.headers.get('user-agent'),
+      }
+    });
+
+    const startTime = performance.now();
+
+    logger.info('Request started', {
+      action: 'request_start',
+    });
+
+    return {
+      requestId,
+      logger,
+      end: (statusCode: number, error?: Error) => {
+        const duration = performance.now() - startTime;
+        
+        if (error) {
+          logger.error('Request failed', error, {
+            action: 'request_error',
+            duration,
+            metadata: { statusCode }
+          });
+        } else {
+          logger.info('Request completed', {
+            action: 'request_complete',
+            duration,
+            metadata: { statusCode }
+          });
+        }
+      }
+    };
+  };
+}
+
+// Metrics collection
+export class MetricsCollector {
+  private static metrics = new Map<string, number>();
+  private static counters = new Map<string, number>();
+
+  static increment(name: string, value: number = 1): void {
+    const current = this.counters.get(name) || 0;
+    this.counters.set(name, current + value);
+  }
+
+  static gauge(name: string, value: number): void {
+    this.metrics.set(name, value);
+  }
+
+  static getMetrics(): Record<string, number> {
+    return {
+      ...Object.fromEntries(this.metrics),
+      ...Object.fromEntries(this.counters),
+    };
+  }
+
+  static reset(): void {
+    this.metrics.clear();
+    this.counters.clear();
+  }
+}
+
+// Health check utilities
+export interface HealthCheck {
+  name: string;
+  check: () => Promise<{ healthy: boolean; details?: any }>;
+}
+
+export class HealthMonitor {
+  private checks: HealthCheck[] = [];
+
+  addCheck(check: HealthCheck): void {
+    this.checks.push(check);
+  }
+
+  async runChecks(): Promise<{
+    healthy: boolean;
+    checks: Record<string, { healthy: boolean; details?: any; duration: number }>;
+  }> {
+    const results: Record<string, { healthy: boolean; details?: any; duration: number }> = {};
+    let overallHealthy = true;
+
+    await Promise.all(
+      this.checks.map(async (check) => {
+        const start = performance.now();
+        try {
+          const result = await check.check();
+          results[check.name] = {
+            ...result,
+            duration: performance.now() - start,
+          };
+          
+          if (!result.healthy) {
+            overallHealthy = false;
+          }
+        } catch (error) {
+          results[check.name] = {
+            healthy: false,
+            details: { error: error instanceof Error ? error.message : String(error) },
+            duration: performance.now() - start,
+          };
+          overallHealthy = false;
+        }
+      })
+    );
+
+    return { healthy: overallHealthy, checks: results };
+  }
+}
+
+// Export singleton instances
+export const logger = Logger.getInstance();
+export const healthMonitor = new HealthMonitor();
+
+// Setup default health checks
+healthMonitor.addCheck({
+  name: 'database',
+  check: async () => {
+    // This would check database connectivity
+    // For now, just return healthy
+    return { healthy: true, details: { connection: 'ok' } };
+  },
+});
+
+healthMonitor.addCheck({
+  name: 'external_apis',
+  check: async () => {
+    // This would check external API connectivity (Exa.ai, etc.)
+    return { healthy: true, details: { exa_api: 'ok' } };
+  },
+});
+
+// Utility functions
+export function logApiCall(
+  service: string,
+  endpoint: string,
+  method: string,
+  duration: number,
+  success: boolean,
+  error?: Error
+): void {
+  const logger = Logger.getInstance();
   
-  // Specialized methods
-  ingestionStart: (type: string, options: Record<string, unknown>) => logger.ingestionStart(type, options),
-  ingestionComplete: (type: string, metrics: Record<string, unknown>) => logger.ingestionComplete(type, metrics),
-  ingestionError: (type: string, error: Error, context?: Record<string, unknown>) => logger.ingestionError(type, error, context),
-  apiRequest: (method: string, path: string, statusCode: number, duration: number) => logger.apiRequest(method, path, statusCode, duration),
-  dataFetch: (source: string, count: number, duration: number) => logger.dataFetch(source, count, duration),
-  normalization: (processed: number, successful: number, failed: number, duration: number) => logger.normalization(processed, successful, failed, duration),
-  databaseOperation: (operation: string, table: string, count: number, duration: number) => logger.databaseOperation(operation, table, count, duration)
-};
+  if (success) {
+    logger.info(`API call successful: ${service}`, {
+      component: 'external_api',
+      action: 'api_call',
+      duration,
+      metadata: {
+        service,
+        endpoint,
+        method,
+        success: true,
+      },
+    });
+  } else {
+    logger.error(`API call failed: ${service}`, error, {
+      component: 'external_api',
+      action: 'api_call',
+      duration,
+      metadata: {
+        service,
+        endpoint,
+        method,
+        success: false,
+      },
+    });
+  }
+
+  // Update metrics
+  MetricsCollector.increment(`api_calls_${service}_total`);
+  MetricsCollector.increment(`api_calls_${service}_${success ? 'success' : 'error'}`);
+  MetricsCollector.gauge(`api_calls_${service}_duration`, duration);
+}

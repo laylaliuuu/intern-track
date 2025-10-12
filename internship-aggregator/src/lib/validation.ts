@@ -27,7 +27,7 @@ export const validateRawInternshipData = (data: unknown) => {
   return RawInternshipDataSchema.parse(data);
 };
 
-export const validateFilterState = (data: unknown) => {
+export const validateFilterStateSchema = (data: unknown) => {
   return FilterStateSchema.parse(data);
 };
 
@@ -48,7 +48,7 @@ export const safeValidateRawInternshipData = (data: unknown) => {
   return RawInternshipDataSchema.safeParse(data);
 };
 
-export const safeValidateFilterState = (data: unknown) => {
+export const safeValidateFilterStateSchema = (data: unknown) => {
   return FilterStateSchema.safeParse(data);
 };
 
@@ -64,12 +64,12 @@ export const PartialInternshipSchema = InternshipSchema.partial().omit({ id: tru
 // API request validation schemas
 export const SearchParamsSchema = z.object({
   query: z.string().optional(),
-  roles: z.array(z.nativeEnum(InternshipRole)).optional(),
+  roles: z.array(z.enum(Object.values(InternshipRole) as [string, ...string[]])).optional(),
   majors: z.array(z.enum(BACHELOR_MAJORS)).optional(),
   locations: z.array(z.string()).optional(),
   isRemote: z.boolean().optional(),
-  workType: z.array(z.nativeEnum(WorkType)).optional(),
-  eligibilityYear: z.array(z.nativeEnum(EligibilityYear)).optional(),
+  workType: z.array(z.enum(Object.values(WorkType) as [string, ...string[]])).optional(),
+  eligibilityYear: z.array(z.enum(Object.values(EligibilityYear) as [string, ...string[]])).optional(),
   internshipCycle: z.array(z.string()).optional(),
   postedWithin: z.enum(['day', 'week', 'month']).optional(),
   showProgramSpecific: z.boolean().optional(),
@@ -97,12 +97,12 @@ export const NormalizationInputSchema = z.object({
 });
 
 export const NormalizationOutputSchema = z.object({
-  normalizedRole: z.nativeEnum(InternshipRole),
+  normalizedRole: z.enum(Object.values(InternshipRole) as [string, ...string[]]),
   relevantMajors: z.array(z.enum(BACHELOR_MAJORS)),
   skills: z.array(z.string()),
-  eligibilityYear: z.array(z.nativeEnum(EligibilityYear)),
+  eligibilityYear: z.array(z.enum(Object.values(EligibilityYear) as [string, ...string[]])),
   isRemote: z.boolean(),
-  workType: z.nativeEnum(WorkType),
+  workType: z.enum(Object.values(WorkType) as [string, ...string[]]),
   isProgramSpecific: z.boolean(),
   canonicalHash: z.string()
 });
@@ -145,4 +145,283 @@ export const isValidBachelorMajor = (value: unknown): value is BachelorMajor => 
 
 export const isValidSourceType = (value: unknown): value is InternshipSourceType => {
   return typeof value === 'string' && Object.values(InternshipSourceType).includes(value as InternshipSourceType);
+};
+
+// Query parameter validation for API routes
+export const validateQueryParams = (params: Record<string, any>) => {
+  // Validate limit
+  if (params.limit !== undefined) {
+    const limit = parseInt(params.limit);
+    if (isNaN(limit)) {
+      throw new Error('Limit must be a valid number');
+    }
+    if (limit < 1 || limit > 100) {
+      throw new Error('Limit must be between 1 and 100');
+    }
+  }
+
+  // Validate page
+  if (params.page !== undefined) {
+    const page = parseInt(params.page);
+    if (isNaN(page)) {
+      throw new Error('Page must be a valid number');
+    }
+    if (page < 1) {
+      throw new Error('Page must be greater than 0');
+    }
+  }
+
+  // Validate search query length
+  if (params.search !== undefined && params.search.length > 100) {
+    throw new Error('Search query too long');
+  }
+
+  // Validate roles
+  if (params.roles !== undefined) {
+    const roles = params.roles.split(',');
+    for (const role of roles) {
+      if (!isValidInternshipRole(role.trim())) {
+        throw new Error(`Invalid role: ${role}`);
+      }
+    }
+  }
+
+  // Validate work type
+  if (params.workType !== undefined && !isValidWorkType(params.workType)) {
+    throw new Error('Invalid work type');
+  }
+
+  // Validate eligibility year
+  if (params.eligibilityYear !== undefined) {
+    const years = params.eligibilityYear.split(',');
+    for (const year of years) {
+      if (!isValidEligibilityYear(year.trim())) {
+        throw new Error(`Invalid eligibility year: ${year}`);
+      }
+    }
+  }
+
+  // Validate postedWithin
+  if (params.postedWithin !== undefined) {
+    const validValues = ['day', 'week', 'month'];
+    if (!validValues.includes(params.postedWithin)) {
+      throw new Error('Invalid posted within value');
+    }
+  }
+};
+
+// Internship data validation
+export const validateInternshipData = (data: any) => {
+  if (!data.title || data.title.trim() === '') {
+    throw new Error('Title is required');
+  }
+
+  if (!data.company || data.company.trim() === '') {
+    throw new Error('Company is required');
+  }
+
+  if (!data.url || !isValidUrl(data.url)) {
+    throw new Error('Invalid URL format');
+  }
+
+  if (data.applicationUrl && !isValidUrl(data.applicationUrl)) {
+    throw new Error('Invalid application URL format');
+  }
+
+  if (data.postedAt && !isValidDate(data.postedAt)) {
+    throw new Error('Invalid posted date');
+  }
+
+  if (data.normalizedRole && !isValidInternshipRole(data.normalizedRole)) {
+    throw new Error('Invalid normalized role');
+  }
+
+  if (data.workType && !isValidWorkType(data.workType)) {
+    throw new Error('Invalid work type');
+  }
+
+  if (data.eligibilityYear && Array.isArray(data.eligibilityYear)) {
+    for (const year of data.eligibilityYear) {
+      if (!isValidEligibilityYear(year)) {
+        throw new Error(`Invalid eligibility year: ${year}`);
+      }
+    }
+  }
+};
+
+// Filter state validation
+export const validateFilterState = (filters: any) => {
+  if (filters.roles && Array.isArray(filters.roles)) {
+    for (const role of filters.roles) {
+      if (!isValidInternshipRole(role)) {
+        throw new Error(`Invalid role in filter: ${role}`);
+      }
+    }
+  }
+
+  if (filters.workType && Array.isArray(filters.workType)) {
+    for (const workType of filters.workType) {
+      if (!isValidWorkType(workType)) {
+        throw new Error(`Invalid work type in filter: ${workType}`);
+      }
+    }
+  }
+
+  if (filters.eligibilityYear && Array.isArray(filters.eligibilityYear)) {
+    for (const year of filters.eligibilityYear) {
+      if (!isValidEligibilityYear(year)) {
+        throw new Error(`Invalid eligibility year in filter: ${year}`);
+      }
+    }
+  }
+
+  if (filters.postedWithin) {
+    const validValues = ['day', 'week', 'month'];
+    if (!validValues.includes(filters.postedWithin)) {
+      throw new Error('Invalid posted within value');
+    }
+  }
+};
+
+// Utility functions
+export const sanitizeSearchQuery = (query: string): string => {
+  if (!query) return '';
+  
+  // Remove potentially dangerous HTML/script tags
+  const sanitized = query
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<[^>]*>/g, '')
+    .trim();
+  
+  return sanitized;
+};
+
+export const normalizeLocation = (location: string): string => {
+  if (!location) return '';
+  
+  const normalized = location.toLowerCase().trim();
+  
+  // Common aliases
+  const aliases: Record<string, string> = {
+    'sf': 'San Francisco, CA',
+    'nyc': 'New York, NY',
+    'la': 'Los Angeles, CA',
+    'bay area': 'San Francisco, CA',
+    'work from home': 'Remote',
+    'distributed': 'Remote',
+    'san francisco': 'San Francisco, CA'
+  };
+
+  if (aliases[normalized]) {
+    return aliases[normalized];
+  }
+
+  if (normalized === 'remote') {
+    return 'Remote';
+  }
+
+  // Return original with proper capitalization
+  return location.split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+};
+
+export const extractSkills = (description: string): string[] => {
+  if (!description) return [];
+  
+  const skillPatterns = [
+    // Programming languages
+    /\b(Python|Java|JavaScript|TypeScript|C\+\+|C#|Go|Rust|Swift|Kotlin|Ruby|PHP|Scala|R|MATLAB)\b/gi,
+    // Frameworks and libraries
+    /\b(React|Angular|Vue|Node\.js|Express|Django|Flask|Spring|Laravel|Rails|jQuery|Bootstrap)\b/gi,
+    // Databases
+    /\b(PostgreSQL|MySQL|MongoDB|Redis|Elasticsearch|Cassandra|DynamoDB|SQLite)\b/gi,
+    // Tools and platforms
+    /\b(Docker|Kubernetes|AWS|Azure|GCP|Git|Jenkins|Terraform|Ansible)\b/gi,
+    // Soft skills
+    /\b(Communication|Leadership|Teamwork|Problem[- ]solving|Analytical|Creative)\b/gi
+  ];
+
+  const skills = new Set<string>();
+  
+  for (const pattern of skillPatterns) {
+    const matches = description.match(pattern);
+    if (matches) {
+      matches.forEach(match => {
+        // Normalize case
+        const normalized = match.charAt(0).toUpperCase() + match.slice(1).toLowerCase();
+        skills.add(normalized);
+      });
+    }
+  }
+
+  return Array.from(skills);
+};
+
+export const parseApplicationDeadline = (deadlineText: string): Date | null => {
+  if (!deadlineText) return null;
+  
+  try {
+    // Clean up the text
+    const cleaned = deadlineText
+      .replace(/application deadline:?/gi, '')
+      .replace(/apply by:?/gi, '')
+      .replace(/deadline:?/gi, '')
+      .trim();
+
+    // Try parsing common formats
+    const formats = [
+      // ISO format
+      /^\d{4}-\d{2}-\d{2}$/,
+      // US format
+      /^\d{1,2}\/\d{1,2}\/\d{4}$/,
+      // Long format
+      /^[A-Za-z]+ \d{1,2}, \d{4}$/
+    ];
+
+    for (const format of formats) {
+      if (format.test(cleaned)) {
+        const date = new Date(cleaned);
+        if (!isNaN(date.getTime())) {
+          return date;
+        }
+      }
+    }
+
+    // Handle relative dates
+    if (cleaned.toLowerCase().includes('next week')) {
+      const nextWeek = new Date();
+      nextWeek.setDate(nextWeek.getDate() + 7);
+      return nextWeek;
+    }
+
+    // Handle month-only dates (assume first of month)
+    const monthMatch = cleaned.match(/^([A-Za-z]+) (\d{4})$/);
+    if (monthMatch) {
+      const [, month, year] = monthMatch;
+      const date = new Date(`${month} 1, ${year}`);
+      if (!isNaN(date.getTime())) {
+        return date;
+      }
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+};
+
+// Helper functions
+const isValidUrl = (url: string): boolean => {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+const isValidDate = (dateString: string): boolean => {
+  const date = new Date(dateString);
+  return !isNaN(date.getTime());
 };

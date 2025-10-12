@@ -18,21 +18,21 @@ export async function GET() {
         .select('normalized_role')
         .eq('is_archived', false)
         .not('normalized_role', 'is', null),
-      
+
       // Get unique locations
       supabase
         .from('internships')
         .select('location')
         .eq('is_archived', false)
         .not('location', 'is', null),
-      
+
       // Get unique internship cycles
       supabase
         .from('internships')
         .select('internship_cycle')
         .eq('is_archived', false)
         .not('internship_cycle', 'is', null),
-      
+
       // Get statistics
       supabase
         .from('internships')
@@ -68,9 +68,9 @@ export async function GET() {
       data: {
         roles: uniqueRoles.map(role => ({ value: role, label: role })),
         locations: uniqueLocations.map(location => ({ value: location, label: location })),
-        workTypes: Object.values(WorkType).map(type => ({ 
-          value: type, 
-          label: type.charAt(0).toUpperCase() + type.slice(1) 
+        workTypes: Object.values(WorkType).map(type => ({
+          value: type,
+          label: type.charAt(0).toUpperCase() + type.slice(1)
         })),
         eligibilityYears: Object.values(EligibilityYear).map(year => ({ value: year, label: year })),
         majors: BACHELOR_MAJORS.map(major => ({ value: major, label: major })),
@@ -79,8 +79,8 @@ export async function GET() {
           total: totalInternships,
           remote: remoteInternships,
           programSpecific: programSpecificInternships,
-          paid: 0, // TODO: Calculate from work_type
-          unpaid: 0 // TODO: Calculate from work_type
+          paid: statsResult.data?.filter(item => item.work_type === 'paid').length || 0,
+          unpaid: statsResult.data?.filter(item => item.work_type === 'unpaid').length || 0
         }
       }
     });

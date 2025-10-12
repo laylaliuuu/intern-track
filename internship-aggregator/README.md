@@ -2,6 +2,47 @@
 
 A Next.js application that aggregates and surfaces the freshest internship opportunities for college students in real-time.
 
+## 🚀 Quick Start
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Set up environment variables:**
+   ```bash
+   cp .env.example .env.local
+   ```
+   Fill in your Supabase and Exa.ai API keys.
+
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser:**
+   Visit [http://localhost:3000](http://localhost:3000)
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
+```
+
+## 🚀 Deployment
+
+```bash
+# Deploy to Vercel
+npm run deploy
+```
+
 ## Project Foundation Setup ✅
 
 This project has been initialized with the following core infrastructure:

@@ -53,6 +53,9 @@ InternTrack is a real-time internship aggregator and discovery dashboard designe
 3. WHEN a new posting is discovered THEN the system SHALL deduplicate against existing jobs using canonical hashing
 4. WHEN ingestion completes THEN the system SHALL log structured data about source latencies and error rates
 5. IF a source becomes unavailable THEN the system SHALL continue processing other sources and log the failure
+6. WHEN searching for internships THEN the system SHALL use specific queries that target active job postings rather than general career pages
+7. WHEN processing job postings THEN the system SHALL validate that positions are currently accepting applications
+8. WHEN a job posting appears to be closed THEN the system SHALL either skip it or mark it as inactive
 
 ### Requirement 5
 

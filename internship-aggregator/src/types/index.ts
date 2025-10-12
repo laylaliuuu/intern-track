@@ -100,7 +100,7 @@ export const FilterStateSchema = z.object({
   workType: z.array(z.nativeEnum(WorkType)),
   eligibilityYear: z.array(z.nativeEnum(EligibilityYear)),
   internshipCycle: z.array(z.string()),
-  postedWithin: z.enum(['day', 'week', 'month']),
+  postedWithin: z.enum(['day', 'week', 'month']).optional(),
   showProgramSpecific: z.boolean().optional()
 });
 
@@ -211,7 +211,7 @@ export interface FilterState {
   workType: WorkType[];
   eligibilityYear: EligibilityYear[];
   internshipCycle: string[];
-  postedWithin: 'day' | 'week' | 'month';
+  postedWithin?: 'day' | 'week' | 'month';
   showProgramSpecific?: boolean;
 }
 

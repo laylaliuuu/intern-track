@@ -4,7 +4,7 @@ import { normalizationEngine, NormalizationResult, NormalizationMetrics } from '
 import { supabase, getSupabaseAdmin } from '../lib/supabase';
 import { DatabaseInternship, InsertInternship } from '../types/database';
 import { NormalizedInternship } from '../types';
-import { log } from '../lib/logger';
+import { logger } from '../lib/logger';
 
 export interface IngestionOptions extends FetchOptions {
   skipDuplicates?: boolean;
@@ -34,32 +34,34 @@ export class IngestionService {
     const startTime = Date.now();
     const errors: string[] = [];
 
-    log.ingestionStart('full', options);
+    logger.info('Starting full ingestion', { component: 'ingestion', operation: 'start', options });
 
     try {
       // Step 1: Fetch raw data
-      log.info('Fetching raw internship data', { component: 'ingestion', operation: 'fetch' });
+      logger.info('Fetching raw internship data', { component: 'ingestion', operation: 'fetch' });
       const fetchResults = await dataFetcher.fetchInternships(options);
       
       const totalFetched = fetchResults.reduce((sum, r) => sum + r.data.length, 0);
-      log.dataFetch('all-sources', totalFetched, Date.now() - startTime);
+      logger.info('Data fetch completed', { component: 'ingestion', operation: 'fetch', totalFetched, duration: Date.now() - startTime });
 
       // Collect all raw data
       const allRawData = fetchResults.flatMap(result => result.data);
 
       // Step 2: Normalize data
-      log.info('Normalizing internship data', { component: 'ingestion', operation: 'normalize' });
+      logger.info('Normalizing internship data', { component: 'ingestion', operation: 'normalize' });
       normalizationEngine.resetProcessedHashes(); // Reset for fresh ingestion
       
       const { results: normalizationResults, metrics: normalizationMetrics } = 
         await normalizationEngine.normalizeMany(allRawData);
 
-      log.normalization(
-        normalizationMetrics.totalProcessed,
-        normalizationMetrics.successful,
-        normalizationMetrics.failed,
-        normalizationMetrics.executionTime
-      );
+      logger.info('Normalization completed', { 
+        component: 'ingestion', 
+        operation: 'normalize',
+        totalProcessed: normalizationMetrics.totalProcessed,
+        successful: normalizationMetrics.successful,
+        failed: normalizationMetrics.failed,
+        executionTime: normalizationMetrics.executionTime
+      });
 
       // Step 3: Store in database (if not dry run)
       let databaseMetrics = {
@@ -85,7 +87,9 @@ export class IngestionService {
       normalizationResults.forEach(result => errors.push(...result.errors));
 
       const executionTime = Date.now() - startTime;
-      log.ingestionComplete('full', {
+      logger.info('Ingestion completed successfully', {
+        component: 'ingestion',
+        operation: 'complete',
         fetched: totalFetched,
         normalized: normalizationMetrics.successful,
         inserted: databaseMetrics.inserted,
@@ -104,7 +108,11 @@ export class IngestionService {
 
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      log.ingestionError('full', error instanceof Error ? error : new Error(errorMessage));
+      logger.error('Ingestion failed', { 
+        component: 'ingestion', 
+        operation: 'error',
+        error: errorMessage 
+      });
       
       return {
         success: false,
@@ -312,7 +320,7 @@ export class IngestionService {
       title: internship.title,
       company_id: companyId,
       source_id: sourceId,
-      url: internship.applicationUrl, // Use application URL as primary URL
+      url: internship.url || internship.applicationUrl || 'https://example.com', // Use primary URL or fallback
       application_url: internship.applicationUrl,
       description: internship.description,
       location: internship.location,

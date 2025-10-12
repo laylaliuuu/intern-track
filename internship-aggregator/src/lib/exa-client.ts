@@ -216,29 +216,15 @@ export class ExaClient {
   }): Promise<ExaSearchResponse> {
     const { role, company, location, cycle, numResults = 20, includeDomains } = options;
 
-    // Build optimized query for internship discovery
-    let query = 'internship';
-    
-    if (role) {
-      query += ` ${role}`;
-    }
-    
-    if (company) {
-      query += ` at ${company}`;
-    }
-    
-    if (location) {
-      query += ` in ${location}`;
-    }
-    
-    if (cycle) {
-      query += ` ${cycle}`;
-    }
+    // Build highly specific query for active job postings
+    let query = this.buildSpecificInternshipQuery({
+      role,
+      company,
+      location,
+      cycle: cycle || 'summer 2025'
+    });
 
-    // Add common internship-related terms to improve results
-    query += ' application deadline apply career opportunities students undergraduate';
-
-    // Default domains for internship searches
+    // Optimized domains for direct job postings (removed job boards)
     const defaultDomains = [
       'careers.google.com',
       'careers.microsoft.com',
@@ -247,32 +233,133 @@ export class ExaClient {
       'amazon.jobs',
       'careers.netflix.com',
       'tesla.com',
-      'jpmorgan.com',
-      'goldmansachs.com',
-      'mckinsey.com',
+      'careers.salesforce.com',
+      'jobs.uber.com',
+      'careers.airbnb.com',
       'greenhouse.io',
       'lever.co',
       'workday.com',
-      'indeed.com',
-      'linkedin.com',
-      'glassdoor.com',
-      'handshake.com',
-      'simplify.jobs',
-      'wayup.com'
+      'myworkdayjobs.com',
+      'jobs.lever.co',
+      'boards.greenhouse.io'
+      // Removed: indeed.com, glassdoor.com, linkedin.com (job boards, not direct applications)
     ];
 
     return this.search({
       query,
       type: 'neural',
-      useAutoprompt: true,
+      useAutoprompt: false, // Disable autoprompt to maintain query precision
       numResults,
       includeDomains: includeDomains || defaultDomains,
+      excludeDomains: [
+        'indeed.com',
+        'glassdoor.com',
+        'linkedin.com',
+        'monster.com',
+        'ziprecruiter.com'
+      ],
       includeText: true,
       includeHighlights: true,
       includeSummary: true,
-      // Look for recent postings (last 6 months)
-      startPublishedDate: new Date(Date.now() - 6 * 30 * 24 * 60 * 60 * 1000).toISOString(),
+      // Look for very recent postings (last 3 months for freshness)
+      startPublishedDate: new Date(Date.now() - 3 * 30 * 24 * 60 * 60 * 1000).toISOString(),
     });
+  }
+
+  /**
+   * Build highly specific queries that target active job postings
+   */
+  private buildSpecificInternshipQuery(options: {
+    role?: string;
+    company?: string;
+    location?: string;
+    cycle: string;
+  }): string {
+    const { role, company, location, cycle } = options;
+    
+    // Base query components for active postings
+    const activeIndicators = [
+      '"now hiring"',
+      '"accepting applications"',
+      '"apply by"',
+      '"deadline"',
+      '"position available"',
+      '"req id"',
+      '"job id"'
+    ];
+
+    // Undergraduate/student-specific terms
+    const internshipTerms = [
+      'intern',
+      'internship',
+      'co-op',
+      'student position',
+      'undergraduate',
+      'college student'
+    ];
+
+    // Terms to exclude full-time/senior positions
+    const excludeTerms = [
+      '-"full time"',
+      '-"full-time"',
+      '-"senior"',
+      '-"staff"',
+      '-"principal"',
+      '-"lead"',
+      '-"manager" (unless "product manager")',
+      '-"director"',
+      '-"VP"',
+      '-"graduate"',
+      '-"PhD"',
+      '-"postdoc"',
+      '-"experienced"',
+      '-"5+ years"',
+      '-"3+ years"'
+    ];
+
+    // Student level indicators to include
+    const studentLevelTerms = [
+      '"undergraduate"',
+      '"college student"',
+      '"bachelor"',
+      '"freshman"',
+      '"sophomore"',
+      '"junior"',
+      '"senior year"',
+      '"student"'
+    ];
+
+    // Build query based on specificity
+    if (company) {
+      // Company-specific: Target their career pages with specific job indicators
+      const companyQuery = `site:careers.${company.toLowerCase().replace(/\s+/g, '')}.com OR site:jobs.${company.toLowerCase().replace(/\s+/g, '')}.com`;
+      const roleQuery = role ? `"${role}"` : '"software engineer" OR "product manager" OR "data scientist"';
+      const cycleQuery = `"${cycle}"`;
+      const activeQuery = activeIndicators.slice(0, 3).join(' OR ');
+      const studentQuery = `(${internshipTerms.join(' OR ')}) (${studentLevelTerms.join(' OR ')})`;
+      const excludeQuery = excludeTerms.join(' ');
+      
+      return `${companyQuery} ${studentQuery} ${roleQuery} ${cycleQuery} (${activeQuery}) ${excludeQuery}`;
+    } else {
+      // General search: Focus on specific job posting patterns
+      const roleQuery = role ? `"${role} intern"` : '"software engineer intern" OR "product manager intern" OR "data scientist intern"';
+      const cycleQuery = `"${cycle}"`;
+      const locationQuery = location ? `"${location}"` : '';
+      const activeQuery = activeIndicators.slice(0, 4).join(' OR ');
+      const studentQuery = `(${studentLevelTerms.join(' OR ')})`;
+      
+      // Require specific job posting indicators
+      const jobPostingIndicators = [
+        '"job description"',
+        '"responsibilities"',
+        '"qualifications"',
+        '"requirements"'
+      ].join(' OR ');
+
+      const excludeQuery = excludeTerms.join(' ');
+
+      return `${roleQuery} ${cycleQuery} ${locationQuery} ${studentQuery} (${activeQuery}) (${jobPostingIndicators}) -"how to apply" -"application tips" -"career advice" ${excludeQuery}`;
+    }
   }
 
   /**
@@ -297,16 +384,150 @@ export class ExaClient {
    * Search for diversity and inclusion programs
    */
   async searchDiversityPrograms(numResults = 15): Promise<ExaSearchResponse> {
-    const query = 'diversity internship program STEP explore code2040 colorstack "first year" "second year" underrepresented minorities women tech';
+    // Build more specific query for diversity programs with active indicators
+    const diversityPrograms = [
+      'Google STEP',
+      'Microsoft Explore',
+      'Meta University',
+      'Apple Scholars',
+      'Amazon Future Engineer',
+      'Code2040',
+      'ColorStack',
+      'MLT Career Prep',
+      'SEO Career'
+    ];
+
+    const activeTerms = [
+      '"now accepting"',
+      '"applications open"',
+      '"apply by"',
+      '"deadline"',
+      '"cohort"'
+    ];
+
+    const query = `(${diversityPrograms.map(p => `"${p}"`).join(' OR ')}) internship program 2025 (${activeTerms.join(' OR ')}) -"past cohort" -"alumni" -"previous year"`;
 
     return this.search({
       query,
       type: 'neural',
-      useAutoprompt: true,
+      useAutoprompt: false, // Maintain query precision
       numResults,
       includeText: true,
       includeSummary: true,
+      excludeDomains: [
+        'indeed.com',
+        'glassdoor.com',
+        'linkedin.com'
+      ],
       startPublishedDate: new Date(Date.now() - 6 * 30 * 24 * 60 * 60 * 1000).toISOString(),
+    });
+  }
+
+  /**
+   * Search for internships by specific role with enhanced targeting
+   */
+  async searchByRole(role: string, options: {
+    location?: string;
+    cycle?: string;
+    numResults?: number;
+    experienceLevel?: 'freshman' | 'sophomore' | 'junior' | 'senior' | 'any';
+  } = {}): Promise<ExaSearchResponse> {
+    const { location, cycle = 'summer 2025', numResults = 20, experienceLevel } = options;
+
+    // Role-specific query optimization for undergraduate positions
+    const roleQueries: Record<string, string> = {
+      'software engineer': '"software engineer intern" OR "software development intern" OR "SDE intern" OR "software engineering internship"',
+      'product manager': '"product manager intern" OR "PM intern" OR "product management intern" OR "associate product manager"',
+      'data scientist': '"data science intern" OR "data scientist intern" OR "ML intern" OR "machine learning intern" OR "data analyst intern"',
+      'quantitative research': '"quant intern" OR "quantitative research intern" OR "trading intern" OR "quantitative analyst intern"',
+      'business analyst': '"business analyst intern" OR "strategy intern" OR "consulting intern" OR "business development intern"',
+      'design': '"design intern" OR "UX intern" OR "UI intern" OR "product design intern" OR "graphic design intern"'
+    };
+
+    const roleQuery = roleQueries[role.toLowerCase()] || `"${role} intern" OR "${role} internship"`;
+    
+    // Undergraduate/student targeting
+    const undergraduateTerms = [
+      '"undergraduate"',
+      '"college student"',
+      '"bachelor"',
+      '"university student"',
+      '"student"'
+    ];
+
+    // Experience level targeting
+    let experienceQuery = '';
+    if (experienceLevel && experienceLevel !== 'any') {
+      const experienceTerms: Record<string, string> = {
+        'freshman': '"freshman" OR "first year" OR "1st year"',
+        'sophomore': '"sophomore" OR "second year" OR "2nd year"',
+        'junior': '"junior" OR "third year" OR "3rd year"',
+        'senior': '"senior year" OR "fourth year" OR "4th year"'
+      };
+      experienceQuery = ` (${experienceTerms[experienceLevel]})`;
+    } else {
+      // If no specific level, include general undergraduate terms
+      experienceQuery = ` (${undergraduateTerms.join(' OR ')})`;
+    }
+
+    const locationQuery = location ? ` "${location}"` : '';
+    const cycleQuery = `"${cycle}"`;
+    
+    const activeIndicators = [
+      '"now hiring"',
+      '"accepting applications"',
+      '"apply by"',
+      '"deadline"',
+      '"position available"',
+      '"currently seeking"'
+    ].join(' OR ');
+
+    const jobPostingIndicators = [
+      '"job description"',
+      '"responsibilities"',
+      '"qualifications"',
+      '"requirements"'
+    ].join(' OR ');
+
+    // Exclude full-time and senior positions
+    const excludeTerms = [
+      '-"full time"',
+      '-"full-time"',
+      '-"senior engineer"',
+      '-"staff engineer"',
+      '-"principal"',
+      '-"lead engineer"',
+      '-"engineering manager"',
+      '-"director"',
+      '-"VP"',
+      '-"graduate program"',
+      '-"PhD"',
+      '-"postdoc"',
+      '-"experienced"',
+      '-"5+ years"',
+      '-"3+ years"',
+      '-"minimum 3 years"',
+      '-"minimum 5 years"'
+    ].join(' ');
+
+    const query = `${roleQuery} ${cycleQuery}${locationQuery}${experienceQuery} (${activeIndicators}) (${jobPostingIndicators}) -"how to apply" -"tips" -"advice" ${excludeTerms}`;
+
+    return this.search({
+      query,
+      type: 'neural',
+      useAutoprompt: false,
+      numResults,
+      excludeDomains: [
+        'indeed.com',
+        'glassdoor.com',
+        'linkedin.com',
+        'monster.com',
+        'ziprecruiter.com'
+      ],
+      includeText: true,
+      includeHighlights: true,
+      includeSummary: true,
+      startPublishedDate: new Date(Date.now() - 3 * 30 * 24 * 60 * 60 * 1000).toISOString(),
     });
   }
 
