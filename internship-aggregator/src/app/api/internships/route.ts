@@ -13,18 +13,23 @@ export const GET = asyncHandler(async (request: NextRequest) => {
     action: 'fetch_internships_start',
   });
 
+  // Check if Supabase is configured
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    throw new DatabaseError('fetch_internships', new Error('Supabase environment variables are not configured. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in your environment variables.'));
+  }
+
   const { searchParams } = new URL(request.url);
     
     // Parse query parameters
     const page = parseInt(searchParams.get('page') || '1');
-    const limit = Math.min(parseInt(searchParams.get('limit') || '25'), 100);
+    const limit = Math.min(parseInt(searchParams.get('limit') || '25'), 500); // Increased from 100 to 500
     
     // Validate pagination parameters
     if (page < 1) {
       throw new ValidationError('Page must be greater than 0', { page });
     }
-    if (limit < 1 || limit > 100) {
-      throw new ValidationError('Limit must be between 1 and 100', { limit });
+    if (limit < 1 || limit > 500) {
+      throw new ValidationError('Limit must be between 1 and 500', { limit });
     }
     const search = searchParams.get('search') || '';
     const roles = searchParams.get('roles')?.split(',').filter(Boolean) || [];
@@ -129,7 +134,7 @@ export const GET = asyncHandler(async (request: NextRequest) => {
     if (sortField === 'title') {
       query = query.order('title', { ascending: order === 'asc' });
     } else if (sortField === 'application_deadline') {
-      query = query.order('application_deadline', { ascending: order === 'asc', nullsLast: true });
+      query = query.order('application_deadline', { ascending: order === 'asc', nullsFirst: false });
     } else {
       query = query.order('posted_at', { ascending: order === 'asc' });
     }
@@ -156,6 +161,15 @@ export const GET = asyncHandler(async (request: NextRequest) => {
         logo_url: item.companies?.logo_url
       },
       normalizedRole: item.normalized_role,
+      // New quality fields
+      exactRole: item.exact_role,
+      graduationYear: item.graduation_year || [],
+      requirements: item.requirements,
+      payRateMin: item.pay_rate_min,
+      payRateMax: item.pay_rate_max,
+      payRateCurrency: item.pay_rate_currency || 'USD',
+      payRateType: item.pay_rate_type || 'unknown',
+      // Legacy fields
       location: item.location,
       isRemote: item.is_remote,
       workType: item.work_type,

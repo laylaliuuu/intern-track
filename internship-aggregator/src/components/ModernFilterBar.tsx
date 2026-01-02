@@ -3,132 +3,27 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown, ChevronUp, Search, X, Filter } from 'lucide-react';
 import FilterButton from './FilterButton';
+import { InternshipFilters } from '@/hooks/use-internships';
 
-interface FilterState {
-  companySize: string[];
-  companyType: string[];
-  location: string[];
-  roleType: string[];
-  yearLevel: string[];
-  majorRequired: string[];
+interface FilterOptions {
+  roles: string[];
+  locations: string[];
+  majors: string[];
 }
 
 interface ModernFilterBarProps {
-  filters: FilterState;
-  onChange: (filters: FilterState) => void;
+  filters: InternshipFilters;
+  onChange: (filters: InternshipFilters) => void;
   onReset: () => void;
   totalResults: number;
+  filterOptions: FilterOptions;
+  isLoading?: boolean;
 }
 
-export default function ModernFilterBar({ filters = { companySize: [], companyType: [], location: [], roleType: [], yearLevel: [], majorRequired: [] }, onChange, onReset, totalResults }: ModernFilterBarProps) {
+export default function ModernFilterBar({ filters, onChange, onReset, totalResults, filterOptions, isLoading = false }: ModernFilterBarProps) {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchTerms, setSearchTerms] = useState<{[key: string]: string}>({});
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  // Mock data for filter options
-  const filterOptions = {
-    companySize: [
-      { id: '1', label: 'Startup (1-50)' },
-      { id: '2', label: 'Small (51-200)' },
-      { id: '3', label: 'Medium (201-1000)' },
-      { id: '4', label: 'Large (1000+)' },
-      { id: '5', label: 'Fortune 500' }
-    ],
-    companyType: [
-      { id: '1', label: 'Technology' },
-      { id: '2', label: 'Finance' },
-      { id: '3', label: 'Healthcare' },
-      { id: '4', label: 'Consulting' },
-      { id: '5', label: 'Retail' },
-      { id: '6', label: 'Manufacturing' },
-      { id: '7', label: 'Education' },
-      { id: '8', label: 'Non-profit' },
-      { id: '9', label: 'Media & Entertainment' },
-      { id: '10', label: 'Real Estate' },
-      { id: '11', label: 'Transportation' },
-      { id: '12', label: 'Energy' },
-      { id: '13', label: 'Government' },
-      { id: '14', label: 'Legal' },
-      { id: '15', label: 'Sports & Recreation' }
-    ],
-    location: [
-      { id: '1', label: 'Remote' },
-      { id: '2', label: 'Hybrid' },
-      { id: '3', label: 'On-site' },
-      { id: '4', label: 'San Francisco, CA' },
-      { id: '5', label: 'New York, NY' },
-      { id: '6', label: 'Seattle, WA' },
-      { id: '7', label: 'Austin, TX' },
-      { id: '8', label: 'Boston, MA' },
-      { id: '9', label: 'Los Angeles, CA' },
-      { id: '10', label: 'Chicago, IL' },
-      { id: '11', label: 'Denver, CO' },
-      { id: '12', label: 'Miami, FL' },
-      { id: '13', label: 'Atlanta, GA' },
-      { id: '14', label: 'Portland, OR' },
-      { id: '15', label: 'Washington, DC' }
-    ],
-    roleType: [
-      { id: '1', label: 'Software Engineer' },
-      { id: '2', label: 'Data Analyst' },
-      { id: '3', label: 'Product Manager' },
-      { id: '4', label: 'UX Designer' },
-      { id: '5', label: 'Marketing' },
-      { id: '6', label: 'Sales' },
-      { id: '7', label: 'Finance' },
-      { id: '8', label: 'HR' },
-      { id: '9', label: 'Operations' },
-      { id: '10', label: 'Research' },
-      { id: '11', label: 'Business Development' },
-      { id: '12', label: 'Content Creator' },
-      { id: '13', label: 'Project Manager' },
-      { id: '14', label: 'Customer Success' },
-      { id: '15', label: 'Legal' },
-      { id: '16', label: 'Data Scientist' },
-      { id: '17', label: 'Machine Learning Engineer' },
-      { id: '18', label: 'Cybersecurity' },
-      { id: '19', label: 'DevOps Engineer' },
-      { id: '20', label: 'Frontend Developer' },
-      { id: '21', label: 'Backend Developer' },
-      { id: '22', label: 'Full Stack Developer' },
-      { id: '23', label: 'Mobile Developer' },
-      { id: '24', label: 'Game Developer' },
-      { id: '25', label: 'AI/ML Research' },
-      { id: '26', label: 'Investment Banking' },
-      { id: '27', label: 'Financial Analyst' },
-      { id: '28', label: 'Accounting' },
-      { id: '29', label: 'Consulting' },
-      { id: '30', label: 'Strategy' },
-      { id: '31', label: 'Risk Management' },
-      { id: '32', label: 'Trading' },
-      { id: '33', label: 'Audit' },
-      { id: '34', label: 'Tax' },
-      { id: '35', label: 'Corporate Finance' }
-    ],
-    yearLevel: [
-      { id: '1', label: 'Freshman' },
-      { id: '2', label: 'Sophomore' },
-      { id: '3', label: 'Junior' },
-      { id: '4', label: 'Senior' }
-    ],
-    majorRequired: [
-      { id: '1', label: 'Computer Science' },
-      { id: '2', label: 'Business' },
-      { id: '3', label: 'Engineering' },
-      { id: '4', label: 'Mathematics' },
-      { id: '5', label: 'Statistics' },
-      { id: '6', label: 'Economics' },
-      { id: '7', label: 'Marketing' },
-      { id: '8', label: 'Liberal Arts' },
-      { id: '9', label: 'Psychology' },
-      { id: '10', label: 'Communications' },
-      { id: '11', label: 'Biology' },
-      { id: '12', label: 'Chemistry' },
-      { id: '13', label: 'Physics' },
-      { id: '14', label: 'Political Science' },
-      { id: '15', label: 'Any Major' }
-    ]
-  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -142,11 +37,11 @@ export default function ModernFilterBar({ filters = { companySize: [], companyTy
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleFilterToggle = (filterType: string, optionId: string) => {
-    const currentValues = filters[filterType as keyof FilterState] || [];
-    const newValues = currentValues.includes(optionId)
-      ? currentValues.filter(id => id !== optionId)
-      : [...currentValues, optionId];
+  const handleFilterToggle = (filterType: string, optionValue: string) => {
+    const currentValues = filters[filterType as keyof InternshipFilters] as string[] || [];
+    const newValues = currentValues.includes(optionValue)
+      ? currentValues.filter(value => value !== optionValue)
+      : [...currentValues, optionValue];
     
     onChange({
       ...filters,
@@ -161,9 +56,9 @@ export default function ModernFilterBar({ filters = { companySize: [], companyTy
     });
   };
 
-  const handleRemoveActiveFilter = (filterType: string, optionId: string) => {
-    const currentValues = filters[filterType as keyof FilterState] || [];
-    const newValues = currentValues.filter(id => id !== optionId);
+  const handleRemoveActiveFilter = (filterType: string, optionValue: string) => {
+    const currentValues = filters[filterType as keyof InternshipFilters] as string[] || [];
+    const newValues = currentValues.filter(value => value !== optionValue);
     
     onChange({
       ...filters,
@@ -172,14 +67,14 @@ export default function ModernFilterBar({ filters = { companySize: [], companyTy
   };
 
   const getFilteredOptions = (filterType: string) => {
-    return filterOptions[filterType as keyof typeof filterOptions] || [];
+    return filterOptions[filterType as keyof FilterOptions] || [];
   };
 
   const renderDropdown = (filterType: string, label: string) => {
     if (activeDropdown !== filterType) return null;
 
     const options = getFilteredOptions(filterType);
-    const selectedCount = filters[filterType as keyof FilterState]?.length || 0;
+    const selectedCount = (filters[filterType as keyof InternshipFilters] as string[])?.length || 0;
 
     return (
       <div 
@@ -191,7 +86,6 @@ export default function ModernFilterBar({ filters = { companySize: [], companyTy
           opacity: 1
         }}
       >
-
         {/* Options List */}
         <div 
           className="overflow-y-auto" 
@@ -202,10 +96,10 @@ export default function ModernFilterBar({ filters = { companySize: [], companyTy
           }}
         >
           {options.map((option) => {
-            const isSelected = filters[filterType as keyof FilterState]?.includes(option.id) || false;
+            const isSelected = (filters[filterType as keyof InternshipFilters] as string[])?.includes(option) || false;
             return (
               <div
-                key={option.id}
+                key={option}
                 className={`flex items-center px-4 py-3 cursor-pointer transition-colors ${
                   isSelected ? 'bg-blue-100' : ''
                 }`}
@@ -227,20 +121,20 @@ export default function ModernFilterBar({ filters = { companySize: [], companyTy
                     e.currentTarget.style.backgroundColor = 'transparent';
                   }
                 }}
-                onClick={() => handleFilterToggle(filterType, option.id)}
+                onClick={() => handleFilterToggle(filterType, option)}
               >
                 <div className="flex items-center">
                   <input
                     type="checkbox"
                     checked={isSelected}
-                    onChange={() => handleFilterToggle(filterType, option.id)}
+                    onChange={() => handleFilterToggle(filterType, option)}
                     className="w-4 h-4 rounded border-2 border-gray-300 text-blue-600 focus:ring-blue-500 focus:ring-2"
                   />
                 </div>
                 <span className={`ml-3 text-sm font-medium ${
                   isSelected ? 'text-blue-800' : 'text-gray-700'
                 }`}>
-                  {option.label}
+                  {option}
                 </span>
               </div>
             );
@@ -295,20 +189,16 @@ export default function ModernFilterBar({ filters = { companySize: [], companyTy
   };
 
   const renderActiveFilters = () => {
-    const activeFilters: Array<{type: string, id: string, label: string}> = [];
+    const activeFilters: Array<{type: string, value: string}> = [];
     
     if (filters) {
-      Object.entries(filters).forEach(([filterType, selectedIds]) => {
-        if (selectedIds && Array.isArray(selectedIds)) {
-          selectedIds.forEach((id: string) => {
-            const option = filterOptions[filterType as keyof typeof filterOptions]?.find(opt => opt.id === id);
-            if (option) {
-              activeFilters.push({
-                type: filterType,
-                id,
-                label: option.label
-              });
-            }
+      Object.entries(filters).forEach(([filterType, selectedValues]) => {
+        if (selectedValues && Array.isArray(selectedValues)) {
+          selectedValues.forEach((value: string) => {
+            activeFilters.push({
+              type: filterType,
+              value
+            });
           });
         }
       });
@@ -330,11 +220,11 @@ export default function ModernFilterBar({ filters = { companySize: [], companyTy
             gap: '12px'
           }}
         >
-          <div className="text-xs text-gray-600">Active filters:    </div>
+          <div className="text-xs text-gray-600">Active filters:</div>
           <div className="flex flex-wrap gap-1">
             {activeFilters.map((filter, index) => (
             <div
-              key={`${filter.type}-${filter.id}-${index}`}
+              key={`${filter.type}-${filter.value}-${index}`}
               className="flex items-center space-x-1"
               style={{
                 backgroundColor: '#f0f4ff',
@@ -344,10 +234,10 @@ export default function ModernFilterBar({ filters = { companySize: [], companyTy
               }}
             >
               <span style={{ color: '#3b82f6', fontSize: '14px', fontWeight: '500' }}>
-                {filter.label}
+                {filter.value}
               </span>
               <button
-                onClick={() => handleRemoveActiveFilter(filter.type, filter.id)}
+                onClick={() => handleRemoveActiveFilter(filter.type, filter.value)}
                 style={{
                   backgroundColor: 'transparent',
                   border: 'none',
@@ -387,87 +277,72 @@ export default function ModernFilterBar({ filters = { companySize: [], companyTy
               gap: '12px'
             }}
           >
-
-          {/* Company Size */}
+          {/* Roles */}
           <div className="relative">
             <FilterButton
-              label="Company size"
-              isActive={activeDropdown === 'companySize'}
-              onClick={() => setActiveDropdown(activeDropdown === 'companySize' ? null : 'companySize')}
+              label="Roles"
+              isActive={activeDropdown === 'roles'}
+              onClick={() => setActiveDropdown(activeDropdown === 'roles' ? null : 'roles')}
             />
-            {activeDropdown === 'companySize' && (
+            {activeDropdown === 'roles' && (
               <div className="absolute top-full left-0 mt-1 z-[9999]" style={{ backgroundColor: '#ffffff' }}>
-                {renderDropdown('companySize', 'Company size')}
+                {renderDropdown('roles', 'Roles')}
               </div>
             )}
           </div>
 
-          {/* Company Type */}
+          {/* Locations */}
           <div className="relative">
             <FilterButton
-              label="Company type"
-              isActive={activeDropdown === 'companyType'}
-              onClick={() => setActiveDropdown(activeDropdown === 'companyType' ? null : 'companyType')}
+              label="Locations"
+              isActive={activeDropdown === 'locations'}
+              onClick={() => setActiveDropdown(activeDropdown === 'locations' ? null : 'locations')}
             />
-            {activeDropdown === 'companyType' && (
+            {activeDropdown === 'locations' && (
               <div className="absolute top-full left-0 mt-1 z-[9999]" style={{ backgroundColor: '#ffffff' }}>
-                {renderDropdown('companyType', 'Company type')}
+                {renderDropdown('locations', 'Locations')}
               </div>
             )}
           </div>
 
-          {/* Location */}
+          {/* Majors */}
           <div className="relative">
             <FilterButton
-              label="Location"
-              isActive={activeDropdown === 'location'}
-              onClick={() => setActiveDropdown(activeDropdown === 'location' ? null : 'location')}
+              label="Majors"
+              isActive={activeDropdown === 'majors'}
+              onClick={() => setActiveDropdown(activeDropdown === 'majors' ? null : 'majors')}
             />
-            {activeDropdown === 'location' && (
+            {activeDropdown === 'majors' && (
               <div className="absolute top-full left-0 mt-1 z-[9999]" style={{ backgroundColor: '#ffffff' }}>
-                {renderDropdown('location', 'Location')}
+                {renderDropdown('majors', 'Majors')}
               </div>
             )}
           </div>
 
-          {/* Role Type */}
+          {/* Work Type */}
           <div className="relative">
             <FilterButton
-              label="Role type"
-              isActive={activeDropdown === 'roleType'}
-              onClick={() => setActiveDropdown(activeDropdown === 'roleType' ? null : 'roleType')}
+              label="Work Type"
+              isActive={activeDropdown === 'workType'}
+              onClick={() => setActiveDropdown(activeDropdown === 'workType' ? null : 'workType')}
             />
-            {activeDropdown === 'roleType' && (
+            {activeDropdown === 'workType' && (
               <div className="absolute top-full left-0 mt-1 z-[9999]" style={{ backgroundColor: '#ffffff' }}>
-                {renderDropdown('roleType', 'Role type')}
+                {renderDropdown('workType', 'Work Type')}
               </div>
             )}
           </div>
 
-          {/* Year Level */}
+          {/* Eligibility Year */}
           <div className="relative">
             <FilterButton
-              label="Year level"
-              isActive={activeDropdown === 'yearLevel'}
-              onClick={() => setActiveDropdown(activeDropdown === 'yearLevel' ? null : 'yearLevel')}
+              label="Year Level"
+              isActive={activeDropdown === 'eligibilityYear'}
+              onClick={() => setActiveDropdown(activeDropdown === 'eligibilityYear' ? null : 'eligibilityYear')}
             />
-            {activeDropdown === 'yearLevel' && (
+            {activeDropdown === 'eligibilityYear' && (
               <div className="absolute top-full left-0 mt-1 z-[9999]" style={{ backgroundColor: '#ffffff' }}>
-                {renderDropdown('yearLevel', 'Year level')}
-              </div>
-            )}
-          </div>
-
-          {/* Major Required */}
-          <div className="relative">
-            <FilterButton
-              label="Major required"
-              isActive={activeDropdown === 'majorRequired'}
-              onClick={() => setActiveDropdown(activeDropdown === 'majorRequired' ? null : 'majorRequired')}
-            />
-            {activeDropdown === 'majorRequired' && (
-              <div className="absolute top-full left-0 mt-1 z-[9999]" style={{ backgroundColor: '#ffffff' }}>
-                {renderDropdown('majorRequired', 'Major required')}
+                {renderDropdown('eligibilityYear', 'Year Level')}
               </div>
             )}
           </div>
@@ -490,7 +365,9 @@ export default function ModernFilterBar({ filters = { companySize: [], companyTy
             />
             <input
               type="text"
-              placeholder="Search in table"
+              placeholder="Search internships..."
+              value={filters.search || ''}
+              onChange={(e) => onChange({ ...filters, search: e.target.value })}
               style={{
                 width: '224px',
                 paddingLeft: '40px',

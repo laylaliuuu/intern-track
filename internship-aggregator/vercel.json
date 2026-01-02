@@ -15,7 +15,7 @@
   "crons": [
     {
       "path": "/api/cron/ingestion",
-      "schedule": "*/15 * * * *"
+      "schedule": "0 9 * * *"
     }
   ],
   "env": {

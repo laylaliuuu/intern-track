@@ -196,10 +196,10 @@ export function handleApiError(error: unknown, requestId?: string): NextResponse
 }
 
 // Async error wrapper for API routes
-export function asyncHandler(
-  handler: (req: Request, context?: any) => Promise<NextResponse>
+export function asyncHandler<T extends Request = Request>(
+  handler: (req: T, context?: any) => Promise<NextResponse>
 ) {
-  return async (req: Request, context?: any): Promise<NextResponse> => {
+  return async (req: T, context?: any): Promise<NextResponse> => {
     try {
       return await handler(req, context);
     } catch (error) {

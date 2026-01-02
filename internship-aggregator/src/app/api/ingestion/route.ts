@@ -4,7 +4,7 @@ import { ingestionService } from '../../../services/ingestion-service';
 import { asyncHandler, ValidationError } from '../../../lib/error-handling';
 import { logger } from '../../../lib/logger';
 
-export const POST = asyncHandler(async (request: NextRequest) => {
+export const POST = asyncHandler(async (request: Request) => {
   const requestId = `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   const reqLogger = logger.withContext({ requestId, component: 'api' });
   
@@ -55,7 +55,7 @@ export const POST = asyncHandler(async (request: NextRequest) => {
       },
     });
 
-    reqLogger.info('Ingestion completed successfully', { action: 'ingestion_complete', statusCode: 200 });
+    reqLogger.info('Ingestion completed successfully', { action: 'ingestion_complete' });
 
     return NextResponse.json({
       success: result.success,
@@ -82,9 +82,9 @@ export const POST = asyncHandler(async (request: NextRequest) => {
     });
 });
 
-export const GET = asyncHandler(async (request: NextRequest) => {
-  const requestLogger = createRequestLogger();
-  const { requestId, logger: reqLogger } = requestLogger(request);
+export const GET = asyncHandler(async (request: Request) => {
+  const requestId = `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  const reqLogger = logger.withContext({ requestId, component: 'api' });
   
   const { searchParams } = new URL(request.url);
     const action = searchParams.get('action');
@@ -101,9 +101,11 @@ export const GET = asyncHandler(async (request: NextRequest) => {
         // Trigger company-specific ingestion
         const companiesParam = searchParams.get('companies');
         const companies = companiesParam ? companiesParam.split(',') : ['Google', 'Microsoft', 'Meta', 'Apple', 'Amazon'];
+        const maxResultsParam = searchParams.get('maxResults');
+        const maxResults = maxResultsParam ? parseInt(maxResultsParam) : 200; // Increased default from 30 to 200
         
         const result = await ingestionService.ingestCompanies(companies, {
-          maxResults: 30,
+          maxResults,
           dryRun: searchParams.get('dryRun') === 'true'
         });
 

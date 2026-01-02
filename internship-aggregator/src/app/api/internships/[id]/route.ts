@@ -65,6 +65,15 @@ export async function GET(
         logo_url: data.companies?.logo_url
       },
       normalizedRole: data.normalized_role,
+      // New quality fields
+      exactRole: data.exact_role,
+      graduationYear: data.graduation_year || [],
+      requirements: data.requirements,
+      payRateMin: data.pay_rate_min,
+      payRateMax: data.pay_rate_max,
+      payRateCurrency: data.pay_rate_currency || 'USD',
+      payRateType: data.pay_rate_type || 'unknown',
+      // Legacy fields
       location: data.location,
       isRemote: data.is_remote,
       workType: data.work_type,

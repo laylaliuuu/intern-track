@@ -1,0 +1,2090 @@
+
+> internship-aggregator@0.1.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.4 (Turbopack)
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.1.37:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1068ms
+ ○ Compiling /api/ingestion ...
+ ✓ Compiled /api/ingestion in 717ms
+[32m[2025-10-15T03:08:36.041Z] INFO[0m [req_1760497716040_pv188qcso] Manual ingestion triggered
+  Context: { companies: 5, maxResults: 150, includePrograms: true, dryRun: false }
+[32m[2025-10-15T03:08:36.042Z] INFO[0m Starting full ingestion
+[32m[2025-10-15T03:08:36.042Z] INFO[0m Fetching raw internship data
+Starting data fetch with 3 sources...
+Fetching from source: GitHub Curated Lists
+Scraping SimplifyJobs/Summer2026-Internships...
+Scraping pittcsc/Summer2026-Internships...
+Scraping SimplifyJobs/New-Grad-Positions...
+Scraping ReaVNaiL/New-Grad-2026...
+Scraping coderQuad/New-Grad-Positions...
+Completed GitHub Curated Lists: 40 internships found
+Fetching from source: Comprehensive Web Scraper
+Comprehensive scraping from Comprehensive Web Scraper...
+Completed Comprehensive Web Scraper: 0 internships found
+Completed Comprehensive Web Scraper: 0 internships found
+Fetching from source: Exa.ai Search
+🚀 Starting comprehensive search across 14 roles with 150 max results
+🔍 Searching Exa.ai for software engineer internships...
+🔍 Searching software engineer with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for software engineer...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 43 unique results for software engineer
+📊 Exa.ai returned 43 results for software engineer
+✅ 43 results passed quality filter for software engineer
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+✓ Accepted (content: 0.80, URL: 0.20, final: 0.50): Careers
+✓ Converted: Careers at Careers
+⏳ Waiting 1 second before next search...
+🔍 Searching Exa.ai for data scientist internships...
+🔍 Searching data scientist with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for data scientist...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 43 unique results for data scientist
+📊 Exa.ai returned 43 results for data scientist
+✅ 43 results passed quality filter for data scientist
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): Intern - Frequently Asked Questions - NASA
+✗ Failed to convert: Intern - Frequently Asked Questions - NASA
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+⏳ Waiting 1 second before next search...
+🔍 Searching Exa.ai for product manager internships...
+🔍 Searching product manager with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for product manager...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 980ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 42 unique results for product manager
+📊 Exa.ai returned 42 results for product manager
+✅ 42 results passed quality filter for product manager
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+✓ Accepted (content: 0.80, URL: 0.20, final: 0.50): Careers
+✓ Converted: Careers at Careers
+⏳ Waiting 1 second before next search...
+🔍 Searching Exa.ai for business analyst internships...
+🔍 Searching business analyst with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for business analyst...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1499ms before next Exa.ai request...
+⏳ Rate limiting: waiting 727ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 43 unique results for business analyst
+📊 Exa.ai returned 43 results for business analyst
+✅ 43 results passed quality filter for business analyst
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): Intern - Frequently Asked Questions - NASA
+✗ Failed to convert: Intern - Frequently Asked Questions - NASA
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+⏳ Waiting 1 second before next search...
+🔍 Searching Exa.ai for design internships...
+🔍 Searching design with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for design...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 795ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 42 unique results for design
+📊 Exa.ai returned 42 results for design
+✅ 42 results passed quality filter for design
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+✓ Accepted (content: 0.80, URL: 0.20, final: 0.50): Careers
+✓ Converted: Careers at Careers
+⏳ Waiting 1 second before next search...
+🔍 Searching Exa.ai for marketing internships...
+🔍 Searching marketing with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for marketing...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 42 unique results for marketing
+📊 Exa.ai returned 42 results for marketing
+✅ 42 results passed quality filter for marketing
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+✓ Accepted (content: 0.80, URL: 0.20, final: 0.50): Careers
+✓ Converted: Careers at Careers
+⏳ Waiting 1 second before next search...
+🔍 Searching Exa.ai for finance internships...
+🔍 Searching finance with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for finance...
+⏳ Rate limiting: waiting 1499ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1499ms before next Exa.ai request...
+⏳ Rate limiting: waiting 985ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 43 unique results for finance
+📊 Exa.ai returned 43 results for finance
+✅ 43 results passed quality filter for finance
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+✓ Accepted (content: 0.80, URL: 0.20, final: 0.50): Careers
+✓ Converted: Careers at Careers
+⏳ Waiting 1 second before next search...
+🔍 Searching Exa.ai for operations internships...
+🔍 Searching operations with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for operations...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1499ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 43 unique results for operations
+📊 Exa.ai returned 43 results for operations
+✅ 43 results passed quality filter for operations
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): Intern - Frequently Asked Questions - NASA
+✗ Failed to convert: Intern - Frequently Asked Questions - NASA
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+⏳ Waiting 1 second before next search...
+🔍 Searching Exa.ai for research internships...
+🔍 Searching research with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for research...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 2ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 43 unique results for research
+📊 Exa.ai returned 43 results for research
+✅ 43 results passed quality filter for research
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+✓ Accepted (content: 0.80, URL: 0.20, final: 0.50): Careers
+✓ Converted: Careers at Careers
+⏳ Waiting 1 second before next search...
+🔍 Searching Exa.ai for quantitative analyst internships...
+🔍 Searching quantitative analyst with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for quantitative analyst...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 60ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 43 unique results for quantitative analyst
+📊 Exa.ai returned 43 results for quantitative analyst
+✅ 43 results passed quality filter for quantitative analyst
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+✓ Accepted (content: 0.80, URL: 0.20, final: 0.50): Careers
+✓ Converted: Careers at Careers
+⏳ Waiting 1 second before next search...
+🔍 Searching Exa.ai for trading analyst internships...
+🔍 Searching trading analyst with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for trading analyst...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 583ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 43 unique results for trading analyst
+📊 Exa.ai returned 43 results for trading analyst
+✅ 43 results passed quality filter for trading analyst
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): Intern - Frequently Asked Questions - NASA
+✗ Failed to convert: Intern - Frequently Asked Questions - NASA
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+⏳ Waiting 1 second before next search...
+🔍 Searching Exa.ai for AI engineer internships...
+🔍 Searching AI engineer with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for AI engineer...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1499ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1301ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 43 unique results for AI engineer
+📊 Exa.ai returned 43 results for AI engineer
+✅ 43 results passed quality filter for AI engineer
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+✓ Accepted (content: 0.80, URL: 0.20, final: 0.50): Careers
+✓ Converted: Careers at Careers
+⏳ Waiting 1 second before next search...
+🔍 Searching Exa.ai for ML engineer internships...
+🔍 Searching ML engineer with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for ML engineer...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 226ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 43 unique results for ML engineer
+📊 Exa.ai returned 43 results for ML engineer
+✅ 43 results passed quality filter for ML engineer
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): Intern - Frequently Asked Questions - NASA
+✗ Failed to convert: Intern - Frequently Asked Questions - NASA
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+⏳ Waiting 1 second before next search...
+🔍 Searching Exa.ai for data analyst internships...
+🔍 Searching data analyst with 5 query variations (credit-optimized):
+  1. "freshman intern"
+  2. "sophomore intern"
+  3. "junior intern"
+  4. "senior intern"
+  5. "college student intern"
+🔄 Executing 5 parallel searches for data analyst...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1499ms before next Exa.ai request...
+⏳ Rate limiting: waiting 492ms before next Exa.ai request...
+  Query 1: 10 results
+  Query 2: 10 results
+  Query 3: 10 results
+  Query 4: 10 results
+  Query 5: 10 results
+✅ Combined 43 unique results for data analyst
+📊 Exa.ai returned 43 results for data analyst
+✅ 43 results passed quality filter for data analyst
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565
+✓ Converted: IT and Ops Engineering Intern (Sophomores & Juniors) - 90393901 - Philadelphia at Amtrak in Philadelphia, Pennsylvania 164565 at Amtrak
+Low confidence (0.10): Sophomore Summer Business Analyst
+✗ Failed to convert: Sophomore Summer Business Analyst
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✓ Converted: ADMINISTRATIVE INTERN (NON-CAREER) - CAREER EXPLORATION PROGRAM at Governmentjobs
+Inactive/expired posting: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+✗ Failed to convert: ADMINISTRATIVE INTERN  (NON-CAREER) - CAREER EXPLORATION PROGRAM
+Low confidence (0.08): 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✗ Failed to convert: 2024 Investment Banking Sophomore Summer Analyst Program (United States)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt)
+✓ Converted: San Francisco Public Utilities Commission Summer 2025 Student Intern Program, Freshmen or Sophomore Students (5380) (Exempt) at Sf
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Summer 2026 Software Engineering Internship/Co-op
+✓ Converted: Summer 2026 Software Engineering Internship/Co-op at Harvard
+Low confidence (0.05): From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+✗ Failed to convert: From College to Career: Students’ Internship Expectations and Experiences | Strada Education Foundation
+Low confidence (0.05): Student Opportunities
+✗ Failed to convert: Student Opportunities
+Low confidence (0.05): How To Get An Internship As A Freshman In College
+✗ Failed to convert: How To Get An Internship As A Freshman In College
+✓ Accepted (content: 0.60, URL: 0.20, final: 0.40): How To Land Internships as a Freshman and Sophomore in College
+✓ Converted: How To Land Internships as a Freshman and Sophomore in College at How To Land
+Low confidence (0.25): Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+✗ Failed to convert: Swooped - Newsroom Internship Program: Summer 2026 at The Washington Post
+Low confidence (0.05): Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+✗ Failed to convert: Virtual Interprofessional Internship in Innovation & Aging in Long-Term Care - Ontario Centres for Learning, Research, and Innovation in Long-Term Care
+Inactive/expired posting: College Student Intern (PT)
+✗ Failed to convert: College Student Intern (PT)
+Low confidence (0.10): Internships Opportunities
+✗ Failed to convert: Internships Opportunities
+Low confidence (0.15): Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+✗ Failed to convert: Ranking Member's Internships | The U.S. Senate Committee on Health, Education, Labor & Pensions
+Low confidence (0.05): More About the Summer Internship
+✗ Failed to convert: More About the Summer Internship
+Low confidence (0.05): Internships and Co-ops at WHOOP | WHOOP Engineering
+✗ Failed to convert: Internships and Co-ops at WHOOP | WHOOP Engineering
+Low confidence (0.05): How to Find an Internship That Matters
+✗ Failed to convert: How to Find an Internship That Matters
+✓ Accepted (content: 0.80, URL: 0.20, final: 0.50): Careers
+✓ Converted: Careers at Careers
+🎯 Final results: 6 unique internships (from 79 total)
+🏢 Fetching Google internships with maxResults: 150
+🔍 Searching Google with 3 query variations...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+✅ Combined 102 unique results for Google
+📊 Google search returned 102 results
+Low confidence (0.20): Intern
+✗ Failed to convert Google: Intern
+✓ Accepted (content: 0.60, URL: 0.05, final: 0.33): Internships - Google Careers
+✓ Converted Google: Internships - Google Careers
+✓ Accepted (content: 0.60, URL: 0.05, final: 0.33): Engineering and Technical Internships - Google Careers
+✓ Converted Google: Engineering and Technical Internships - Google Careers
+Low confidence (0.03): 
+✗ Failed to convert Google: 
+Low confidence (0.10): AI for Students: Free Study, Writing, & Career Tools & Training
+✗ Failed to convert Google: AI for Students: Free Study, Writing, & Career Tools & Training
+Low confidence (0.08): Software Engineering Intern, 2025 — Google Careers
+✗ Failed to convert Google: Software Engineering Intern, 2025 — Google Careers
+Low confidence (0.13): Programs — Google Careers
+✗ Failed to convert Google: Programs — Google Careers
+Low confidence (0.13): job details
+✗ Failed to convert Google: job details
+✓ Accepted (content: 0.60, URL: 0.05, final: 0.33): Build your future with Google - Google Careers
+✓ Converted Google: Build your future with Google - Google Careers
+✓ Accepted (content: 0.70, URL: 0.45, final: 0.57): Silicon Engineering Intern, PhD, Summer 2026 — Google Careers
+✓ Converted Google: Silicon Engineering Intern, PhD, Summer 2026 — Google Careers
+Low confidence (0.28): Application Engineering Intern, Winter 2026 — Google Careers
+✗ Failed to convert Google: Application Engineering Intern, Winter 2026 — Google Careers
+✓ Accepted (content: 0.50, URL: 0.15, final: 0.33): Security Engineering Intern, BS/MS, Summer 2026 — Google Careers
+✓ Converted Google: Security Engineering Intern, BS/MS, Summer 2026 — Google Careers
+✓ Accepted (content: 0.60, URL: 0.05, final: 0.33): Business Internships - Google Careers
+✓ Converted Google: Business Internships - Google Careers
+Low confidence (0.13): job details
+✗ Failed to convert Google: job details
+✓ Accepted (content: 0.70, URL: 0.05, final: 0.38): User Experience Engineer Intern, BS/MS, Summer 2026 — Google Careers
+✓ Converted Google: User Experience Engineer Intern, BS/MS, Summer 2026 — Google Careers
+Low confidence (0.03): Google Careers
+✗ Failed to convert Google: Google Careers
+Low confidence (0.13): Programs — Google Careers
+✗ Failed to convert Google: Programs — Google Careers
+✓ Accepted (content: 0.50, URL: 0.15, final: 0.33): job details
+✓ Converted Google: job details
+Low confidence (0.13): Engineering and Technical Jobs - Google Careers
+✗ Failed to convert Google: Engineering and Technical Jobs - Google Careers
+✓ Accepted (content: 0.50, URL: 0.15, final: 0.33): People Analytics Intern, PhD, Summer 2026 — Google Careers
+✓ Converted Google: People Analytics Intern, PhD, Summer 2026 — Google Careers
+✓ Accepted (content: 0.50, URL: 0.15, final: 0.33): User Experience Engineer Intern, PhD, Summer 2026 — Google Careers
+✓ Converted Google: User Experience Engineer Intern, PhD, Summer 2026 — Google Careers
+Low confidence (0.05): Internships By Google
+✗ Failed to convert Google: Internships By Google
+✓ Accepted (content: 0.50, URL: 0.15, final: 0.33): Research Intern, PhD, Summer 2026 — Google Careers
+✓ Converted Google: Research Intern, PhD, Summer 2026 — Google Careers
+Low confidence (0.03): Jobs search — Google Careers
+✗ Failed to convert Google: Jobs search — Google Careers
+Low confidence (0.13): Google Summer of Code - Google Careers
+✗ Failed to convert Google: Google Summer of Code - Google Careers
+Low confidence (0.20): GoogleInternship.com
+✗ Failed to convert Google: GoogleInternship.com
+Low confidence (0.03): Jobs search — Google Careers
+✗ Failed to convert Google: Jobs search — Google Careers
+Low confidence (0.03): Google Cloud for Education - Students | Google Cloud
+✗ Failed to convert Google: Google Cloud for Education - Students | Google Cloud
+Low confidence (0.03): Jobs search — Google Careers
+✗ Failed to convert Google: Jobs search — Google Careers
+✓ Accepted (content: 0.80, URL: 0.15, final: 0.48): Software Engineering Intern at Google
+✓ Converted Google: Software Engineering Intern at Google
+Low confidence (0.08): Associate Software Developer Intern, 2025 — Google Careers
+✗ Failed to convert Google: Associate Software Developer Intern, 2025 — Google Careers
+Low confidence (0.03): Build Your Future — Google Careers
+✗ Failed to convert Google: Build Your Future — Google Careers
+✓ Accepted (content: 1.00, URL: 0.00, final: 0.50): Google Cloud Services - Internships 2023
+✓ Converted Google: Google Cloud Services - Internships 2023
+Low confidence (0.28): Product Design Engineering Intern, BS/MS, Summer 2026 — Google Careers
+✗ Failed to convert Google: Product Design Engineering Intern, BS/MS, Summer 2026 — Google Careers
+Low confidence (0.03): Jobs search — Google Careers
+✗ Failed to convert Google: Jobs search — Google Careers
+Low confidence (0.13): 
+✗ Failed to convert Google: 
+Low confidence (0.28): 74 Google Internship jobs in Canada
+✗ Failed to convert Google: 74 Google Internship jobs in Canada
+Low confidence (0.03): Jobs search — Google Careers
+✗ Failed to convert Google: Jobs search — Google Careers
+Low confidence (0.08): 820 Google Internship jobs in India
+✗ Failed to convert Google: 820 Google Internship jobs in India
+✓ Accepted (content: 0.50, URL: 0.15, final: 0.33): Google Software Engineer Intern Salaries | $69.71 / hr | Levels.fyi
+✓ Converted Google: Google Software Engineer Intern Salaries | $69.71 / hr | Levels.fyi
+Low confidence (0.13): 学生 - Google Careers
+✗ Failed to convert Google: 学生 - Google Careers
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): How to land a Google internship
+✓ Converted Google: How to land a Google internship
+Low confidence (0.13): Inside Google's Internship: Everything You Need to Know
+✗ Failed to convert Google: Inside Google's Internship: Everything You Need to Know
+Low confidence (0.10): Google One Special Student Pricing Offer Terms
+✗ Failed to convert Google: Google One Special Student Pricing Offer Terms
+✓ Accepted (content: 1.00, URL: 0.15, final: 0.57): Google STEP Software Engineer Intern Salaries | $46.15 / hr | Levels.fyi
+✓ Converted Google: Google STEP Software Engineer Intern Salaries | $46.15 / hr | Levels.fyi
+Low confidence (0.03): Sign in - Google Accounts
+✗ Failed to convert Google: Sign in - Google Accounts
+Low confidence (0.20): Google Internship Opportunities - Vault
+✗ Failed to convert Google: Google Internship Opportunities - Vault
+Low confidence (0.03): ビジネス インターンシップ - Google Careers
+✗ Failed to convert Google: ビジネス インターンシップ - Google Careers
+Low confidence (0.13): Resources - Google Careers
+✗ Failed to convert Google: Resources - Google Careers
+Low confidence (0.03): Étudiants - Google Careers
+✗ Failed to convert Google: Étudiants - Google Careers
+Low confidence (0.28): Associate Product Manager Intern, Summer 2026 — Google Careers
+✗ Failed to convert Google: Associate Product Manager Intern, Summer 2026 — Google Careers
+✓ Accepted (content: 0.50, URL: 0.15, final: 0.33): Google Research Intern Salaries | $69.71 / hr | Levels.fyi
+✓ Converted Google: Google Research Intern Salaries | $69.71 / hr | Levels.fyi
+Low confidence (0.13): job details
+✗ Failed to convert Google: job details
+Low confidence (0.13): Students — Google Careers
+✗ Failed to convert Google: Students — Google Careers
+Skipping third-party scraper: https://www.naukri.com/campus/career-guidance/google-internship-guide
+✗ Failed to convert Google: Google Internship 2025: STEP Program, Application, Types
+✓ Accepted (content: 0.70, URL: 0.45, final: 0.57): job details
+✓ Converted Google: job details
+Low confidence (0.08): 4 ex-Google interns who got full-time job offers share advice
+✗ Failed to convert Google: 4 ex-Google interns who got full-time job offers share advice
+✓ Accepted (content: 0.50, URL: 0.15, final: 0.33): Hardware Engineering Intern, PhD, Summer 2026 — Google Careers
+✓ Converted Google: Hardware Engineering Intern, PhD, Summer 2026 — Google Careers
+✓ Accepted (content: 0.50, URL: 0.15, final: 0.33): job details
+✓ Converted Google: job details
+Low confidence (0.13): Students - Google Careers
+✗ Failed to convert Google: Students - Google Careers
+Low confidence (0.05): Meet 3 interns working on AI at Google
+✗ Failed to convert Google: Meet 3 interns working on AI at Google
+✓ Accepted (content: 1.00, URL: 0.05, final: 0.53): Search Jobs - Google Careers
+✓ Converted Google: Search Jobs - Google Careers
+Low confidence (0.08): Want to work as a Google Intern? Check out the answers to FAQs before applying
+✗ Failed to convert Google: Want to work as a Google Intern? Check out the answers to FAQs before applying
+Low confidence (0.25): Build your future with Google - Apprenticeships
+✗ Failed to convert Google: Build your future with Google - Apprenticeships
+Low confidence (0.00): Google for Education - Online Resources for Teachers & Students
+✗ Failed to convert Google: Google for Education - Online Resources for Teachers & Students
+Low confidence (0.00): Education: Programs Overview
+✗ Failed to convert Google: Education: Programs Overview
+Skipping third-party scraper: https://jointaro.com/jobs/google/software-engineering-intern-bs-summer-2026
+✗ Failed to convert Google: Software Engineering Intern, BS, Summer 2026 for Google
+Low confidence (0.00): Google Cloud 教育解决方案 - 学生 | Google Cloud
+✗ Failed to convert Google: Google Cloud 教育解决方案 - 学生 | Google Cloud
+Low confidence (0.10): Google Store-Studentenrabatt verwenden (nur Japan)
+✗ Failed to convert Google: Google Store-Studentenrabatt verwenden (nur Japan)
+Low confidence (0.00): Get Google AI Pro student trial
+✗ Failed to convert Google: Get Google AI Pro student trial
+Low confidence (0.00): Learn about your Google One AI Premium student discount
+✗ Failed to convert Google: Learn about your Google One AI Premium student discount
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Gemini for Students – get Google AI Pro free of charge for a year
+✓ Converted Google: Gemini for Students – get Google AI Pro free of charge for a year
+Low confidence (0.00): Level up your learning with Google AI for students
+✗ Failed to convert Google: Level up your learning with Google AI for students
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Gemini for Students – get Google AI Pro free of charge for a year
+✓ Converted Google: Gemini for Students – get Google AI Pro free of charge for a year
+Low confidence (0.10): Use a Google Store student discount (Japan only)
+✗ Failed to convert Google: Use a Google Store student discount (Japan only)
+Low confidence (0.05): College students in the U.S. are now eligible for the best of Google AI — and 2 TB storage — for free
+✗ Failed to convert Google: College students in the U.S. are now eligible for the best of Google AI — and 2 TB storage — for free
+Low confidence (0.00): Level up your learning with Google AI Pro for students
+✗ Failed to convert Google: Level up your learning with Google AI Pro for students
+Low confidence (0.10): 使用 Google 商店学生折扣（仅限日本） - Google Store帮助
+✗ Failed to convert Google: 使用 Google 商店学生折扣（仅限日本） - Google Store帮助
+Low confidence (0.03): Student Researcher, 2025 — Google Careers
+✗ Failed to convert Google: Student Researcher, 2025 — Google Careers
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Gemini für Studierende — Google AI Pro 1 Jahr kostenlos zur Lernunterstützung
+✓ Converted Google: Gemini für Studierende — Google AI Pro 1 Jahr kostenlos zur Lernunterstützung
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Gemini Advanced is free for students through finals 2026
+✓ Converted Google: Gemini Advanced is free for students through finals 2026
+Low confidence (0.05): Gemini Pro Plan for Students at No Cost - Pixel Student Offers
+✗ Failed to convert Google: Gemini Pro Plan for Students at No Cost - Pixel Student Offers
+Low confidence (0.10): Gemini for Students — get free Google AI Pro for a year
+✗ Failed to convert Google: Gemini for Students — get free Google AI Pro for a year
+Low confidence (0.03): Academic Scholarship Winners - Google Careers
+✗ Failed to convert Google: Academic Scholarship Winners - Google Careers
+Low confidence (0.13): Generation Google Scholarship (North America) - Google Careers
+✗ Failed to convert Google: Generation Google Scholarship (North America) - Google Careers
+Low confidence (0.00): Fazer login nas Contas do Google
+✗ Failed to convert Google: Fazer login nas Contas do Google
+Low confidence (0.10): छात्र-छात्राओं के लिए Gemini — एक साल के लिए Google AI Pro को मुफ़्त में आज़माएँ
+✗ Failed to convert Google: छात्र-छात्राओं के लिए Gemini — एक साल के लिए Google AI Pro को मुफ़्त में आज़माएँ
+Low confidence (0.10): FAQ: Signing up for a Student Plan
+✗ Failed to convert Google: FAQ: Signing up for a Student Plan
+Low confidence (0.00): Obtén la prueba de Google AI Pro para estudiantes
+✗ Failed to convert Google: Obtén la prueba de Google AI Pro para estudiantes
+Low confidence (0.00): Google Workspace | University IT
+✗ Failed to convert Google: Google Workspace | University IT
+Low confidence (0.10): Get a YouTube Premium student membership - Android
+✗ Failed to convert Google: Get a YouTube Premium student membership - Android
+Low confidence (0.00): Google ウォレットに学生 ID を保存する - Googleウォレット ヘルプ
+✗ Failed to convert Google: Google ウォレットに学生 ID を保存する - Googleウォレット ヘルプ
+Low confidence (0.10): 教育：計畫總覽
+✗ Failed to convert Google: 教育：計畫總覽
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Gemini Pro-Abo kostenlos für Studierende & Auszubildende - Pixel Studentenangebote
+✓ Converted Google: Gemini Pro-Abo kostenlos für Studierende & Auszubildende - Pixel Studentenangebote
+Low confidence (0.00): Career Certificates for Academic Partners - Grow with Google
+✗ Failed to convert Google: Career Certificates for Academic Partners - Grow with Google
+Low confidence (0.10): Get a YouTube Premium student membership - Computer
+✗ Failed to convert Google: Get a YouTube Premium student membership - Computer
+Low confidence (0.10): Gemini للطلاب: احصل على نسخة Pro مجانًا لمدة عام لدراسة أذكى
+✗ Failed to convert Google: Gemini للطلاب: احصل على نسخة Pro مجانًا لمدة عام لدراسة أذكى
+Low confidence (0.00): Google for Education - 教師と生徒向けのオンライン リソース
+✗ Failed to convert Google: Google for Education - 教師と生徒向けのオンライン リソース
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Save your Student ID to Google Wallet
+✓ Converted Google: Save your Student ID to Google Wallet
+Low confidence (0.10): Skaffa en studentprenumeration på YouTube Premium - Android
+✗ Failed to convert Google: Skaffa en studentprenumeration på YouTube Premium - Android
+Low confidence (0.10): YouTube Premium-Studententarif nutzen - Computer
+✗ Failed to convert Google: YouTube Premium-Studententarif nutzen - Computer
+Low confidence (0.10): Een YouTube Premium-studentenlidmaatschap kopen - Android
+✗ Failed to convert Google: Een YouTube Premium-studentenlidmaatschap kopen - Android
+✅ Google final results: 27
+🏢 Fetching Microsoft internships with maxResults: 150
+🔍 Searching Microsoft with 3 query variations...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1499ms before next Exa.ai request...
+✅ Combined 104 unique results for Microsoft
+📊 Microsoft search returned 104 results
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Microsoft Student Discount on Office, Word | Microsoft 365
+✓ Converted Microsoft: Microsoft Student Discount on Office, Word | Microsoft 365
+Low confidence (0.10): Free Technology & Software for Students (Microsoft Office, Word, Excel) | Microsoft Education
+✗ Failed to convert Microsoft: Free Technology & Software for Students (Microsoft Office, Word, Excel) | Microsoft Education
+Low confidence (0.05): Microsoft Education Store: Student Discounts & Deals (Windows, Surface, Laptops & more)
+✗ Failed to convert Microsoft: Microsoft Education Store: Student Discounts & Deals (Windows, Surface, Laptops & more)
+Low confidence (0.10): Azure for Students – Free Account Credit | Microsoft Azure
+✗ Failed to convert Microsoft: Azure for Students – Free Account Credit | Microsoft Azure
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Studentenrabatte für Laptops, Microsoft 365, Windows, Surface | Microsoft Store
+✓ Converted Microsoft: Studentenrabatte für Laptops, Microsoft 365, Windows, Surface | Microsoft Store
+Low confidence (0.00): Student Hub Overview - Microsoft Learn Student Hub
+✗ Failed to convert Microsoft: Student Hub Overview - Microsoft Learn Student Hub
+Low confidence (0.00): Microsoft Studierendenrabatt auf Office, Word | Microsoft 365
+✗ Failed to convert Microsoft: Microsoft Studierendenrabatt auf Office, Word | Microsoft 365
+Low confidence (0.10): Microsoft Azure for Students: gratis acounttegoed | Microsoft Azure
+✗ Failed to convert Microsoft: Microsoft Azure for Students: gratis acounttegoed | Microsoft Azure
+Low confidence (0.10): Microsoft Azure for Students – gratis kontokredit | Microsoft Azure
+✗ Failed to convert Microsoft: Microsoft Azure for Students – gratis kontokredit | Microsoft Azure
+Low confidence (0.10): Microsoft Azure for Students: Gutschrift für kostenloses Konto | Microsoft Azure
+✗ Failed to convert Microsoft: Microsoft Azure for Students: Gutschrift für kostenloses Konto | Microsoft Azure
+Low confidence (0.05): Student Developer Resources | Microsoft Azure
+✗ Failed to convert Microsoft: Student Developer Resources | Microsoft Azure
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Student discounts
+✓ Converted Microsoft: Student discounts
+Low confidence (0.10): Azure for Students – gratis konto-kreditt | Microsoft Azure
+✗ Failed to convert Microsoft: Azure for Students – gratis konto-kreditt | Microsoft Azure
+Low confidence (0.10): Studentská sleva společnosti Microsoft na sadu Office a aplikaci Word | Microsoft 365
+✗ Failed to convert Microsoft: Studentská sleva společnosti Microsoft na sadu Office a aplikaci Word | Microsoft 365
+Low confidence (0.00): Student Certifications - Student Hub
+✗ Failed to convert Microsoft: Student Certifications - Student Hub
+Low confidence (0.10): Azure for Students – kredit bezplatného účtu | Microsoft Azure
+✗ Failed to convert Microsoft: Azure for Students – kredit bezplatného účtu | Microsoft Azure
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Utviklerressurser for studenter | Microsoft Azure
+✓ Converted Microsoft: Utviklerressurser for studenter | Microsoft Azure
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Azure for College Students – tilbudsdetaljer | Microsoft Azure
+✓ Converted Microsoft: Azure for College Students – tilbudsdetaljer | Microsoft Azure
+Low confidence (0.25): Undergraduate Research Internship – Computing - Microsoft Research
+✗ Failed to convert Microsoft: Undergraduate Research Internship – Computing - Microsoft Research
+Low confidence (0.00): Free Office 365 for Students and Educators | Microsoft Education
+✗ Failed to convert Microsoft: Free Office 365 for Students and Educators | Microsoft Education
+Low confidence (0.00): Azure for Students: crédito de la cuenta gratuita | Microsoft Azure
+✗ Failed to convert Microsoft: Azure for Students: crédito de la cuenta gratuita | Microsoft Azure
+Low confidence (0.00): Ressourcen für studentische Entwickler | Microsoft Azure
+✗ Failed to convert Microsoft: Ressourcen für studentische Entwickler | Microsoft Azure
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Azure for Students — bezpłatne środki na koncie | Microsoft Azure
+✓ Converted Microsoft: Azure for Students — bezpłatne środki na koncie | Microsoft Azure
+Low confidence (0.00): Microsoft Product Terms
+✗ Failed to convert Microsoft: Microsoft Product Terms
+Low confidence (0.05): Azure for College Students—Offer Details | Microsoft Azure
+✗ Failed to convert Microsoft: Azure for College Students—Offer Details | Microsoft Azure
+Low confidence (0.00): Azure for Students – Crédit de compte gratuit | Microsoft Azure
+✗ Failed to convert Microsoft: Azure for Students – Crédit de compte gratuit | Microsoft Azure
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Azure dla studentów — szczegóły oferty | Microsoft Azure
+✓ Converted Microsoft: Azure dla studentów — szczegóły oferty | Microsoft Azure
+Low confidence (0.10): Azure for Students - Credito account gratuito | Microsoft Azure
+✗ Failed to convert Microsoft: Azure for Students - Credito account gratuito | Microsoft Azure
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Azure til universitetsstuderende – Tilbudsoplysninger | Microsoft Azure
+✓ Converted Microsoft: Azure til universitetsstuderende – Tilbudsoplysninger | Microsoft Azure
+Low confidence (0.10): Zasoby dla studentów i uczniów zajmujących się programowaniem | Microsoft Azure
+✗ Failed to convert Microsoft: Zasoby dla studentów i uczniów zajmujących się programowaniem | Microsoft Azure
+Low confidence (0.10): Best Laptops for College Students | Microsoft Windows
+✗ Failed to convert Microsoft: Best Laptops for College Students | Microsoft Windows
+Low confidence (0.00): Microsoft Research Lab - New York City - Microsoft Research
+✗ Failed to convert Microsoft: Microsoft Research Lab - New York City - Microsoft Research
+Low confidence (0.00): Ressources pour les étudiants développeurs | Microsoft Azure
+✗ Failed to convert Microsoft: Ressources pour les étudiants développeurs | Microsoft Azure
+Low confidence (0.05): Microsoft Azure for Students Starter Offer | Microsoft Azure
+✗ Failed to convert Microsoft: Microsoft Azure for Students Starter Offer | Microsoft Azure
+Low confidence (0.05): Research Careers - Microsoft Research
+✗ Failed to convert Microsoft: Research Careers - Microsoft Research
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): College students can get Microsoft Copilot in Microsoft 365 apps free for three months
+✓ Converted Microsoft: College students can get Microsoft Copilot in Microsoft 365 apps free for three months
+Low confidence (0.10): Rabat dla uczniów i studentów — warunki
+✗ Failed to convert Microsoft: Rabat dla uczniów i studentów — warunki
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): ISIC – Internationaler Studentenausweis - Microsoft
+✓ Converted Microsoft: ISIC – Internationaler Studentenausweis - Microsoft
+Low confidence (0.00): Microsoft Azure for Students – Crédito de Conta Gratuita | Microsoft Azure
+✗ Failed to convert Microsoft: Microsoft Azure for Students – Crédito de Conta Gratuita | Microsoft Azure
+Low confidence (0.00): Microsoft – AI, Cloud, Productivity, Computing, Gaming & Apps
+✗ Failed to convert Microsoft: Microsoft – AI, Cloud, Productivity, Computing, Gaming & Apps
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Azure pro studenty vysokých škol – podrobnosti o nabídce | Microsoft Azure
+✓ Converted Microsoft: Azure pro studenty vysokých škol – podrobnosti o nabídce | Microsoft Azure
+Low confidence (0.10): Microsoft 365 for Education | Microsoft 365
+✗ Failed to convert Microsoft: Microsoft 365 for Education | Microsoft 365
+Low confidence (0.25): Microsoft Software Engineer Intern Salaries | $47.25 / hr | Levels.fyi
+✗ Failed to convert Microsoft: Microsoft Software Engineer Intern Salaries | $47.25 / hr | Levels.fyi
+Low confidence (0.05): 530 vacatures voor Microsoft Intern in Nederland
+✗ Failed to convert Microsoft: 530 vacatures voor Microsoft Intern in Nederland
+Low confidence (0.05): Azure para estudiantes universitarios: detalles de la oferta | Microsoft Azure
+✗ Failed to convert Microsoft: Azure para estudiantes universitarios: detalles de la oferta | Microsoft Azure
+Low confidence (0.05): Azure pour les étudiants universitaires – Détails de l’offre | Microsoft Azure
+✗ Failed to convert Microsoft: Azure pour les étudiants universitaires – Détails de l’offre | Microsoft Azure
+Low confidence (0.05): Developer Tools and Software for Schools and Educators
+✗ Failed to convert Microsoft: Developer Tools and Software for Schools and Educators
+Low confidence (0.10): Azure for College Students—产品/服务详细信息 | Microsoft Azure
+✗ Failed to convert Microsoft: Azure for College Students—产品/服务详细信息 | Microsoft Azure
+Low confidence (0.10): Laptop deals for students | Microsoft Store
+✗ Failed to convert Microsoft: Laptop deals for students | Microsoft Store
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Internships By Microsoft
+✓ Converted Microsoft: Internships By Microsoft
+Low confidence (0.25): 443 Microsoft Intern jobs in Canada
+✗ Failed to convert Microsoft: 443 Microsoft Intern jobs in Canada
+Low confidence (0.00): What is Azure for Students Starter?
+✗ Failed to convert Microsoft: What is Azure for Students Starter?
+Low confidence (0.05): Detalhes da Oferta do Azure para Estudantes Universitários | Microsoft Azure
+✗ Failed to convert Microsoft: Detalhes da Oferta do Azure para Estudantes Universitários | Microsoft Azure
+Low confidence (0.25): Microsoft Research Intern Salaries | $26.07 / hr | Levels.fyi
+✗ Failed to convert Microsoft: Microsoft Research Intern Salaries | $26.07 / hr | Levels.fyi
+Low confidence (0.05): Microsoft Internship Program 2025-2026 [Fully Funded]
+✗ Failed to convert Microsoft: Microsoft Internship Program 2025-2026 [Fully Funded]
+Low confidence (0.23): Internship @ Microsoft Romania, BucharestYello Enterprise
+✗ Failed to convert Microsoft: Internship @ Microsoft Romania, BucharestYello Enterprise
+Low confidence (0.10): Öğrenciler için Microsoft Azure - Ücretsiz Hesap Kredisi | Microsoft Azure
+✗ Failed to convert Microsoft: Öğrenciler için Microsoft Azure - Ücretsiz Hesap Kredisi | Microsoft Azure
+Low confidence (0.08): Microsoft Internship Program for Undergraduate Students 2025 | ScholarshipTab
+✗ Failed to convert Microsoft: Microsoft Internship Program for Undergraduate Students 2025 | ScholarshipTab
+Low confidence (0.05): Microsoft Research Lab - New England - Microsoft Research
+✗ Failed to convert Microsoft: Microsoft Research Lab - New England - Microsoft Research
+Low confidence (0.05): Tilbud på Microsoft Azure for Students Starter | Microsoft Azure
+✗ Failed to convert Microsoft: Tilbud på Microsoft Azure for Students Starter | Microsoft Azure
+Low confidence (0.25): Microsoft Internship Opportunities - Vault
+✗ Failed to convert Microsoft: Microsoft Internship Opportunities - Vault
+Low confidence (0.28): Search Jobs - Google Careers
+✗ Failed to convert Microsoft: Search Jobs - Google Careers
+Low confidence (0.05): A Comprehensive Guide to Microsoft Internships
+✗ Failed to convert Microsoft: A Comprehensive Guide to Microsoft Internships
+Low confidence (0.05): The Global Scholarship
+✗ Failed to convert Microsoft: The Global Scholarship
+Low confidence (0.28): 354 Microsoft Internship jobs in Canada
+✗ Failed to convert Microsoft: 354 Microsoft Internship jobs in Canada
+Low confidence (0.28): Research Intern Opportunity: Applied AI for Science at Microsoft - Opportunities for Youth
+✗ Failed to convert Microsoft: Research Intern Opportunity: Applied AI for Science at Microsoft - Opportunities for Youth
+Low confidence (0.05): Careers at Apple: Join us as a student or graduate.
+✗ Failed to convert Microsoft: Careers at Apple: Join us as a student or graduate.
+✓ Accepted (content: 0.60, URL: 0.05, final: 0.33): Microsoft | Data Science Summer Internship at Microsoft
+✓ Converted Microsoft: Microsoft | Data Science Summer Internship at Microsoft
+✓ Accepted (content: 1.00, URL: 0.00, final: 0.50): Microsoft Explore Software Engineer Intern Salaries | $34.00 / hr | Levels.fyi
+✓ Converted Microsoft: Microsoft Explore Software Engineer Intern Salaries | $34.00 / hr | Levels.fyi
+✓ Accepted (content: 0.20, URL: 0.45, final: 0.33): Search Jobs
+✓ Converted Microsoft: Search Jobs
+Low confidence (0.20): Security Research: Internship Opportunities
+✗ Failed to convert Microsoft: Security Research: Internship Opportunities
+Low confidence (0.08): 34 Microsoft Internship jobs in Australia
+✗ Failed to convert Microsoft: 34 Microsoft Internship jobs in Australia
+Low confidence (0.08): Microsoft Software Engineering Internship-PAID
+✗ Failed to convert Microsoft: Microsoft Software Engineering Internship-PAID
+Low confidence (0.05): 22 Microsoft Intern jobs in Ireland
+✗ Failed to convert Microsoft: 22 Microsoft Intern jobs in Ireland
+Low confidence (0.28): 131 Microsoft Internship jobs in Greater Toronto Area, Canada
+✗ Failed to convert Microsoft: 131 Microsoft Internship jobs in Greater Toronto Area, Canada
+Low confidence (0.08): Microsoft | Microsoft Internship-Saudi ArabiaYello Enterprise
+✗ Failed to convert Microsoft: Microsoft | Microsoft Internship-Saudi ArabiaYello Enterprise
+Low confidence (0.05): How To Get An Internship At Microsoft: A Complete Guide
+✗ Failed to convert Microsoft: How To Get An Internship At Microsoft: A Complete Guide
+Low confidence (0.00): Microsoft hiring Government Affairs Internship Opportunities in Nigeria | LinkedIn
+✗ Failed to convert Microsoft: Microsoft hiring Government Affairs Internship Opportunities in Nigeria | LinkedIn
+Low confidence (0.08): Microsoft | Microsoft Turkey InternshipYello Enterprise
+✗ Failed to convert Microsoft: Microsoft | Microsoft Turkey InternshipYello Enterprise
+✓ Accepted (content: 0.20, URL: 0.45, final: 0.33): Search Jobs
+✓ Converted Microsoft: Search Jobs
+✓ Accepted (content: 0.40, URL: 0.20, final: 0.30): 11个Microsoft的Intern-SDE职位
+✓ Converted Microsoft: 11个Microsoft的Intern-SDE职位
+✓ Accepted (content: 0.30, URL: 0.45, final: 0.38): Research Intern - Algorithms Group: Theory in Redmond, Washington, United States | Research, Applied, & Data Sciences in Microsoft
+✓ Converted Microsoft: Research Intern - Algorithms Group: Theory in Redmond, Washington, United States | Research, Applied, & Data Sciences in Microsoft
+Skipping third-party scraper: https://content.techgig.com/hiring/microsoft-is-offering-software-engineering-internship-cs-and-it-graduates-must-apply/articleshow/111783723.cms
+✗ Failed to convert Microsoft: Microsoft is offering software engineering internship  CS and IT graduates must apply
+Low confidence (0.25): Microsoft Product Designer Intern Salaries | $47.91 / hr | Levels.fyi
+✗ Failed to convert Microsoft: Microsoft Product Designer Intern Salaries | $47.91 / hr | Levels.fyi
+Low confidence (0.25): Technical Program Management: Internship Opportunities - Job at Microsoft
+✗ Failed to convert Microsoft: Technical Program Management: Internship Opportunities - Job at Microsoft
+Low confidence (0.25): Microsoft Technical Program Manager Intern Salaries | $47.25 / hr | Levels.fyi
+✗ Failed to convert Microsoft: Microsoft Technical Program Manager Intern Salaries | $47.25 / hr | Levels.fyi
+Low confidence (0.05): Microsoft - Internship program
+✗ Failed to convert Microsoft: Microsoft - Internship program
+Low confidence (0.03): Log in or sign up to view
+✗ Failed to convert Microsoft: Log in or sign up to view
+Low confidence (0.00): LLM Research/Engineering Intern - Microsoft Research
+✗ Failed to convert Microsoft: LLM Research/Engineering Intern - Microsoft Research
+Inactive/expired posting: Explore Microsoft Program
+✗ Failed to convert Microsoft: Explore Microsoft Program
+Low confidence (0.10): Software Engineer: AI/ML Intern Opportunities for University
+✗ Failed to convert Microsoft: Software Engineer: AI/ML Intern Opportunities for University
+Low confidence (0.08): How to get Internship at Microsoft in 2025
+✗ Failed to convert Microsoft: How to get Internship at Microsoft in 2025
+Low confidence (0.05): Microsoft hiring Software Engineering: Internship Opportunities in Tallinn, Harjumaa, Estonia | LinkedIn
+✗ Failed to convert Microsoft: Microsoft hiring Software Engineering: Internship Opportunities in Tallinn, Harjumaa, Estonia | LinkedIn
+Low confidence (0.20): Internship Archives | Windows Insider Blog
+✗ Failed to convert Microsoft: Internship Archives | Windows Insider Blog
+Skipping third-party scraper: https://content.techgig.com/career-advice/how-to-get-an-internship-at-microsoft-in-2024/articleshow/107656858.cms
+✗ Failed to convert Microsoft: How to get an internship at Microsoft in 2024
+Inactive/expired posting: Research Intern - Mathematics at Microsoft | Prosple New Zealand
+✗ Failed to convert Microsoft: Research Intern - Mathematics at Microsoft | Prosple New Zealand
+Low confidence (0.05): Microsoft Internship Program Latest 2025 - Internships World
+✗ Failed to convert Microsoft: Microsoft Internship Program Latest 2025 - Internships World
+Low confidence (0.05): Microsoft hiring Software Engineering Internship Opportunities in Dublin, County Dublin, Ireland | LinkedIn
+✗ Failed to convert Microsoft: Microsoft hiring Software Engineering Internship Opportunities in Dublin, County Dublin, Ireland | LinkedIn
+Low confidence (0.05): Software Engineering Internship Opportunities at Microsoft | Apply Now!
+✗ Failed to convert Microsoft: Software Engineering Internship Opportunities at Microsoft | Apply Now!
+Low confidence (0.05): 15 Microsoft Internship jobs in Nigeria
+✗ Failed to convert Microsoft: 15 Microsoft Internship jobs in Nigeria
+Low confidence (0.25): Microsoft Internship Summer 2025-2026 | Paid Internship Program
+✗ Failed to convert Microsoft: Microsoft Internship Summer 2025-2026 | Paid Internship Program
+Low confidence (0.25): 27 Microsoft Internship jobs in Vancouver
+✗ Failed to convert Microsoft: 27 Microsoft Internship jobs in Vancouver
+Low confidence (0.20): Software Engineer: Fullstack Intern Opportunities for University Students, Redmond
+✗ Failed to convert Microsoft: Software Engineer: Fullstack Intern Opportunities for University Students, Redmond
+Low confidence (0.05): Research Intern - MSR Inclusive Futures Team at Microsoft in Redmond, Washington, United States  | 1 Years + Experience
+✗ Failed to convert Microsoft: Research Intern - MSR Inclusive Futures Team at Microsoft in Redmond, Washington, United States  | 1 Years + Experience
+✅ Microsoft final results: 18
+🏢 Fetching Meta internships with maxResults: 150
+🔍 Searching Meta with 3 query variations...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+✅ Combined 82 unique results for Meta
+📊 Meta search returned 82 results
+Low confidence (0.25): Students and Grads
+✗ Failed to convert Meta: Students and Grads
+Low confidence (0.08): Apply to Internships at Meta
+✗ Failed to convert Meta: Apply to Internships at Meta
+✓ Accepted (content: 0.60, URL: 0.30, final: 0.45): Software Engineer Intern
+✓ Converted Meta: Software Engineer Intern
+✓ Accepted (content: 0.30, URL: 0.30, final: 0.30): Software Engineer, Intern/Co-op
+✓ Converted Meta: Software Engineer, Intern/Co-op
+✓ Accepted (content: 0.30, URL: 0.30, final: 0.30): Product Security Engineer, Intern
+✓ Converted Meta: Product Security Engineer, Intern
+✓ Accepted (content: 0.80, URL: 0.00, final: 0.40): Meta Summer 2025 Internship A Comprehensive Guide - 2025
+✓ Converted Meta: Meta Summer 2025 Internship A Comprehensive Guide - 2025
+✓ Accepted (content: 0.50, URL: 0.25, final: 0.38): Meta Internship Program 2025 Intern Career Opportunities Apply
+✓ Converted Meta: Meta Internship Program 2025 Intern Career Opportunities Apply
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): Offensive Security Engineer, Intern
+✓ Converted Meta: Offensive Security Engineer, Intern
+Low confidence (0.05): Meta Internship 2025 | High School to Graduate Programs
+✗ Failed to convert Meta: Meta Internship 2025 | High School to Graduate Programs
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Don't Miss Out! Meta Internships in 2025 - Internships World
+✓ Converted Meta: Don't Miss Out! Meta Internships in 2025 - Internships World
+Low confidence (0.10): Log into Facebook
+✗ Failed to convert Meta: Log into Facebook
+Low confidence (0.05): The Artificial Intelligence (AI) Residency Program - Meta AI
+✗ Failed to convert Meta: The Artificial Intelligence (AI) Residency Program - Meta AI
+Low confidence (0.10): Meta Internship Program For Student & Graduate 2025/26 Apply Now
+✗ Failed to convert Meta: Meta Internship Program For Student & Graduate 2025/26 Apply Now
+Low confidence (0.05): How to Get an Internship at Meta | Simplify
+✗ Failed to convert Meta: How to Get an Internship at Meta | Simplify
+Inactive/expired posting: Engineering Intern at Meta | Prosple
+✗ Failed to convert Meta: Engineering Intern at Meta | Prosple
+Low confidence (0.20): Internships at Meta
+✗ Failed to convert Meta: Internships at Meta
+✓ Accepted (content: 0.30, URL: 0.30, final: 0.30): Research Scientist Intern, Feed Recommendations (PhD)
+✓ Converted Meta: Research Scientist Intern, Feed Recommendations (PhD)
+Skipping third-party scraper: https://medium.com/@rhianreflects/how-to-get-an-internship-at-meta-from-application-to-offer-767d74d03b45
+✗ Failed to convert Meta: How to get an internship at Meta — from application to offer
+Low confidence (0.05): Meta hiring Research Intern, Applied Research in Singapore, Singapore | LinkedIn
+✗ Failed to convert Meta: Meta hiring Research Intern, Applied Research in Singapore, Singapore | LinkedIn
+Low confidence (0.05): Meta (previously Facebook) Internship Opportunities
+✗ Failed to convert Meta: Meta (previously Facebook) Internship Opportunities
+✓ Accepted (content: 0.30, URL: 0.30, final: 0.30): Research Scientist Intern, Foundation Model Optimization (PhD)
+✓ Converted Meta: Research Scientist Intern, Foundation Model Optimization (PhD)
+✓ Accepted (content: 0.50, URL: 0.15, final: 0.33): Meta Jobs in May, 2025 (Hiring Now!)
+✓ Converted Meta: Meta Jobs in May, 2025 (Hiring Now!)
+✓ Accepted (content: 0.80, URL: 0.00, final: 0.40): Meta Internship Summer 2025 A Comprehensive Guide - 2025
+✓ Converted Meta: Meta Internship Summer 2025 A Comprehensive Guide - 2025
+✓ Accepted (content: 0.70, URL: 0.30, final: 0.50): Research Engineer Intern, Language and Multimodal AI
+✓ Converted Meta: Research Engineer Intern, Language and Multimodal AI
+Low confidence (0.05): The Definitive Guide to the Facebook High School Internship
+✗ Failed to convert Meta: The Definitive Guide to the Facebook High School Internship
+✓ Accepted (content: 0.30, URL: 0.30, final: 0.30): Research Scientist Intern, Llama Applied LLM (Post-Training)
+✓ Converted Meta: Research Scientist Intern, Llama Applied LLM (Post-Training)
+✓ Accepted (content: 0.70, URL: 0.20, final: 0.45): Meta summer intern spotlight: Gianna T.
+✓ Converted Meta: Meta summer intern spotlight: Gianna T.
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Meta Entry Level Jobs and Internships
+✓ Converted Meta: Meta Entry Level Jobs and Internships
+Low confidence (0.08): One moment, please...
+✗ Failed to convert Meta: One moment, please...
+Low confidence (0.25): Meta Careers | Do the Most Meaningful Work of Your Career
+✗ Failed to convert Meta: Meta Careers | Do the Most Meaningful Work of Your Career
+✓ Accepted (content: 0.80, URL: 0.30, final: 0.55): Research Scientist Intern, 3D Computer Vision and Generative AI (PhD)
+✓ Converted Meta: Research Scientist Intern, 3D Computer Vision and Generative AI (PhD)
+Low confidence (0.05): Parallel Data Laboratory
+✗ Failed to convert Meta: Parallel Data Laboratory
+✓ Accepted (content: 0.80, URL: 0.30, final: 0.55): Research Scientist Intern, Neuromotor Interfaces: Computational Modeling (PhD)
+✓ Converted Meta: Research Scientist Intern, Neuromotor Interfaces: Computational Modeling (PhD)
+✓ Accepted (content: 0.80, URL: 0.30, final: 0.55): Research Scientist Intern, Computational Photography Algorithms (PhD)
+✓ Converted Meta: Research Scientist Intern, Computational Photography Algorithms (PhD)
+✓ Accepted (content: 0.30, URL: 0.30, final: 0.30): Research Scientist Intern, AI Systems Machine Learning (PhD)
+✓ Converted Meta: Research Scientist Intern, AI Systems Machine Learning (PhD)
+Low confidence (0.08): Insider Tips for a Successful Meta Internship Application - Blog
+✗ Failed to convert Meta: Insider Tips for a Successful Meta Internship Application - Blog
+✓ Accepted (content: 0.30, URL: 0.30, final: 0.30): Research Scientist Intern, Large Foundation Models and Generative AI (PhD)
+✓ Converted Meta: Research Scientist Intern, Large Foundation Models and Generative AI (PhD)
+Inactive/expired posting: Software Engineer Internship - Meta
+✗ Failed to convert Meta: Software Engineer Internship - Meta
+Low confidence (0.10): Meta Internship Programs for Graduate Students 2024
+✗ Failed to convert Meta: Meta Internship Programs for Graduate Students 2024
+Low confidence (0.20): Research Scientist Intern, Photorealistic Telepresence (PhD)
+✗ Failed to convert Meta: Research Scientist Intern, Photorealistic Telepresence (PhD)
+Skipping third-party scraper: https://www.jointaro.com/jobs/meta/software-engineer-intern/
+✗ Failed to convert Meta: Software Engineer Intern for Meta
+Low confidence (0.05): 15 internships - Meta careers
+✗ Failed to convert Meta: 15 internships - Meta careers
+✓ Accepted (content: 0.30, URL: 0.30, final: 0.30): Research Scientist Intern, Synthetic Image Generation (PhD)
+✓ Converted Meta: Research Scientist Intern, Synthetic Image Generation (PhD)
+Low confidence (0.25): Meta Internship Summer 2025 Program for Undergraduates
+✗ Failed to convert Meta: Meta Internship Summer 2025 Program for Undergraduates
+Low confidence (0.20): Log into Workplace
+✗ Failed to convert Meta: Log into Workplace
+✓ Accepted (content: 0.40, URL: 0.30, final: 0.35): Job Openings at Meta
+✓ Converted Meta: Job Openings at Meta
+Low confidence (0.10): Meta Internships Jobs 2025 / 2026 Apply Now - InternshipsCA
+✗ Failed to convert Meta: Meta Internships Jobs 2025 / 2026 Apply Now - InternshipsCA
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Meta Internships in 2025 - Internship Corner
+✓ Converted Meta: Meta Internships in 2025 - Internship Corner
+Low confidence (0.10): Hiring Process
+✗ Failed to convert Meta: Hiring Process
+Skipping third-party scraper: https://content.techgig.com/upskilling-at-techgig/meta-announces-internship-program-2023-know-how-to-apply/articleshow/94321289.cms
+✗ Failed to convert Meta: Meta announces internship program 2023, know how to apply
+Low confidence (0.05): How to Get a Job at Meta in 2024: Tips, Interview Process, and Insider Advice
+✗ Failed to convert Meta: How to Get a Job at Meta in 2024: Tips, Interview Process, and Insider Advice
+Low confidence (0.05): Meta Summer Internship Program 2025| Undergraduate Students| New Vacancy
+✗ Failed to convert Meta: Meta Summer Internship Program 2025| Undergraduate Students| New Vacancy
+Low confidence (0.05): Security Engineer Intern, Product | Meta
+✗ Failed to convert Meta: Security Engineer Intern, Product | Meta
+Low confidence (0.00): Meta Blueprint Program - Ireland 2023
+✗ Failed to convert Meta: Meta Blueprint Program - Ireland 2023
+Low confidence (0.00): Yhdistetyn todellisuuden käyttö koulutuksessa | Meta for Work
+✗ Failed to convert Meta: Yhdistetyn todellisuuden käyttö koulutuksessa | Meta for Work
+Low confidence (0.10): FoondaMate
+✗ Failed to convert Meta: FoondaMate
+Low confidence (0.10): Log into Facebook
+✗ Failed to convert Meta: Log into Facebook
+Low confidence (0.00): Advance Your Career with Free Online Courses and Facebook Certifications
+✗ Failed to convert Meta: Advance Your Career with Free Online Courses and Facebook Certifications
+Low confidence (0.00): Mixed reality in het onderwijs | Meta for Work
+✗ Failed to convert Meta: Mixed reality in het onderwijs | Meta for Work
+Low confidence (0.00): Meta for Education | Meta
+✗ Failed to convert Meta: Meta for Education | Meta
+Low confidence (0.00): Log into Facebook
+✗ Failed to convert Meta: Log into Facebook
+Low confidence (0.03): Facebook Elevate Scholarship Application
+✗ Failed to convert Meta: Facebook Elevate Scholarship Application
+Low confidence (0.00): Meta | Columbia Career Education
+✗ Failed to convert Meta: Meta | Columbia Career Education
+Low confidence (0.00): Log in to Facebook
+✗ Failed to convert Meta: Log in to Facebook
+Low confidence (0.00): Réalité mixte et éducation | Meta for Work
+✗ Failed to convert Meta: Réalité mixte et éducation | Meta for Work
+Low confidence (0.00): La réalité mixte en éducation | Meta for Work
+✗ Failed to convert Meta: La réalité mixte en éducation | Meta for Work
+Low confidence (0.10): Dependency on Meta AI Chatbot in Messenger Among STEM and Non-STEM Students in Higher Education
+✗ Failed to convert Meta: Dependency on Meta AI Chatbot in Messenger Among STEM and Non-STEM Students in Higher Education
+Low confidence (0.00): Iniciar sesión en Facebook
+✗ Failed to convert Meta: Iniciar sesión en Facebook
+Low confidence (0.00): Ienāc Facebook
+✗ Failed to convert Meta: Ienāc Facebook
+Low confidence (0.00): Meta career challenges - Digdata - a Data Inspiration Group programme
+✗ Failed to convert Meta: Meta career challenges - Digdata - a Data Inspiration Group programme
+Low confidence (0.00): Students use Meta's Ray Ban smart glasses to get personal info with a glance
+✗ Failed to convert Meta: Students use Meta's Ray Ban smart glasses to get personal info with a glance
+Low confidence (0.00): Optima's VR education strategy | Meta for Work
+✗ Failed to convert Meta: Optima's VR education strategy | Meta for Work
+Low confidence (0.00): Meta Blueprint Startup Hub
+✗ Failed to convert Meta: Meta Blueprint Startup Hub
+Low confidence (0.20): Project Aria, from Meta | Project Aria
+✗ Failed to convert Meta: Project Aria, from Meta | Project Aria
+Low confidence (0.00): Meta Certification Prep
+✗ Failed to convert Meta: Meta Certification Prep
+Low confidence (0.00): Meta | Social Technology Company
+✗ Failed to convert Meta: Meta | Social Technology Company
+Low confidence (0.05): Partnering with Universities in Europe to Expand the Possibilities of Immersive Learning
+✗ Failed to convert Meta: Partnering with Universities in Europe to Expand the Possibilities of Immersive Learning
+Low confidence (0.00): Social Media Marketing Professional at Meta
+✗ Failed to convert Meta: Social Media Marketing Professional at Meta
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Meta internship offers chance to 'build things people actually use'
+✓ Converted Meta: Meta internship offers chance to 'build things people actually use'
+Low confidence (0.10): Learn new skills to build your brand or business
+✗ Failed to convert Meta: Learn new skills to build your brand or business
+Low confidence (0.00): People Practices | Meta
+✗ Failed to convert Meta: People Practices | Meta
+Low confidence (0.00): Guide: Making your Meta Avatar a STAR | Family Center
+✗ Failed to convert Meta: Guide: Making your Meta Avatar a STAR | Family Center
+✅ Meta final results: 24
+🏢 Fetching Apple internships with maxResults: 150
+🔍 Searching Apple with 3 query variations...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+✅ Combined 102 unique results for Apple
+📊 Apple search returned 102 results
+Low confidence (0.05): Education - College Students
+✗ Failed to convert Apple: Education - College Students
+Low confidence (0.05): Education - Students
+✗ Failed to convert Apple: Education - Students
+Low confidence (0.05): Careers at Apple: Join us as a student or graduate.
+✗ Failed to convert Apple: Careers at Apple: Join us as a student or graduate.
+Low confidence (0.05): Utdanning – Studenter
+✗ Failed to convert Apple: Utdanning – Studenter
+Low confidence (0.10): Education Pricing and Student Discounts
+✗ Failed to convert Apple: Education Pricing and Student Discounts
+Low confidence (0.08): Work with us
+✗ Failed to convert Apple: Work with us
+Low confidence (0.05): Education - University Students
+✗ Failed to convert Apple: Education - University Students
+Low confidence (0.00): 教育 - 学生
+✗ Failed to convert Apple: 教育 - 学生
+Low confidence (0.10): Koulutusala - Korkeakouluopiskelijat
+✗ Failed to convert Apple: Koulutusala - Korkeakouluopiskelijat
+Low confidence (0.10): Utbildning – Studenter
+✗ Failed to convert Apple: Utbildning – Studenter
+✓ Accepted (content: 0.30, URL: 0.35, final: 0.33): Search Jobs - California, Students: Internships - Jobs at Apple (AE)
+✓ Converted Apple: Search Jobs - California, Students: Internships - Jobs at Apple (AE)
+Low confidence (0.10): 教育 - 高校学生
+✗ Failed to convert Apple: 教育 - 高校学生
+Low confidence (0.10): Uddannelse – Studerende
+✗ Failed to convert Apple: Uddannelse – Studerende
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (RO)
+✓ Converted Apple: Students: Internships - Jobs at Apple (RO)
+Low confidence (0.10): 教育 - 大專學生
+✗ Failed to convert Apple: 教育 - 大專學生
+✓ Accepted (content: 1.00, URL: 0.35, final: 0.68): Search Jobs - Californie, Étudiants: Stages - Emplois chez Apple (CA)
+✓ Converted Apple: Search Jobs - Californie, Étudiants: Stages - Emplois chez Apple (CA)
+Low confidence (0.00): Istruzione - Per chi è all’università
+✗ Failed to convert Apple: Istruzione - Per chi è all’università
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): United States, Students: Internships - Jobs at Apple (MO)
+✓ Converted Apple: United States, Students: Internships - Jobs at Apple (MO)
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): United States, Students: Internships - Jobs at Apple (UK)
+✓ Converted Apple: United States, Students: Internships - Jobs at Apple (UK)
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): United States, Students: Internships - Jobs at Apple (CA)
+✓ Converted Apple: United States, Students: Internships - Jobs at Apple (CA)
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): California, Students: Internships - Jobs at Apple (IE)
+✓ Converted Apple: California, Students: Internships - Jobs at Apple (IE)
+Low confidence (0.00): Onderwijs - Studenten
+✗ Failed to convert Apple: Onderwijs - Studenten
+Low confidence (0.10): Eğitim - Üniversite Öğrencileri
+✗ Failed to convert Apple: Eğitim - Üniversite Öğrencileri
+Low confidence (0.00): Education - Price Lists
+✗ Failed to convert Apple: Education - Price Lists
+Low confidence (0.10): Education
+✗ Failed to convert Apple: Education
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): California, Students: Internships - Jobs at Apple (CA)
+✓ Converted Apple: California, Students: Internships - Jobs at Apple (CA)
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): California, Students: Internships - Jobs - Careers at Apple
+✓ Converted Apple: California, Students: Internships - Jobs - Careers at Apple
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): California, Students: Internships - Jobs at Apple (UK)
+✓ Converted Apple: California, Students: Internships - Jobs at Apple (UK)
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Educación - Estudiantes universitarios
+✓ Converted Apple: Educación - Estudiantes universitarios
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): United States, Students: Internships - Jobs at Apple (SG)
+✓ Converted Apple: United States, Students: Internships - Jobs at Apple (SG)
+Low confidence (0.00): Éducation - Étudiantes et étudiants
+✗ Failed to convert Apple: Éducation - Étudiantes et étudiants
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs - Careers at Apple
+✓ Converted Apple: Students: Internships - Jobs - Careers at Apple
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): United States, Students: Internships - Jobs at Apple (NG)
+✓ Converted Apple: United States, Students: Internships - Jobs at Apple (NG)
+Low confidence (0.10): Education Pricing and Student Discounts - Education
+✗ Failed to convert Apple: Education Pricing and Student Discounts - Education
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Mac for Students
+✓ Converted Apple: Mac for Students
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): United States, Students: Internships - Jobs at Apple (EG)
+✓ Converted Apple: United States, Students: Internships - Jobs at Apple (EG)
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): Students: Internships - Jobs - Careers at Apple
+✓ Converted Apple: Students: Internships - Jobs - Careers at Apple
+Low confidence (0.00): Higher Education - How to Buy
+✗ Failed to convert Apple: Higher Education - How to Buy
+✓ Accepted (content: 0.80, URL: 0.35, final: 0.57): Search Jobs - United States, Students: Internships - Jobs at Apple (IN)
+✓ Converted Apple: Search Jobs - United States, Students: Internships - Jobs at Apple (IN)
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): Search Jobs - California, Students: Internships - Jobs at Apple (IN)
+✓ Converted Apple: Search Jobs - California, Students: Internships - Jobs at Apple (IN)
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (CA)
+✓ Converted Apple: Students: Internships - Jobs at Apple (CA)
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (PL)
+✓ Converted Apple: Students: Internships - Jobs at Apple (PL)
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): United States, Students: Internships - Jobs - Careers at Apple
+✓ Converted Apple: United States, Students: Internships - Jobs - Careers at Apple
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (HK)
+✓ Converted Apple: Students: Internships - Jobs at Apple (HK)
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (NZ)
+✓ Converted Apple: Students: Internships - Jobs at Apple (NZ)
+✓ Accepted (content: 0.80, URL: 0.40, final: 0.60): Software Engineering Internships - Jobs - Careers at Apple
+✓ Converted Apple: Software Engineering Internships - Jobs - Careers at Apple
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): San Francisco Bay Area, Students: Internships - Jobs at Apple (SG)
+✓ Converted Apple: San Francisco Bay Area, Students: Internships - Jobs at Apple (SG)
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs - Careers at Apple
+✓ Converted Apple: Students: Internships - Jobs - Careers at Apple
+Low confidence (0.10): Education - Higher Education - Price Lists
+✗ Failed to convert Apple: Education - Higher Education - Price Lists
+Low confidence (0.08): Apply to Internships at Apple
+✗ Failed to convert Apple: Apply to Internships at Apple
+Low confidence (0.00): 교육 - 대학생
+✗ Failed to convert Apple: 교육 - 대학생
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (AU)
+✓ Converted Apple: Students: Internships - Jobs at Apple (AU)
+Low confidence (0.10): Back to School Student Discounts 2025
+✗ Failed to convert Apple: Back to School Student Discounts 2025
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (DK)
+✓ Converted Apple: Students: Internships - Jobs at Apple (DK)
+Low confidence (0.00): Bildung - Studierende
+✗ Failed to convert Apple: Bildung - Studierende
+Low confidence (0.00): Tarifs Éducation et remises étudiants
+✗ Failed to convert Apple: Tarifs Éducation et remises étudiants
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (AE)
+✓ Converted Apple: Students: Internships - Jobs at Apple (AE)
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Studierende: Praktika - Jobs bei Apple (DE)
+✓ Converted Apple: Studierende: Praktika - Jobs bei Apple (DE)
+Low confidence (0.10): Back to Uni — Terms and Conditions - Student Discounts
+✗ Failed to convert Apple: Back to Uni — Terms and Conditions - Student Discounts
+Low confidence (0.05): Éducation - Élèves du cégep et de l’université
+✗ Failed to convert Apple: Éducation - Élèves du cégep et de l’université
+✓ Accepted (content: 1.00, URL: 0.35, final: 0.68): Search Jobs - États-Unis, Étudiants: Stages - Travailler chez Apple (FR)
+✓ Converted Apple: Search Jobs - États-Unis, Étudiants: Stages - Travailler chez Apple (FR)
+Low confidence (0.05): Careers at Apple: Apple Support College Advisor FAQ
+✗ Failed to convert Apple: Careers at Apple: Apple Support College Advisor FAQ
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (GR)
+✓ Converted Apple: Students: Internships - Jobs at Apple (GR)
+Low confidence (0.10): Appleの学生・教職員向けアクセサリ
+✗ Failed to convert Apple: Appleの学生・教職員向けアクセサリ
+Low confidence (0.00): Mac - 高校生用 Mac
+✗ Failed to convert Apple: Mac - 高校生用 Mac
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): Students: Internships - Jobs at Apple (CA)
+✓ Converted Apple: Students: Internships - Jobs at Apple (CA)
+Low confidence (0.00): K–12 Education
+✗ Failed to convert Apple: K–12 Education
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (SG)
+✓ Converted Apple: Students: Internships - Jobs at Apple (SG)
+Low confidence (0.00): Studiepriser og -rabatter
+✗ Failed to convert Apple: Studiepriser og -rabatter
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (EG)
+✓ Converted Apple: Students: Internships - Jobs at Apple (EG)
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (MY)
+✓ Converted Apple: Students: Internships - Jobs at Apple (MY)
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Engineering Program Management Internships - Jobs - Careers at Apple
+✓ Converted Apple: Engineering Program Management Internships - Jobs - Careers at Apple
+Low confidence (0.05): Online Exclusives - Shopping Help
+✗ Failed to convert Apple: Online Exclusives - Shopping Help
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): Chicago, Students: Internships - Jobs at Apple (GR)
+✓ Converted Apple: Chicago, Students: Internships - Jobs at Apple (GR)
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): San Francisco Bay Area, Students: Internships - Jobs - Careers at Apple
+✓ Converted Apple: San Francisco Bay Area, Students: Internships - Jobs - Careers at Apple
+✓ Accepted (content: 0.80, URL: 0.35, final: 0.57): Search Jobs - Switzerland, Students: Internships - Jobs - Careers at Apple
+✓ Converted Apple: Search Jobs - Switzerland, Students: Internships - Jobs - Careers at Apple
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): Austin, Students: Internships - Jobs - Careers at Apple
+✓ Converted Apple: Austin, Students: Internships - Jobs - Careers at Apple
+✓ Accepted (content: 0.30, URL: 0.35, final: 0.33): Intern Opportunities at Apple (General) - October 2025 to September 2026 - Jobs - Careers at Apple
+✓ Converted Apple: Intern Opportunities at Apple (General) - October 2025 to September 2026 - Jobs - Careers at Apple
+Low confidence (0.10): Apple Music Plan for Students - Apple Music
+✗ Failed to convert Apple: Apple Music Plan for Students - Apple Music
+✓ Accepted (content: 0.70, URL: 0.40, final: 0.55): San Diego, Students: Internships - Jobs at Apple (IE)
+✓ Converted Apple: San Diego, Students: Internships - Jobs at Apple (IE)
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (NG)
+✓ Converted Apple: Students: Internships - Jobs at Apple (NG)
+Low confidence (0.10): Buy MacBook Air with Student Discount
+✗ Failed to convert Apple: Buy MacBook Air with Student Discount
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Machine Learning / AI Internships - Jobs - Careers at Apple
+✓ Converted Apple: Machine Learning / AI Internships - Jobs - Careers at Apple
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (IL)
+✓ Converted Apple: Students: Internships - Jobs at Apple (IL)
+✓ Accepted (content: 1.00, URL: 0.35, final: 0.68): Search Jobs - San Diego, Students: Internships - Jobs at Apple (AU)
+✓ Converted Apple: Search Jobs - San Diego, Students: Internships - Jobs at Apple (AU)
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (CO)
+✓ Converted Apple: Students: Internships - Jobs at Apple (CO)
+✓ Accepted (content: 0.30, URL: 0.40, final: 0.35): Students: Internships - Jobs at Apple (IN)
+✓ Converted Apple: Students: Internships - Jobs at Apple (IN)
+Low confidence (0.15):  Apple Spring 2025 internships
+✗ Failed to convert Apple:  Apple Spring 2025 internships
+✓ Accepted (content: 0.60, URL: 0.35, final: 0.48): Finance Development Program - 2026 Internship Opportunities - Jobs - Careers at Apple
+✓ Converted Apple: Finance Development Program - 2026 Internship Opportunities - Jobs - Careers at Apple
+Low confidence (0.05): Your Account - Shopping Help
+✗ Failed to convert Apple: Your Account - Shopping Help
+Low confidence (0.10): College and university students head to campus with Mac and iPad
+✗ Failed to convert Apple: College and university students head to campus with Mac and iPad
+Low confidence (0.05): iPhone - Shopping Help
+✗ Failed to convert Apple: iPhone - Shopping Help
+Low confidence (0.05): Shopping Experience - Shopping Help
+✗ Failed to convert Apple: Shopping Experience - Shopping Help
+Low confidence (0.10): Get an Apple Music student subscription - Apple Support
+✗ Failed to convert Apple: Get an Apple Music student subscription - Apple Support
+Low confidence (0.00): Education - Official Apple Support
+✗ Failed to convert Apple: Education - Official Apple Support
+Low confidence (0.10): Köp Mac med studentrabatt
+✗ Failed to convert Apple: Köp Mac med studentrabatt
+Low confidence (0.00): アカウントについて - ショッピングのサポート
+✗ Failed to convert Apple: アカウントについて - ショッピングのサポート
+Low confidence (0.00): Apple Store for Education Institution : Find Your Educational Institution
+✗ Failed to convert Apple: Apple Store for Education Institution : Find Your Educational Institution
+Low confidence (0.00): Apple Store for Education Institution : Find Your School
+✗ Failed to convert Apple: Apple Store for Education Institution : Find Your School
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Endast på Apple Store - Hjälp med att handla
+✓ Converted Apple: Endast på Apple Store - Hjälp med att handla
+Low confidence (0.00): Apple Store Online Save with Apple Education Savings
+✗ Failed to convert Apple: Apple Store Online Save with Apple Education Savings
+Low confidence (0.10): Higher Education - App Development
+✗ Failed to convert Apple: Higher Education - App Development
+✅ Apple final results: 52
+🏢 Fetching Amazon internships with maxResults: 150
+🔍 Searching Amazon with 3 query variations...
+⏳ Rate limiting: waiting 1500ms before next Exa.ai request...
+⏳ Rate limiting: waiting 1499ms before next Exa.ai request...
+✅ Combined 97 unique results for Amazon
+📊 Amazon search returned 97 results
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Amazon Prime Student
+✓ Converted Amazon: Amazon Prime Student
+Low confidence (0.13): Internships for students
+✗ Failed to convert Amazon: Internships for students
+Low confidence (0.05): Careers
+✗ Failed to convert Amazon: Careers
+Low confidence (0.13): Internships for students in North America
+✗ Failed to convert Amazon: Internships for students in North America
+Low confidence (0.00): 
+✗ Failed to convert Amazon: 
+✓ Accepted (content: 0.60, URL: 0.15, final: 0.38): University SDE
+✓ Converted Amazon: University SDE
+Low confidence (0.15): North America Internship Opportunities
+✗ Failed to convert Amazon: North America Internship Opportunities
+Low confidence (0.13): University Undergraduate Non-Tech
+✗ Failed to convert Amazon: University Undergraduate Non-Tech
+Low confidence (0.18): Applied science internship, Amazon University Talent Acquisition
+✗ Failed to convert Amazon: Applied science internship, Amazon University Talent Acquisition
+Low confidence (0.15): Systems Development Engineer Internship – 2026 (US)
+✗ Failed to convert Amazon: Systems Development Engineer Internship – 2026 (US)
+Low confidence (0.00): Amazon.co.uk
+✗ Failed to convert Amazon: Amazon.co.uk
+Low confidence (0.15): Software Development Engineer Internship - 2025 (US)
+✗ Failed to convert Amazon: Software Development Engineer Internship - 2025 (US)
+Low confidence (0.15): 2025 Applied Scientist Internship, Amazon University Talent Acquisition, Amazon University Talent Acquisition
+✗ Failed to convert Amazon: 2025 Applied Scientist Internship, Amazon University Talent Acquisition, Amazon University Talent Acquisition
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Amazon.com: Amazon Prime
+✓ Converted Amazon: Amazon.com: Amazon Prime
+Low confidence (0.13): Amazon Jobs for Grads
+✗ Failed to convert Amazon: Amazon Jobs for Grads
+Low confidence (0.13): AWS Early Career
+✗ Failed to convert Amazon: AWS Early Career
+Low confidence (0.20): 
+✗ Failed to convert Amazon: 
+Low confidence (0.05): Amazon UK Internships
+✗ Failed to convert Amazon: Amazon UK Internships
+Low confidence (0.15): 2026 Software Dev Engineer Intern
+✗ Failed to convert Amazon: 2026 Software Dev Engineer Intern
+✓ Accepted (content: 0.60, URL: 0.15, final: 0.38): Pasantias para estudiantes
+✓ Converted Amazon: Pasantias para estudiantes
+Low confidence (0.08): Apply to Internships at Amazon
+✗ Failed to convert Amazon: Apply to Internships at Amazon
+✓ Accepted (content: 0.50, URL: 0.25, final: 0.38): Summer 2026 AWS Human Resources Leadership Development Program Internship, AWS
+✓ Converted Amazon: Summer 2026 AWS Human Resources Leadership Development Program Internship, AWS
+Low confidence (0.18): Security Engineer Internship – 2026 (US)
+✗ Failed to convert Amazon: Security Engineer Internship – 2026 (US)
+Low confidence (0.10): Iscriviti a Prime Student - Servizio clienti Amazon
+✗ Failed to convert Amazon: Iscriviti a Prime Student - Servizio clienti Amazon
+Low confidence (0.28): 2025 Mechanical/Electrical Engineering Internship
+✗ Failed to convert Amazon: 2025 Mechanical/Electrical Engineering Internship
+Low confidence (0.15): Technical Program Manager Internship – 2026 (US)
+✗ Failed to convert Amazon: Technical Program Manager Internship – 2026 (US)
+Inactive/expired posting: 
+✗ Failed to convert Amazon: 
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Prime Student Terms & Conditions
+✓ Converted Amazon: Prime Student Terms & Conditions
+Low confidence (0.13): Amazon University Talent Acquisition (AUTA)
+✗ Failed to convert Amazon: Amazon University Talent Acquisition (AUTA)
+Low confidence (0.15): Europe Internship Opportunities
+✗ Failed to convert Amazon: Europe Internship Opportunities
+Low confidence (0.00): Amazon.co.uk
+✗ Failed to convert Amazon: Amazon.co.uk
+Low confidence (0.18): 2025 Applied Scientist Internship, Amazon University Talent Acquisition
+✗ Failed to convert Amazon: 2025 Applied Scientist Internship, Amazon University Talent Acquisition
+Low confidence (0.28): Solutions Architect Intern
+✗ Failed to convert Amazon: Solutions Architect Intern
+Low confidence (0.07): Universite Amazon
+✗ Failed to convert Amazon: Universite Amazon
+Low confidence (0.10): Amazon.com : student discount
+✗ Failed to convert Amazon: Amazon.com : student discount
+Low confidence (0.15): Data Engineer Summer Internship – 2025 (US)
+✗ Failed to convert Amazon: Data Engineer Summer Internship – 2025 (US)
+Low confidence (0.13): FAQ: University Talent
+✗ Failed to convert Amazon: FAQ: University Talent
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Join Prime Student - Amazon Customer Service
+✓ Converted Amazon: Join Prime Student - Amazon Customer Service
+Low confidence (0.15): 2025 Applied Science Internship - Recommender Systems/ Information Retrieval (Machine Learning) - United States, PhD Student Science Recruiting
+✗ Failed to convert Amazon: 2025 Applied Science Internship - Recommender Systems/ Information Retrieval (Machine Learning) - United States, PhD Student Science Recruiting
+Low confidence (0.00): Amazon.ca
+✗ Failed to convert Amazon: Amazon.ca
+✓ Accepted (content: 0.50, URL: 0.20, final: 0.35): 2026 Operations Engineer Intern
+✓ Converted Amazon: 2026 Operations Engineer Intern
+Low confidence (0.15): Operations & Logistics Internship
+✗ Failed to convert Amazon: Operations & Logistics Internship
+Low confidence (0.13): Internships for students in Europe
+✗ Failed to convert Amazon: Internships for students in Europe
+Low confidence (0.20): 
+✗ Failed to convert Amazon: 
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Amazon Music Unlimited for Students
+✓ Converted Amazon: Amazon Music Unlimited for Students
+Low confidence (0.13): University Undergraduate Non-Tech
+✗ Failed to convert Amazon: University Undergraduate Non-Tech
+Low confidence (0.15): Data Center Infrastructure Engineer Intern
+✗ Failed to convert Amazon: Data Center Infrastructure Engineer Intern
+Low confidence (0.15): 2025 Mechanical/Electrical Engineering Internship
+✗ Failed to convert Amazon: 2025 Mechanical/Electrical Engineering Internship
+Low confidence (0.07): Amazon Universitat
+✗ Failed to convert Amazon: Amazon Universitat
+Low confidence (0.00): Amazon.ca
+✗ Failed to convert Amazon: Amazon.ca
+✓ Accepted (content: 0.50, URL: 0.10, final: 0.30): Amazon Internships | Levels.fyi
+✓ Converted Amazon: Amazon Internships | Levels.fyi
+Low confidence (0.15): 2025 Applied Science Internship - United States - PhD Student Science Recruiting
+✗ Failed to convert Amazon: 2025 Applied Science Internship - United States - PhD Student Science Recruiting
+Low confidence (0.15): 2025 Applied Science Internship - United States - Master's Student Science Recruiting
+✗ Failed to convert Amazon: 2025 Applied Science Internship - United States - Master's Student Science Recruiting
+Low confidence (0.00): Amazon.co.uk: Amazon Prime
+✗ Failed to convert Amazon: Amazon.co.uk: Amazon Prime
+Low confidence (0.00): Amazon.ca: Amazon Prime
+✗ Failed to convert Amazon: Amazon.ca: Amazon Prime
+Low confidence (0.15): 2026 Amazon Operations Finance Rotational Program Summer Internship
+✗ Failed to convert Amazon: 2026 Amazon Operations Finance Rotational Program Summer Internship
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Verify Continuing Student Status - Amazon Customer Service
+✓ Converted Amazon: Verify Continuing Student Status - Amazon Customer Service
+✓ Accepted (content: 0.80, URL: 0.30, final: 0.55): Amazon – Jobs – Career & Internship Center | University of Washington
+✓ Converted Amazon: Amazon – Jobs – Career & Internship Center | University of Washington
+Low confidence (0.15): Network Development Engineer Intern
+✗ Failed to convert Amazon: Network Development Engineer Intern
+Low confidence (0.20): Amazon Internships | Apply for Open Positions
+✗ Failed to convert Amazon: Amazon Internships | Apply for Open Positions
+Low confidence (0.13): Science Roles for Students and Graduates
+✗ Failed to convert Amazon: Science Roles for Students and Graduates
+✓ Accepted (content: 1.00, URL: 0.25, final: 0.63): Fall 2025 Applied Science Internship - Computer Vision - United States, PhD Student Science Recruiting
+✓ Converted Amazon: Fall 2025 Applied Science Internship - Computer Vision - United States, PhD Student Science Recruiting
+Low confidence (0.15): Amazon Operations Intern, KSA National
+✗ Failed to convert Amazon: Amazon Operations Intern, KSA National
+Low confidence (0.18): Fulfillment Area Manager Intern 2026 - WA, OR
+✗ Failed to convert Amazon: Fulfillment Area Manager Intern 2026 - WA, OR
+Low confidence (0.15): 2025 Applied Science Internship - Gen AI & Large Language Models - United States, PhD Student Science Recruiting
+✗ Failed to convert Amazon: 2025 Applied Science Internship - Gen AI & Large Language Models - United States, PhD Student Science Recruiting
+Low confidence (0.15): Cloud Consultant Intern, AWS Professional Services
+✗ Failed to convert Amazon: Cloud Consultant Intern, AWS Professional Services
+Low confidence (0.15): 2025 Applied Science Internship - Automated Reasoning - United States, PhD Student Science Recruiting
+✗ Failed to convert Amazon: 2025 Applied Science Internship - Automated Reasoning - United States, PhD Student Science Recruiting
+Low confidence (0.10): Amazonプライムを学割料金で利用できるPrime Student（プライムスチューデント）とは？
+✗ Failed to convert Amazon: Amazonプライムを学割料金で利用できるPrime Student（プライムスチューデント）とは？
+Low confidence (0.15): 2025 Applied Science Internship - Computer Vision - United States, PhD Student Science Recruiting
+✗ Failed to convert Amazon: 2025 Applied Science Internship - Computer Vision - United States, PhD Student Science Recruiting
+Low confidence (0.15): Solutions Architect Intern 2025
+✗ Failed to convert Amazon: Solutions Architect Intern 2025
+Low confidence (0.15): 2025 Applied Science Intern (Computer Vision), Amazon International Machine Learning
+✗ Failed to convert Amazon: 2025 Applied Science Intern (Computer Vision), Amazon International Machine Learning
+Low confidence (0.13): FAQ: University Talent
+✗ Failed to convert Amazon: FAQ: University Talent
+Low confidence (0.15): Intern - Economics, WW Returns & ReCommerce
+✗ Failed to convert Amazon: Intern - Economics, WW Returns & ReCommerce
+Low confidence (0.15): 2025 Research Science Internship - United States, PhD Student Science Recruiting
+✗ Failed to convert Amazon: 2025 Research Science Internship - United States, PhD Student Science Recruiting
+Low confidence (0.15): Associate Professional Services Consultant Intern 2025- Bahraini Nationals Only, AWS
+✗ Failed to convert Amazon: Associate Professional Services Consultant Intern 2025- Bahraini Nationals Only, AWS
+Low confidence (0.15): 2025 Data Engineer Internship
+✗ Failed to convert Amazon: 2025 Data Engineer Internship
+Low confidence (0.00): Amazon.fr: Amazon Prime
+✗ Failed to convert Amazon: Amazon.fr: Amazon Prime
+Low confidence (0.10): Amazon Prime
+✗ Failed to convert Amazon: Amazon Prime
+Low confidence (0.10): Verify Continuing Prime for Students and 19-24 years-old Status
+✗ Failed to convert Amazon: Verify Continuing Prime for Students and 19-24 years-old Status
+Low confidence (0.10): Apple: Mac for students
+✗ Failed to convert Amazon: Apple: Mac for students
+Low confidence (0.10): Amazon - UNiDAYS Student Discount
+✗ Failed to convert Amazon: Amazon - UNiDAYS Student Discount
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Amazon.nl: Prime Student Promotion: Boeken
+✓ Converted Amazon: Amazon.nl: Prime Student Promotion: Boeken
+Low confidence (0.10): Free 6 Months of Amazon Prime for Students and 18-24 Year-Olds
+✗ Failed to convert Amazon: Free 6 Months of Amazon Prime for Students and 18-24 Year-Olds
+Low confidence (0.00): Amazon Student Discount | Apr 2025 Student Beans Code
+✗ Failed to convert Amazon: Amazon Student Discount | Apr 2025 Student Beans Code
+Low confidence (0.00): Switch from Amazon Prime to Prime Student
+✗ Failed to convert Amazon: Switch from Amazon Prime to Prime Student
+Low confidence (0.00): Score big with Prime for Young Adults—Amazon’s discounted Prime membership
+✗ Failed to convert Amazon: Score big with Prime for Young Adults—Amazon’s discounted Prime membership
+Low confidence (0.13): Amazon Women of the World
+✗ Failed to convert Amazon: Amazon Women of the World
+Low confidence (0.20): 
+✗ Failed to convert Amazon: 
+Low confidence (0.05): Education - College Students
+✗ Failed to convert Amazon: Education - College Students
+Low confidence (0.08): Amazon Career Choice | Undergraduate Admissions
+✗ Failed to convert Amazon: Amazon Career Choice | Undergraduate Admissions
+Low confidence (0.13): New Page
+✗ Failed to convert Amazon: New Page
+Low confidence (0.10): Amazon (Example Store) Student Discount • 20% off for Students at Amazon
+✗ Failed to convert Amazon: Amazon (Example Store) Student Discount • 20% off for Students at Amazon
+✓ Accepted (content: 0.60, URL: 0.15, final: 0.38): Adquisición de talentos de Amazon University (AUTA)
+✓ Converted Amazon: Adquisición de talentos de Amazon University (AUTA)
+Low confidence (0.15): Marketing Working Student
+✗ Failed to convert Amazon: Marketing Working Student
+Low confidence (0.10): Verify Eligibility for Amazon Academic Products
+✗ Failed to convert Amazon: Verify Eligibility for Amazon Academic Products
+✓ Accepted (content: 0.60, URL: 0.00, final: 0.30): Prime for Young Adults Cash Back Program Terms & Conditions
+✓ Converted Amazon: Prime for Young Adults Cash Back Program Terms & Conditions
+Low confidence (0.13): AWS Student Hub | AWS Cloud Clubs
+✗ Failed to convert Amazon: AWS Student Hub | AWS Cloud Clubs
+✅ Amazon final results: 16
+Low confidence (0.05): 2026 Fellows Program
+Low confidence (0.25): Early College Internship Programs
+Low confidence (0.03): Jobs search — Google Careers
+Low confidence (0.08): MLT Career Prep
+Low confidence (0.00): Google Career Launchpad Program | Thurgood Marshall College Fund, Inc.
+Low confidence (0.00): The next generation of inclusive STEM leaders
+Skipping third-party scraper: https://sites.google.com/umich.edu/renewcs/summer-opportunities/work-and-internships
+Low confidence (0.03): Google Apprenticeships: Applications Now Open in the United States and Worldwide (March 2026 Start) -
+✓ Accepted (content: 0.50, URL: 0.25, final: 0.38): FAANG Internships 2026: Timeline, Pay, How to Apply | Extern
+Skipping third-party scraper: https://content.techgig.com/hiring/google-announces-step-internship-program-2025-for-techies-apply-now/articleshow/113656030.cms
+✓ Accepted (content: 0.80, URL: 0.05, final: 0.43): Application | Internship Connection Program (Summer 2025)
+Low confidence (0.13): Apply to ColorStack
+Low confidence (0.05): Uber Careers | Uber Career Prep
+Low confidence (0.25): SEO Tech Developer | SEO Tech Developer
+Low confidence (0.13): Students — Google Careers
+Completed Exa.ai Search: 136 internships found
+Data fetch completed in 261877ms. Total internships: 176
+[32m[2025-10-15T03:12:57.919Z] INFO[0m Data fetch completed
+[32m[2025-10-15T03:12:57.919Z] INFO[0m Normalizing internship data
+
+=== NORMALIZATION DEBUG ===
+Raw data count: 176
+
+Raw data 1:
+  Title: Software Engineer Intern
+  Company: Anduril Industries
+  URL: https://job-boards.greenhouse.io/andurilindustries/jobs/4807506007?gh_jid=4807506007&gh_src=&utm_source=Simplify&ref=Simplify
+  Source: GitHub: pittcsc/Summer2026-Internships
+
+Raw data 2:
+  Title: Software Engineer, AI
+  Company: Notion
+  URL: https://jobs.ashbyhq.com/notion/5bc8cbb9-4d08-4217-a968-d485d1b39905?utm_source=Simplify&ref=Simplify
+  Source: GitHub: pittcsc/Summer2026-Internships
+
+Raw data 3:
+  Title: Former Discover Intern - Technology Development Program Associate
+  Company: Capital One
+  URL: https://capitalone.wd12.myworkdayjobs.com/Capital_One/job/McLean-VA/Former-Discover-Intern--Technology-Development-Program-Associate---August-2026_R221899-1?utm_source=Simplify&ref=Simplify
+  Source: GitHub: pittcsc/Summer2026-Internships
+
+=== NORMALIZATION RESULTS ===
+Total processed: 176
+Successful: 175
+Failed: 1
+Duplicates skipped: 0
+
+=== FAILED NORMALIZATIONS ===
+
+Failed 1:
+  Errors: Duplicate internship detected
+[32m[2025-10-15T03:12:58.038Z] INFO[0m Normalization completed
+
+=== URL VALIDATION ===
+Validating 175 URLs...
+Invalid URL: https://careers.confluent.io/jobs/job/d9ebd50b-967e-4f35-8ebd-f0ce2705136a?utm_source=Simplify&ref=Simplify - HTTP 429
+Invalid URL: https://www.tesla.com/careers/search/job/247480?utm_source=Simplify&ref=Simplify - HTTP 403
+Invalid URL: https://careers.confluent.io/jobs/job/095d92fe-7534-4f49-a846-b63ca229731b?utm_source=Simplify&ref=Simplify - HTTP 429
+Invalid URL: https://www.jumptrading.com/careers/7077897/?gh_jid=7077897&utm_source=Simplify&ref=Simplify - 404 Not Found
+Invalid URL: https://lifeattiktok.com/search/7532748736225904903?utm_source=Simplify&ref=Simplify - HTTP 405
+Invalid URL: https://lifeattiktok.com/search/7533107403265624338?utm_source=Simplify&ref=Simplify - HTTP 405
+Invalid URL: https://lifeattiktok.com/search/7527618943449909522?utm_source=Simplify&ref=Simplify - HTTP 405
+Invalid URL: https://careers.roblox.com/jobs/7114765?gh_jid=7114765&utm_source=Simplify&ref=Simplify - The operation was aborted due to timeout
+Invalid URL: https://lifeattiktok.com/search/7533388869200333074?utm_source=Simplify&ref=Simplify - HTTP 405
+Invalid URL: https://support.google.com/wallet/answer/12059409?hl=en - 404 Not Found
+Invalid URL: https://m365.cloud.microsoft/students - HTTP 405
+Invalid URL: https://www.microsoft.com/de-de/store/b/student - The operation was aborted due to timeout
+Invalid URL: https://www.metacareers.com/jobs/1177716950861965 - HTTP 400
+Invalid URL: https://www.metacareers.com/jobs/1471056164046415 - HTTP 400
+Invalid URL: https://www.metacareers.com/jobs/1993387314912727 - HTTP 400
+Invalid URL: https://cms.gre.economist.com/meta-summer-2025-internship/ - The operation was aborted due to timeout
+Invalid URL: https://www.metacareers.com/jobs/785799000528657 - HTTP 400
+Invalid URL: https://www.metacareers.com/jobs/762289639941097 - HTTP 400
+Invalid URL: https://www.metacareers.com/jobs/3830966620528119 - HTTP 400
+Invalid URL: https://www.metacareers.com/v2/jobs/586690500472529/ - HTTP 400
+Invalid URL: https://www.metacareers.com/blog/meta-summer-intern-spotlight-gianna-t/ - HTTP 400
+Invalid URL: https://www.metacareers.com/jobs/451146844729654/ - HTTP 400
+Invalid URL: https://cms.gre.economist.com/meta-internship-summer-2025/ - The operation was aborted due to timeout
+Invalid URL: https://www.metacareers.com/jobs/972958734951705/ - HTTP 400
+Invalid URL: https://www.metacareers.com/jobs/1049499833732409 - HTTP 400
+Invalid URL: https://www.metacareers.com/jobs/773426078606561 - HTTP 400
+Invalid URL: https://www.metacareers.com/jobs/1328155235685414 - HTTP 400
+Invalid URL: https://www.metacareers.com/jobs/1417088779776467 - HTTP 400
+Invalid URL: https://www.metacareers.com/jobs/ - HTTP 400
+Invalid URL: https://www.metacareers.com/jobs/3219980721500186 - HTTP 400
+Invalid URL: https://jobs.apple.com/app/en-gb/apply/200596836 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-ro/apply/200568048 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-mo/apply/200607234-3810 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-ie/apply/200596119 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-ca/apply/200607234-3810 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-gb/apply/200596119 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-us/apply/200607234-3810 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-sg/apply/200607234-3810 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-us/apply/200623669-1251 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-eg/apply/200596836 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-ng/apply/200607234-3810 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-ca/apply/200621816-0351 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/pl-pl/apply/200568048 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-us/apply/200566298 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-in/apply/200607234-3810 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-hk/apply/200621816-0351 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-au/apply/200568048 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-us/apply/200617616-1251 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-nz/apply/200568048 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-us/apply/200606145 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/da-dk/apply/200618889-3715 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/de-de/apply/200568048 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-gr/apply/200619839-3715 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-ae/apply/200575251 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-my/apply/200575251 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-ca/apply/200579858 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-us/apply/200606141 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-eg/apply/200568048 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-sg/apply/200568048 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-ng/apply/200623968-1731 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-gr/apply/200580240 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-ie/apply/200580240 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-us/apply/200606469 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-il/apply/200568048 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/es-co/apply/200575251 - HTTP 403
+Invalid URL: https://jobs.apple.com/app/en-in/apply/200623661-1251 - HTTP 403
+Invalid URL: https://www.amazon.com/Amazon-Student/b?ie=UTF8&node=668781011 - HTTP 405
+Invalid URL: https://www.amazon.com/amazonprime?_encoding=UTF8&planOptimizationId=WLPStudentMonthlyEligiblePlans&primeCampaignId=studentWlpPrimeRedir&linkCode=sl2&tag=turkeyindustr-20&linkId=773ac02e0bc9f4fad812b5dd4b3d10b6&language=en_US&ref_=as_li_ss_tl - HTTP 405
+Invalid URL: https://www.amazon.com/gp/help/customer/display.html?nodeId=TRVXQ2uSSLFbMHHHdo - HTTP 405
+Invalid URL: https://www.amazon.co.jp/-/en/gp/help/customer/display.html?nodeId=GWMNXPTL3482JPHC - HTTP 405
+Invalid URL: https://www.amazon.com/gp/help/customer/display.html?nodeId=GQ5W385DB9RLJJDF - HTTP 405
+Invalid URL: https://www.amazon.com/music/unlimited/student - HTTP 405
+Invalid URL: https://www.amazon.jobs/en/jobs/2996256/fall-2025-applied-science-internship-computer-vision-united-states-phd-student-science-recruiting - 404 Not Found
+Invalid URL: https://www.amazon.com/gp/help/customer/display.html?nodeId=TR9uI2cb3KdJvPC2jq - HTTP 405
+Invalid URL: https://www.amazon.nl/b?ie=UTF8&node=66060063031 - HTTP 405
+Filtered out invalid URL: at Confluent in Austin - https://careers.confluent.io/jobs/job/d9ebd50b-967e-4f35-8ebd-f0ce2705136a?utm_source=Simplify&ref=Simplify
+Filtered out invalid URL: Systems Engineer, Collision Avoidance, Autonomy & Robotics - https://www.tesla.com/careers/search/job/247480?utm_source=Simplify&ref=Simplify
+Filtered out invalid URL: Campus Tech Ops Engineer - https://www.jumptrading.com/careers/7077897/?gh_jid=7077897&utm_source=Simplify&ref=Simplify
+Filtered out invalid URL: at Confluent in Remote - https://careers.confluent.io/jobs/job/095d92fe-7534-4f49-a846-b63ca229731b?utm_source=Simplify&ref=Simplify
+Filtered out invalid URL: - Tiktok-Pgc-Ogc - 2026 Summer - BS/MS at TikTok in San Jose - https://lifeattiktok.com/search/7533107403265624338?utm_source=Simplify&ref=Simplify
+Filtered out invalid URL: - Tiktok-Growth-Innovative Growth at TikTok in San Jose - https://lifeattiktok.com/search/7532748736225904903?utm_source=Simplify&ref=Simplify
+Filtered out invalid URL: - Trust and Safety-Engineer-AI Safety - 2026 Summer - BS/MS at TikTok in San Jose - https://lifeattiktok.com/search/7527618943449909522?utm_source=Simplify&ref=Simplify
+Filtered out invalid URL: at Roblox in San Mateo - https://careers.roblox.com/jobs/7114765?gh_jid=7114765&utm_source=Simplify&ref=Simplify
+Filtered out invalid URL: (Data Ecosystem) at TikTok in San Jose - https://lifeattiktok.com/search/7533388869200333074?utm_source=Simplify&ref=Simplify
+Filtered out invalid URL: Save your Student ID to Google Wallet - https://support.google.com/wallet/answer/12059409?hl=en
+Filtered out invalid URL: Microsoft Student Discount on Office, Word | Microsoft 365 - https://m365.cloud.microsoft/students
+Filtered out invalid URL: Studentenrabatte für Laptops, Microsoft 365, Windows, Surface | Microsoft Store - https://www.microsoft.com/de-de/store/b/student
+Filtered out invalid URL: Software Engineer Intern - https://www.metacareers.com/jobs/1177716950861965
+Filtered out invalid URL: Bellevue - https://www.metacareers.com/jobs/1471056164046415
+Filtered out invalid URL: Menlo Park - https://www.metacareers.com/jobs/1993387314912727
+Filtered out invalid URL: Meta Summer 2025 Internship A Comprehensive Guide - 2025 - https://cms.gre.economist.com/meta-summer-2025-internship/
+Filtered out invalid URL: Bellevue - https://www.metacareers.com/jobs/785799000528657
+Filtered out invalid URL: Meta AI Research AR/VR Facebook Reality Labs Internship - PhD University Grad - PhD &amp; Postdoc Machine Learning Research Meta was built to help people connect and share - https://www.metacareers.com/jobs/3830966620528119
+Filtered out invalid URL: Meta - https://www.metacareers.com/jobs/762289639941097
+Filtered out invalid URL: Meta Internship Summer 2025 A Comprehensive Guide - 2025 - https://cms.gre.economist.com/meta-internship-summer-2025/
+Filtered out invalid URL: Meta - https://www.metacareers.com/jobs/451146844729654/
+Filtered out invalid URL: \- Hide - https://www.metacareers.com/v2/jobs/586690500472529/
+Filtered out invalid URL: spotlight: Gianna T - https://www.metacareers.com/blog/meta-summer-intern-spotlight-gianna-t/
+Filtered out invalid URL: Meta - https://www.metacareers.com/jobs/773426078606561
+Filtered out invalid URL: Meta - https://www.metacareers.com/jobs/1328155235685414
+Filtered out invalid URL: Meta - https://www.metacareers.com/jobs/1049499833732409
+Filtered out invalid URL: Meta - https://www.metacareers.com/jobs/972958734951705/
+Filtered out invalid URL: Meta - https://www.metacareers.com/jobs/3219980721500186
+Filtered out invalid URL: + 2 more • Internship - https://www.metacareers.com/jobs/1417088779776467
+Filtered out invalid URL: Job Openings at Meta - https://www.metacareers.com/jobs/
+Filtered out invalid URL: ![](https://jobs - https://jobs.apple.com/app/en-ro/apply/200568048
+Filtered out invalid URL: United States, Students: Internships - Jobs at Apple (MO) - https://jobs.apple.com/app/en-mo/apply/200607234-3810
+Filtered out invalid URL: Opportunities](https://jobs - https://jobs.apple.com/app/en-gb/apply/200596836
+Filtered out invalid URL: United States, Students: Internships - Jobs at Apple (CA) - https://jobs.apple.com/app/en-ca/apply/200607234-3810
+Filtered out invalid URL: Opportunities](https://jobs - https://jobs.apple.com/app/en-ie/apply/200596119
+Filtered out invalid URL: California, Students: Internships - Jobs - Careers at Apple - https://jobs.apple.com/app/en-us/apply/200607234-3810
+Filtered out invalid URL: Opportunities](https://jobs - https://jobs.apple.com/app/en-gb/apply/200596119
+Filtered out invalid URL: United States, Students: Internships - Jobs at Apple (SG) - https://jobs.apple.com/app/en-sg/apply/200607234-3810
+Filtered out invalid URL: - Privacy Preserving Machine Learning Engineer](https://jobs - https://jobs.apple.com/app/en-us/apply/200623669-1251
+Filtered out invalid URL: United States, Students: Internships - Jobs at Apple (NG) - https://jobs.apple.com/app/en-ng/apply/200607234-3810
+Filtered out invalid URL: Opportunities](https://jobs - https://jobs.apple.com/app/en-eg/apply/200596836
+Filtered out invalid URL: (m/f/d)](https://jobs - https://jobs.apple.com/app/en-us/apply/200566298
+Filtered out invalid URL: Search Jobs - California, Students: Internships - Jobs at Apple (IN) - https://jobs.apple.com/app/en-in/apply/200607234-3810
+Filtered out invalid URL: - Beijing](https://jobs - https://jobs.apple.com/app/en-ca/apply/200621816-0351
+Filtered out invalid URL: ![](https://jobs - https://jobs.apple.com/app/pl-pl/apply/200568048
+Filtered out invalid URL: - Beijing](https://jobs - https://jobs.apple.com/app/en-hk/apply/200621816-0351
+Filtered out invalid URL: ![](https://jobs - https://jobs.apple.com/app/en-nz/apply/200568048
+Filtered out invalid URL: candidate will be amenable to working in an exciting - https://jobs.apple.com/app/en-us/apply/200606145
+Filtered out invalid URL: 200617354-4265 - https://jobs.apple.com/app/en-us/apply/200617616-1251
+Filtered out invalid URL: ![](https://jobs - https://jobs.apple.com/app/en-au/apply/200568048
+Filtered out invalid URL: 200618889-3715 - https://jobs.apple.com/app/da-dk/apply/200618889-3715
+Filtered out invalid URL: Opportunities at Apple (for international students) - October 2024 to September 2025](https://jobs - https://jobs.apple.com/app/en-ae/apply/200575251
+Filtered out invalid URL: ![](https://jobs - https://jobs.apple.com/app/de-de/apply/200568048
+Filtered out invalid URL: – Alloy Engineering](https://jobs - https://jobs.apple.com/app/en-gr/apply/200619839-3715
+Filtered out invalid URL: (m/f/d)](https://jobs - https://jobs.apple.com/app/en-ca/apply/200579858
+Filtered out invalid URL: ![](https://jobs - https://jobs.apple.com/app/en-sg/apply/200568048
+Filtered out invalid URL: ![](https://jobs - https://jobs.apple.com/app/en-eg/apply/200568048
+Filtered out invalid URL: Opportunities at Apple (for international students) - October 2024 to September 2025](https://jobs - https://jobs.apple.com/app/en-my/apply/200575251
+Filtered out invalid URL: must be the last requirement for you to graduate - https://jobs.apple.com/app/en-us/apply/200606141
+Filtered out invalid URL: Chicago, Students: Internships - Jobs at Apple (GR) - https://jobs.apple.com/app/en-gr/apply/200580240
+Filtered out invalid URL: San Diego, Students: Internships - Jobs at Apple (IE) - https://jobs.apple.com/app/en-ie/apply/200580240
+Filtered out invalid URL: (m/f/d)](https://jobs - https://jobs.apple.com/app/en-ng/apply/200623968-1731
+Filtered out invalid URL: must be the last requirement for you to graduate - https://jobs.apple.com/app/en-us/apply/200606469
+Filtered out invalid URL: ![](https://jobs - https://jobs.apple.com/app/en-il/apply/200568048
+Filtered out invalid URL: Opportunities at Apple (for international students) - October 2024 to September 2025](https://jobs - https://jobs.apple.com/app/es-co/apply/200575251
+Filtered out invalid URL: - Software Engineering - https://jobs.apple.com/app/en-in/apply/200623661-1251
+Filtered out invalid URL: Amazon Prime Student - https://www.amazon.com/Amazon-Student/b?ie=UTF8&node=668781011
+Filtered out invalid URL: Amazon.com: Amazon Prime - https://www.amazon.com/amazonprime?_encoding=UTF8&planOptimizationId=WLPStudentMonthlyEligiblePlans&primeCampaignId=studentWlpPrimeRedir&linkCode=sl2&tag=turkeyindustr-20&linkId=773ac02e0bc9f4fad812b5dd4b3d10b6&language=en_US&ref_=as_li_ss_tl
+Filtered out invalid URL: Prime Student Terms & Conditions - https://www.amazon.com/gp/help/customer/display.html?nodeId=TRVXQ2uSSLFbMHHHdo
+Filtered out invalid URL: Join Prime Student - Amazon Customer Service - https://www.amazon.co.jp/-/en/gp/help/customer/display.html?nodeId=GWMNXPTL3482JPHC
+Filtered out invalid URL: Amazon Music Unlimited for Students - https://www.amazon.com/music/unlimited/student
+Filtered out invalid URL: Verify Continuing Student Status - Amazon Customer Service - https://www.amazon.com/gp/help/customer/display.html?nodeId=GQ5W385DB9RLJJDF
+Filtered out invalid URL: Fall 2025 Applied Science Internship - Computer Vision - United States, PhD Student Science Recruiting - https://www.amazon.jobs/en/jobs/2996256/fall-2025-applied-science-internship-computer-vision-united-states-phd-student-science-recruiting
+Filtered out invalid URL: Amazon.nl: Prime Student Promotion: Boeken - https://www.amazon.nl/b?ie=UTF8&node=66060063031
+Filtered out invalid URL: Prime for Young Adults Cash Back Program Terms & Conditions - https://www.amazon.com/gp/help/customer/display.html?nodeId=TR9uI2cb3KdJvPC2jq
+100 internships passed URL validation
+Storing internships in database...
+Database: 19 inserted, 0 updated, 81 skipped
+[32m[2025-10-15T03:14:52.867Z] INFO[0m Ingestion completed successfully
+[32m[2025-10-15T03:14:52.868Z] INFO[0m [req_1760497716040_pv188qcso] Manual ingestion completed
+  Context: { fetched: 176, normalized: 175, inserted: 19, executionTime: 376825 }
+[32m[2025-10-15T03:14:52.870Z] INFO[0m [req_1760497716040_pv188qcso] Ingestion completed successfully
+ POST /api/ingestion 200 in 378332ms
+[?25h

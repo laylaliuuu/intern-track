@@ -76,10 +76,28 @@ export function useInternships(filters: InternshipFilters = {}) {
 
       const response = await fetch(`/api/internships?${searchParams}`);
       if (!response.ok) {
-        throw new Error(`Failed to fetch internships: ${response.statusText}`);
+        // Try to get error details from response
+        let errorMessage = `Failed to fetch internships: ${response.statusText}`;
+        try {
+          const errorData = await response.json();
+          if (errorData.error?.message) {
+            errorMessage = errorData.error.message;
+          } else if (errorData.message) {
+            errorMessage = errorData.message;
+          }
+        } catch {
+          // If response isn't JSON, use status text
+        }
+        throw new Error(errorMessage);
       }
       
-      return response.json();
+      const result = await response.json();
+      return {
+        data: result.data || [],
+        total: result.pagination?.total || 0,
+        hasMore: result.pagination?.hasNext || false,
+        nextOffset: result.pagination?.nextOffset
+      };
     },
     // Shorter stale time for filtered results to keep them fresh
     staleTime: 2 * 60 * 1000, // 2 minutes
@@ -113,7 +131,13 @@ export function useInfiniteInternships(filters: InternshipFilters = {}) {
         throw new Error(`Failed to fetch internships: ${response.statusText}`);
       }
       
-      return response.json();
+      const result = await response.json();
+      return {
+        data: result.data || [],
+        total: result.pagination?.total || 0,
+        hasMore: result.pagination?.hasNext || false,
+        nextOffset: result.pagination?.nextOffset
+      };
     },
     getNextPageParam: (lastPage) => {
       return lastPage.hasMore ? lastPage.nextOffset : undefined;
@@ -258,5 +282,192 @@ export function useSystemHealth() {
     },
     staleTime: 60 * 1000, // 1 minute
     refetchInterval: 2 * 60 * 1000, // 2 minutes
+  });
+}
+
+// Hook for company suggestions
+export function useCompanySuggestions(query: string) {
+  return useQuery({
+    queryKey: ['company-suggestions', query],
+    queryFn: async () => {
+      if (!query || query.length < 2) return [];
+      
+      const response = await fetch(`/api/companies?search=${encodeURIComponent(query)}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch company suggestions');
+      }
+      return response.json() as Promise<string[]>;
+    },
+    enabled: !!query && query.length >= 2,
+    staleTime: 30 * 60 * 1000, // 30 minutes
+  });
+}
+
+// Hook for similar internships (ontology-based)
+export function useSimilarInternships(id: string) {
+  return useQuery({
+    queryKey: ['similar-internships', id],
+    queryFn: async () => {
+      const response = await fetch(`/api/ontology/similar?internship_id=${id}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch similar internships');
+      }
+      return response.json() as Promise<any[]>;
+    },
+    enabled: !!id,
+    staleTime: 15 * 60 * 1000, // 15 minutes
+  });
+}
+
+// Hook for saving internships
+export function useSaveInternship() {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async (internshipId: string) => {
+      const response = await fetch('/api/internships/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ internshipId }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to save internship');
+      }
+      
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['saved-internships'] });
+    },
+  });
+}
+
+// Hook for updating application status
+export function useUpdateApplicationStatus() {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async ({ 
+      internshipId, 
+      status 
+    }: { 
+      internshipId: string; 
+      status: 'applied' | 'interview' | 'offer' | 'rejected' 
+    }) => {
+      const response = await fetch('/api/internships/application-status', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ internshipId, status }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to update application status');
+      }
+      
+      return response.json();
+    },
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({ queryKey: ['internship', variables.internshipId] });
+      queryClient.invalidateQueries({ queryKey: ['saved-internships'] });
+    },
+  });
+}
+
+// Hook for reporting issues
+export function useReportIssue() {
+  return useMutation({
+    mutationFn: async ({ 
+      internshipId, 
+      issue, 
+      description 
+    }: { 
+      internshipId: string; 
+      issue: string; 
+      description: string; 
+    }) => {
+      const response = await fetch('/api/internships/report', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ internshipId, issue, description }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to report issue');
+      }
+      
+      return response.json();
+    },
+  });
+}
+
+// Hook for saved internships
+export function useSavedInternships() {
+  return useQuery({
+    queryKey: ['saved-internships'],
+    queryFn: async () => {
+      const response = await fetch('/api/internships/saved');
+      if (!response.ok) {
+        throw new Error('Failed to fetch saved internships');
+      }
+      return response.json() as Promise<any[]>;
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+}
+
+// Hook for internship scores
+export function useInternshipScores(internshipId: string) {
+  return useQuery({
+    queryKey: ['internship-scores', internshipId],
+    queryFn: async () => {
+      const response = await fetch(`/api/scoring?internship_id=${internshipId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch internship scores');
+      }
+      return response.json() as Promise<{
+        quality_score: number;
+        competitiveness_score: number;
+        learning_score: number;
+        brand_value_score: number;
+        compensation_score: number;
+      }>;
+    },
+    enabled: !!internshipId,
+    staleTime: 30 * 60 * 1000, // 30 minutes
+  });
+}
+
+// Hook for company relationships
+export function useCompanyRelationships(companyId: string) {
+  return useQuery({
+    queryKey: ['company-relationships', companyId],
+    queryFn: async () => {
+      const response = await fetch(`/api/ontology/relationships?company_id=${companyId}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch company relationships');
+      }
+      return response.json() as Promise<any[]>;
+    },
+    enabled: !!companyId,
+    staleTime: 60 * 60 * 1000, // 1 hour
+  });
+}
+
+// Hook for skill recommendations
+export function useSkillRecommendations(currentSkills: string[]) {
+  return useQuery({
+    queryKey: ['skill-recommendations', currentSkills],
+    queryFn: async () => {
+      if (currentSkills.length === 0) return [];
+      
+      const response = await fetch(`/api/ontology/skills?skills=${currentSkills.join(',')}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch skill recommendations');
+      }
+      return response.json() as Promise<any[]>;
+    },
+    enabled: currentSkills.length > 0,
+    staleTime: 60 * 60 * 1000, // 1 hour
   });
 }

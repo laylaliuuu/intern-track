@@ -2,14 +2,20 @@
 
 interface InternshipData {
   id: string;
-  company: string;
-  companyUrl: string;
+  company: string | { name: string; domain?: string };
+  companyUrl?: string;
   role: string;
+  title?: string;
   location: string;
   postedDate: string;
+  postedAt?: string;
   payRate: string;
+  workType?: string;
   applicationDeadline: string;
   applicationUrl: string;
+  // New quality fields
+  graduationYear?: string;
+  requirements?: string;
 }
 
 interface InternshipTableTemplateProps {
@@ -18,6 +24,79 @@ interface InternshipTableTemplateProps {
 }
 
 export default function InternshipTableTemplate({ internships, isLoading = false }: InternshipTableTemplateProps) {
+  // Convert API data to the expected format
+  // Helper function to clean job titles
+  const cleanJobTitle = (title: string): string => {
+    if (!title) return '';
+    
+    return title
+      .replace(/\s*-\s*(summer|fall|spring|winter)\s*202[0-9]/gi, '')
+      .replace(/\s*(summer|fall|spring|winter)\s*202[0-9]/gi, '')
+      .replace(/\s*\(bs\/ms\)/gi, '')
+      .replace(/\s*\(bachelor's\)/gi, '')
+      .replace(/\s*\(master's\)/gi, '')
+      .replace(/\s*class\s+of\s+202[0-9]/gi, '')
+      .replace(/\s*graduating\s+in\s+202[0-9]/gi, '')
+      .replace(/🛂\s*/g, '')
+      .replace(/📍\s*/g, '')
+      .replace(/💰\s*/g, '')
+      .replace(/&amp;/g, '&')
+      .replace(/\s+/g, ' ')
+      .trim();
+  };
+
+  const convertApiData = (apiInternships: any[]): InternshipData[] => {
+    return apiInternships.map(internship => {
+      // Use new quality fields if available, fallback to legacy fields
+      let exactRole = internship.exactRole || internship.title || internship.role;
+      
+      // Clean the role title
+      exactRole = cleanJobTitle(exactRole);
+      
+      const graduationYear = internship.graduationYear && internship.graduationYear.length > 0 
+        ? `Class of ${internship.graduationYear.join('/')}` 
+        : '';
+      
+      // Format pay rate using actual job posting data
+      let payRate = 'Not listed';
+      if (internship.payRateMin && internship.payRateMax) {
+        if (internship.payRateType === 'hourly') {
+          payRate = `$${internship.payRateMin}-${internship.payRateMax}/hour`;
+        } else if (internship.payRateType === 'salary') {
+          payRate = `$${Math.round(internship.payRateMin/1000)}k-${Math.round(internship.payRateMax/1000)}k/year`;
+        } else if (internship.payRateType === 'unpaid') {
+          payRate = 'Unpaid';
+        } else if (internship.payRateType === 'stipend') {
+          payRate = `$${internship.payRateMin}-${internship.payRateMax} stipend`;
+        }
+      } else if (internship.payRateType === 'unknown') {
+        payRate = 'Not listed';
+      } else if (internship.workType === 'paid') {
+        payRate = 'Not listed'; // Don't use industry standards
+      }
+
+      // Clean location
+      let location = internship.location || 'Not specified';
+      if (location && location.length > 50) {
+        location = location.substring(0, 50) + '...';
+      }
+
+      return {
+        id: internship.id,
+        company: typeof internship.company === 'object' ? internship.company.name : internship.company,
+        companyUrl: typeof internship.company === 'object' ? `https://${internship.company.domain}` : undefined,
+        role: exactRole,
+        graduationYear: graduationYear,
+        location: location,
+        postedDate: internship.postedAt ? new Date(internship.postedAt).toLocaleDateString() : internship.postedDate,
+        payRate: payRate,
+        applicationDeadline: internship.applicationDeadline ? new Date(internship.applicationDeadline).toLocaleDateString() : 'Rolling',
+        applicationUrl: internship.applicationUrl,
+        requirements: internship.requirements
+      };
+    });
+  };
+
   const sampleData: InternshipData[] = [
     {
       id: '1',
@@ -87,7 +166,7 @@ export default function InternshipTableTemplate({ internships, isLoading = false
     }
   ];
 
-  const data = internships.length > 0 ? internships : sampleData;
+  const data = internships.length > 0 ? convertApiData(internships) : sampleData;
 
   const formatDate = (dateString: string) => {
     return dateString;
@@ -120,92 +199,112 @@ export default function InternshipTableTemplate({ internships, isLoading = false
   return (
     <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
       {/* Header */}
-      <div className="bg-gray-50 border-b border-gray-200">
-        <div className="grid grid-cols-[1.5fr_3fr_2fr_1fr_1fr_1.5fr_1.5fr] gap-4 px-6 py-6">
-          <div className="flex items-center">
-            <span className="font-semibold text-gray-900 text-lg">Company</span>
+      <div className="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-300">
+        <div className="grid grid-cols-[1fr_2fr_1.2fr_1.2fr_0.8fr_0.8fr_1fr_0.8fr_3fr] gap-6 px-6 py-4">
+          <div className="flex items-center border-r border-gray-300 pr-4">
+            <span className="font-bold text-gray-900 text-base">Company</span>
+          </div>
+          <div className="flex items-center border-r border-gray-300 pr-4">
+            <span className="font-bold text-gray-900 text-base">Role</span>
+          </div>
+          <div className="flex items-center border-r border-gray-300 pr-4">
+            <span className="font-bold text-gray-900 text-base">Location</span>
+          </div>
+          <div className="flex items-center border-r border-gray-300 pr-4">
+            <span className="font-bold text-gray-900 text-base">Graduation Year</span>
+          </div>
+          <div className="flex items-center border-r border-gray-300 pr-4">
+            <span className="font-bold text-gray-900 text-base">Pay Rate</span>
+          </div>
+          <div className="flex items-center border-r border-gray-300 pr-4">
+            <span className="font-bold text-gray-900 text-base">Posted Date</span>
+          </div>
+          <div className="flex items-center border-r border-gray-300 pr-4">
+            <span className="font-bold text-gray-900 text-base">Deadline</span>
+          </div>
+          <div className="flex items-center border-r border-gray-300 pr-4">
+            <span className="font-bold text-gray-900 text-base">Application</span>
           </div>
           <div className="flex items-center">
-            <span className="font-semibold text-gray-900 text-lg">Role</span>
-          </div>
-          <div className="flex items-center">
-            <span className="font-semibold text-gray-900 text-lg">Location</span>
-          </div>
-          <div className="flex items-center">
-            <span className="font-semibold text-gray-900 text-lg">Application</span>
-          </div>
-          <div className="flex items-center">
-            <span className="font-semibold text-gray-900 text-lg">Pay Rate</span>
-          </div>
-          <div className="flex items-center">
-            <span className="font-semibold text-gray-900 text-lg">Posted Date</span>
-          </div>
-          <div className="flex items-center">
-            <span className="font-semibold text-gray-900 text-lg">Deadline</span>
+            <span className="font-bold text-gray-900 text-base">Requirements</span>
           </div>
         </div>
       </div>
 
       {/* Data Rows */}
       <div className="divide-y divide-gray-200">
-        {data.map((internship) => (
+        {data.map((internship, index) => (
           <div 
             key={internship.id} 
-            className="grid grid-cols-[1.5fr_3fr_2fr_1fr_1fr_1.5fr_1.5fr] gap-4 px-6 hover:bg-gray-50 transition-colors duration-200"
-            style={{ 
-              paddingTop: '20px', 
-              paddingBottom: '20px',
-              marginBottom: '8px'
-            }}
+            className={`grid grid-cols-[1fr_2fr_1.2fr_1.2fr_0.8fr_0.8fr_1fr_0.8fr_3fr] gap-6 px-6 py-4 hover:bg-gray-50 transition-colors duration-200 ${
+              index % 2 === 0 ? 'bg-white' : 'bg-gray-25'
+            }`}
           >
             {/* Company */}
-            <div className="flex items-center py-2">
+            <div className="flex items-start py-2 border-r border-gray-200 pr-4">
               <a 
                 href={internship.companyUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200"
+                className="text-sm font-semibold text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200 break-words"
               >
-                {internship.company}
+                {typeof internship.company === 'string' ? internship.company : internship.company.name}
               </a>
             </div>
 
             {/* Role */}
-            <div className="flex items-center py-2">
-              <span className="text-sm text-gray-900 font-medium">{internship.role}</span>
+            <div className="flex items-start py-2 border-r border-gray-200 pr-4">
+              <span className="text-sm text-gray-900 font-medium break-words leading-relaxed">{internship.role}</span>
             </div>
 
             {/* Location */}
-            <div className="flex items-center py-2">
-              <span className="text-sm text-gray-700">{internship.location}</span>
+            <div className="flex items-start py-2 border-r border-gray-200 pr-4">
+              <span className="text-sm text-gray-700 break-words leading-relaxed">{internship.location}</span>
+            </div>
+
+            {/* Graduation Year */}
+            <div className="flex items-start py-2 border-r border-gray-200 pr-4">
+              <span className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full font-medium break-words">
+                {internship.graduationYear || 'Not specified'}
+              </span>
+            </div>
+
+            {/* Pay Rate */}
+            <div className="flex items-start py-2 border-r border-gray-200 pr-4">
+              <span className="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full break-words">{internship.payRate}</span>
+            </div>
+
+            {/* Posted Date */}
+            <div className="flex items-start py-2 border-r border-gray-200 pr-4">
+              <span className="text-sm text-gray-600 font-medium break-words">{formatDate(internship.postedDate)}</span>
+            </div>
+
+            {/* Deadline */}
+            <div className="flex items-start py-2 border-r border-gray-200 pr-4">
+              <span className={`text-xs font-medium px-2 py-1 rounded-full break-words ${getDeadlineColor(internship.applicationDeadline)}`}>
+                {internship.applicationDeadline === 'Rolling' ? 'Rolling' : formatDate(internship.applicationDeadline)}
+              </span>
             </div>
 
             {/* Application */}
-            <div className="flex items-center py-2">
+            <div className="flex items-start py-2 border-r border-gray-200 pr-4">
               <a
                 href={internship.applicationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gray-800 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-900 hover:shadow-lg transition-all duration-200 transform hover:scale-105"
+                className="bg-gray-800 text-white px-3 py-1.5 rounded-md text-xs font-semibold hover:bg-gray-900 hover:shadow-md transition-all duration-200 transform hover:scale-105 whitespace-nowrap"
               >
                 Apply
               </a>
             </div>
 
-            {/* Pay Rate */}
-            <div className="flex items-center py-2">
-              <span className="text-sm font-bold text-green-600 bg-green-50 px-3 py-1 rounded-full">{internship.payRate}</span>
-            </div>
-
-            {/* Posted Date */}
-            <div className="flex items-center py-2">
-              <span className="text-sm text-gray-600 font-medium">{formatDate(internship.postedDate)}</span>
-            </div>
-
-            {/* Deadline */}
-            <div className="flex items-center py-2">
-              <span className={`text-sm font-medium px-3 py-1 rounded-full ${getDeadlineColor(internship.applicationDeadline)}`}>
-                {internship.applicationDeadline === 'Rolling' ? 'Rolling Admission' : formatDate(internship.applicationDeadline)}
+            {/* Requirements */}
+            <div className="flex items-start py-2">
+              <span 
+                className="text-sm text-gray-700 break-words leading-relaxed" 
+                title={internship.requirements || 'No requirements specified'}
+              >
+                {internship.requirements || 'Not specified'}
               </span>
             </div>
           </div>

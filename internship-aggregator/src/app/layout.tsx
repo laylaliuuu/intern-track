@@ -35,13 +35,13 @@ export default function RootLayout({
           showDetails={process.env.NODE_ENV === 'development'}
         >
           <QueryProvider>
-            <NotificationProvider>
-              <RealtimeProvider>
+            <RealtimeProvider>
+              <NotificationProvider>
                 <div id="root" role="application" aria-label="InternTrack - Internship Aggregator">
                   {children}
                 </div>
-              </RealtimeProvider>
-            </NotificationProvider>
+              </NotificationProvider>
+            </RealtimeProvider>
           </QueryProvider>
         </ClientErrorBoundary>
       </body>

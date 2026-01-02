@@ -1,3 +1,4 @@
 {
-    "kiroAgent.configureMCP": "Disabled"
+    "kiroAgent.configureMCP": "Disabled",
+    "terminal.integrated.scrollback": 10000000000
 }
