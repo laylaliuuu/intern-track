@@ -1,4 +1,48 @@
-<!-- 9da7dd2c-93b0-4394-a1da-05a02312dbd4 02b57659-5104-4fec-94c3-6a95c517744c -->
+---
+name: Enhanced InternTrack Data Pipeline Implementation
+overview: ""
+todos:
+  - id: 30f4b9be-8089-4c9d-b07d-08e5362173a9
+    content: Build LLM-based normalization engine with role extraction, skills parsing, major matching, eligibility detection, and deduplication
+    status: pending
+  - id: df3cd28e-ea80-430e-b7e7-d09887402261
+    content: Create company quality scoring system with manual whitelist (100+ companies) and tier classification
+    status: pending
+  - id: 7a337669-78f4-45f6-9c11-a44adf8cc395
+    content: Create OpenAI client helper for structured LLM extraction with proper error handling
+    status: pending
+  - id: 2c683067-7fee-440c-b5d9-331613c77767
+    content: Expand Exa.ai company whitelist and optimize search queries with tier-based targeting
+    status: pending
+  - id: 3616df71-ce2e-4688-967c-896ed734e358
+    content: Update data fetcher with higher quality thresholds and company tier weighting
+    status: pending
+  - id: eace26b9-2407-4513-bf58-246e9521ecd9
+    content: Build GitHub curated lists scraper for SimplifyJobs and pittcsc repos
+    status: pending
+  - id: 6112b833-18a0-48b7-92b5-1b82848c8ea0
+    content: Integrate GitHub scraper into data fetcher as Tier 2 source with deduplication
+    status: pending
+  - id: 7a45744a-25df-4fcf-b0e6-9bd0df819339
+    content: Create migration to add quality fields (company_tier, quality_score, source_confidence, verification_status)
+    status: pending
+  - id: b94ac095-21ef-4575-9048-8a123656f93d
+    content: Add quality score and company tier filters to internships API endpoint
+    status: pending
+  - id: 2494684c-e444-49b3-b959-6cccbf4c38b8
+    content: Update ingestion API with source selection and detailed metrics
+    status: pending
+  - id: 05504686-9e2e-480a-af74-35fd12c5c20e
+    content: Add company tier toggle and quality indicators to filter bar
+    status: pending
+  - id: 01fc457d-e64c-496a-aa7d-182c90fa7f4a
+    content: Add tier badges, verified badges, and quality-based sorting to internship table
+    status: pending
+  - id: 50c6bc6c-75ce-45bf-b511-c03b20055ee4
+    content: Run end-to-end ingestion pipeline test and validate quality metrics
+    status: pending
+---
+
 # Enhanced InternTrack Data Pipeline Implementation
 
 ## Overview
@@ -230,19 +274,3 @@ After implementation, InternTrack should deliver:
 - **No Overwhelm**: Smart defaults show best ~200 opportunities
 - **Precision**: <10% false positives (full-time, expired, or irrelevant posts)
 - **Deduplication**: <5% duplicate listings across sources
-
-### To-dos
-
-- [ ] Build LLM-based normalization engine with role extraction, skills parsing, major matching, eligibility detection, and deduplication
-- [ ] Create company quality scoring system with manual whitelist (100+ companies) and tier classification
-- [ ] Create OpenAI client helper for structured LLM extraction with proper error handling
-- [ ] Expand Exa.ai company whitelist and optimize search queries with tier-based targeting
-- [ ] Update data fetcher with higher quality thresholds and company tier weighting
-- [ ] Build GitHub curated lists scraper for SimplifyJobs and pittcsc repos
-- [ ] Integrate GitHub scraper into data fetcher as Tier 2 source with deduplication
-- [ ] Create migration to add quality fields (company_tier, quality_score, source_confidence, verification_status)
-- [ ] Add quality score and company tier filters to internships API endpoint
-- [ ] Update ingestion API with source selection and detailed metrics
-- [ ] Add company tier toggle and quality indicators to filter bar
-- [ ] Add tier badges, verified badges, and quality-based sorting to internship table
-- [ ] Run end-to-end ingestion pipeline test and validate quality metrics

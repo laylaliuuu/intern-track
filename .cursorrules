@@ -1,0 +1,15 @@
+This repo uses Cursor project rules.
+
+NOTE: This file is a hint/convenience reference. Cursor does not guarantee it will be read first or at all.
+
+Real enforcement layers:
+1. Cursor Settings (global rules - always active and applied globally; repo rules add project-specific constraints)
+2. .cursor/rules/*.md (repo rules - typically auto-discovered, source of truth for this repo)
+3. .cursor/commands/*.md (repo workflows - typically auto-discovered)
+
+Key files:
+- .cursor/rules/intern-tracker-mvp.md (core product invariants - source of truth for this repo)
+- .cursor/commands/dev.md (development workflow)
+
+Rule priority: If repo rules conflict with global rules, treat repo rules as source of truth for this repo.
+
